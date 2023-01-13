@@ -1,0 +1,16 @@
+app-archive-page,
+app-product-type-page {
+    .page-content {
+        .product-card {
+            width: 47%;
+            margin-bottom: 5vw;
+            margin-right: 5vw;
+
+            @media screen and (max-width: 600px) {
+                &:nth-child(even) {
+                    margin-right: 0;
+                }
+            }
+        }
+    }
+}

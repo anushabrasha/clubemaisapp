@@ -1,0 +1,53 @@
+<ion-content class="bg-default ion-padding">
+    <div class="logo-section">
+        <div class="logo">
+            <img src="assets/images/logo/clube-mais-gray-red-login-logo.png" alt="Clube Mais" />
+        </div>
+    </div>
+    <!-- landing view removed-->
+
+    <div class="login-page">
+        <p class="login-description title-red"><span>Faça o login abaixo</span> para começar:</p>
+        <div class="login-form">
+            <form [formGroup]="loginPageForm">
+                <div class="form-group"
+                    [ngClass]="!loginPageForm.controls.user.valid && loginPageForm.controls.user.touched ? 'error' : ''">
+                    <label>Insira seu CPF</label>
+                    <ion-input type="tel" class="input-text" name="user" [formControl]="loginPageForm.controls['user']"
+                        [brmasker]="{mask: '000.000.000-00',len:14, type:'num'}" [(ngModel)]="userData.cpf">
+                    </ion-input>
+                    <div class="" [ngClass]="errorClass"
+                        *ngIf="!loginPageForm.controls.user.valid && loginPageForm.controls.user.touched">
+                        CPF inválido
+                    </div>
+                </div>
+                <div class="form-group"
+                    [ngClass]="!loginPageForm.controls.password.valid && loginPageForm.controls.password.touched ? 'error' : ''">
+                    <label>Senha</label>
+                    <ion-input type="password" class="input-text" name="password"
+                        [formControl]="loginPageForm.controls['password']" [(ngModel)]="userData.password"></ion-input>
+                    <div class="" [ngClass]="errorClass"
+                        *ngIf="!loginPageForm.controls.password.valid && loginPageForm.controls.password.touched">
+                        Senha Incorreta
+                    </div>
+                </div>
+                <div class="form-group">
+                    <ion-button class="btn btn-red login-btn" (click)="validateLogin()"
+                        [disabled]="!loginPageForm.valid">Entrar
+                    </ion-button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="footer-nav-link">
+        <p class="first-access-label" routerLink="/access-page">
+            Primeiro acesso? <span>Cadastre-se já!</span>
+        </p>
+        <p class="lost-password-label" (click)="openForgetPasswordPage()">Esqueci a senha</p>
+        <div class="footer-nav-menu">
+            <p class="contact-us-label" routerLink="/contact-page">Fale Conosco</p>
+            <p class="politica-label" (click)="openPolitica()">Política de Privacidade</p>
+        </div>
+    </div>
+</ion-content>

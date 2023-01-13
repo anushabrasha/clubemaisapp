@@ -1,0 +1,13 @@
+<div class="archive-training-banner-section">
+  <div class="archive-training-banner" *ngFor="let aprenda of aprendaList" (click)="openCourse(aprenda)">
+    <div class="archive-training-banner-image" *ngIf="isFor == 'aprenda'">
+      <div class="bg-overlay"></div>
+	        <img [src]="aprenda.mobile_image_url ? aprenda.mobile_image_url : aprenda.imageURL"
+        [alt]="aprenda.title.rendered">
+	  </div>
+    <div class="archive-training-banner-container"_ngcontent-fsy-c1="">
+      <label class="period">{{ renderDate(aprenda)}}</label>
+      <h3 class="training-title" [innerHTML]="aprenda.title.rendered"></h3>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+<div class="archive-slide">
+  <div class="item" *ngFor="let vantagens of vantagensList" (click)="openUrl(vantagens)">
+    <h1 class="vantagens-category">{{vantagens.post_category}}</h1>
+       <!-- <div class="h-100"> -->
+          <img [src]="vantagens.post_image">
+          <div _ngcontent-fsy-c1="" class="slider-details">
+            <!-- <h1 class="vantagens-category">{{vantagens.post_category}}</h1> -->
+              <!-- <h3 [innerHTML]="vantagens.post_title"></h3> -->
+              <!-- <label class="btn-outline-yellow">{{ vantagens.post_category}}</label> -->
+          </div>
+      <!-- </div>  -->
+  </div>
+</div>

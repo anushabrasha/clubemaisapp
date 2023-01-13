@@ -1,0 +1,39 @@
+<ion-header>
+    <app-header class="" [ngClass]="hideHeader ? 'hide-header' : ''">
+    </app-header>
+</ion-header>
+<ion-content [scrollEvents]="true" (ionScroll)="onScroll($event)">
+    <app-user-info-header pageKey='news'></app-user-info-header>
+    <div class="page-content" id="focusContent">
+        <div class="news-content padding">
+            <div class="like-section">
+                <div class="news-date">
+                    <label class="btn btn-outline-gray">{{news.date_formated}}</label>
+                </div>
+                <div class="like" (click)="likeNews(news.id)">
+                    <div class="like-icon">
+                        <img src="assets/images/icons/like-icon.png" *ngIf="news.is_user_liked == '0'" alt="like" />
+                        <img src="assets/images/icons/liked-icon.png" *ngIf="news.is_user_liked == '1'" alt="like" />
+                    </div>
+                    <span class="count">{{news.post_like_count}}</span>
+                </div>
+            </div>
+            <div class="video-title">
+                <h1 class="title-gray">{{news.title}}</h1>
+                <span class="glow-red"></span>
+            </div>
+            <div class="video-description" [innerHTML]="sanatized"></div>
+            <!-- image removed -->
+
+            <div class="future-news-section">
+                <h2 class="title-gray future-title"><span>e mais </span></h2>
+                <app-news-page-card></app-news-page-card>
+            </div>
+            <ion-button class="btn btn-gray margin-auto" (click)="toBack()">Voltar</ion-button>
+        </div>
+    </div>
+</ion-content>
+
+<ion-footer>
+    <app-footer></app-footer>
+</ion-footer>

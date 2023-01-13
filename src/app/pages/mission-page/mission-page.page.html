@@ -1,0 +1,55 @@
+<ion-header>
+  <app-header class="" [ngClass]="hideHeader ? 'hide-header' : ''"></app-header>
+</ion-header>
+
+<ion-content [scrollEvents]="true" class="mission-archive" (ionScroll)="onScroll($event)">
+  <app-user-info-header [pageKey]="isGameMission ? 'game': 'mission'"></app-user-info-header>
+  <div class="page-content">
+    
+    <ion-searchbar class="search-section" placeholder="DIGITE O QUE VOCÊ PROCURA" [(ngModel)]="search_string"
+    (ngModelChange)="searchMissions($event)" (ionClear)="onClear($event)">
+  </ion-searchbar>
+  <div *ngIf="!isMissionPresent">
+    <p>No missions found</p>
+  </div>
+
+    <div class="archive-mission-banner-section" *ngIf="isMissionPresent">
+      <div class="archive-mission-banner" *ngFor="let mission of missionList"
+        [ngClass]="mission.customStatus + ' ' + mission.mission_type">
+        <div class="archive-mission-banner-image">
+          <div class="bg-overlay"></div>
+          <img [src]="mission.thumbnail_url" [alt]="mission.post_title" />
+        </div>
+        <div class="archive-mission-banner-container">
+          <label class="period">
+            {{mission.start_date | dateFormater: '':'true'}} a {{mission.expiry_date | dateFormater: '':'true'}}
+          </label>
+          <h3 class="mission-title" *ngIf="mission.post_title">
+            {{mission.post_title}}</h3>
+        </div>
+        <div class="post-status">
+          <label class="status-label" [ngClass]="getButtonName(mission,'label')"
+            *ngIf="mission.customStatus != 'mission-expired'">
+            {{getButtonName(mission,'label')}}</label>
+          <ion-button class="btn status-btn" (click)="openSinglePage(mission)" *ngIf="mission.customStatus"
+            [disabled]="mission.disableActionButton">
+            {{getButtonName(mission,'button')}}
+          </ion-button>
+        </div>
+      </div>
+    </div>
+
+    
+
+    <div *ngIf="!isMissionPresent" class="comingsoon margin-auto">
+      <h2>EM BREVE</h2>
+    </div>
+
+    <!-- pagination removed -->
+    <ion-button class="btn btn-gray back-btn" (click)="toBack()">voltar</ion-button>
+  </div>
+
+</ion-content>
+<ion-footer>
+  <app-footer></app-footer>
+</ion-footer>

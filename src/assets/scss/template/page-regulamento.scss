@@ -1,0 +1,31 @@
+app-regulamento-page {
+    ion-content {
+        .page-content {
+            top: 10vw;
+            padding-bottom: calc(100% / 4) !important;
+            p {
+                margin-bottom: 15px!important;
+                a {
+                    color: $primary-dark-color;
+                }
+            }
+            ion-item {
+                margin: 25px 0;
+                margin-top: 0;
+                background: transparent;
+                --background: transparent;
+                ion-label {
+                    color: #5b5b5b !important;
+                    font-family: Arial-Regular;
+                }
+                ion-radio {
+                    margin-right: 10px;
+                }
+            }
+            ion-button {
+                margin: 20px auto;
+                background-color: $label-color !important;
+            }
+        }
+    }
+}

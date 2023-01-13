@@ -1,0 +1,33 @@
+<div>
+  <div *ngIf="mission.mission_type == 'type4' || mission.mission_type == 'type5' ||  mission.mission_type == 'type17'">
+    <p>
+      <ion-label *ngIf="mission.mission_type == 'type17'">Imagem*:</ion-label>
+      <ion-label *ngIf="mission.mission_type != 'type17'">Foto:</ion-label>
+      <button class="file-upload btn-yellow" (click)="chooseImage()">Clique aqui</button>
+    </p>
+    <img *ngIf="selectedImage" class="preview" style="height: 180px; width: auto; margin: 10px auto; display: block;"
+      alt="image" [src]='selectedImage' />
+  </div>
+
+  <div *ngIf="isGameMission">
+    <p class="btn playgame-btn" (click)="playGame(mission.mission_iframe_url)">Jogar agora</p>
+  </div>
+
+  <div *ngIf="mission.mission_type == 'type7'">
+
+    <ion-button class="btn btn-red" (click)="chooseImage()">
+      Selecionar VÍDEO
+    </ion-button>
+    <p *ngIf="filename">{{filename}}</p>
+  </div>
+
+  <div
+    *ngIf="(mission.customStatus == 'mission-new') && (mission.mission_type == 'type8' || mission.mission_type == 'type17')">
+    <ion-item>
+      <ion-label *ngIf="mission.mission_type == 'type17'" position="floating">Texto*</ion-label>
+      <ion-label *ngIf="mission.mission_type != 'type17'" position="floating">Mensagem*</ion-label>
+      <ion-textarea mode="ios" autoGrow="true" rows="6" [(ngModel)]="textMissionValue" (change)="updateDescription()">
+      </ion-textarea>
+    </ion-item>
+  </div>
+</div>

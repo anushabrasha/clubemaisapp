@@ -1,0 +1,12 @@
+.step-bar {
+    justify-content: space-between;
+    margin: 20px 0;
+
+    .step {
+        width: 20vw;
+        height: 6px;
+        background-color: $white-color;
+        border-radius: 8px;
+        margin: 0 10px;
+    }
+}

@@ -1,0 +1,293 @@
+<div class="popup-content" *ngIf="isSuccess == true">
+    <img src="assets/images/icons/success-popup-icon.png" alt="Error-Success">
+    <h4 class="title-green">
+        {{alertMessage}}
+        <!-- Informações atualizadas <span>com sucesso!</span> -->
+    </h4>
+    <ion-button class="btn btn-gradient" (click)="closePopup()">OK</ion-button>
+</div>
+
+<div class="popup-content" *ngIf="!isSuccess">
+    <img src="assets/images/icons/failiure-popup-icon.png" alt="Error-Success">
+    <h4 class="title-gray">
+        {{alertMessage}}
+        <!-- Ocorreu algum <span>erro</span>, tente de novo! -->
+    </h4>
+    <ion-button class="btn btn-gradient" (click)="closePopup()">OK</ion-button>
+</div>
+
+<div class="popup-content" *ngIf="isSuccess == 'empty'">
+    <h4 class="title-gray">
+        {{alertMessage}}
+        <!-- Ocorreu algum <span>erro</span>, tente de novo! -->
+    </h4>
+    <ion-button class="btn btn-gradient" (click)="closePopup()">OK</ion-button>
+</div>
+
+<div class="popup-content success-message" *ngIf="isSuccess == 'registerSuccess'">
+    <img src="assets/images/common/register-popup.png" alt="Register-Success">
+    <div class="success-content">
+        <h4 class="title-red">PARABÉNS!</h4>
+        <p class="success-description">
+            Seu cadastro foi concluído com sucesso, e a partir de agora você pode começar a sua experiência no
+            <span>Clube SKY!</span>
+        </p>
+        <ion-button class="btn btn-gradient" (click)="closePopup()">OK</ion-button>
+    </div>
+</div>
+
+<div class="popup-content shop-success-message" *ngIf="isSuccess == 'shop-popup-success'">
+    <div class="close" (click)="closePopup()">
+        FECHAR
+        <ion-icon class="close-btn" name="close"></ion-icon>
+    </div>
+    <div class="success-content">
+        <h5 class="success-description">
+            Realizado com sucesso!
+        </h5>
+    </div>
+    <div class="pagamento">
+        <img src="assets/images/icons/pagamento-success.png" alt="Shop-Success">
+    </div>
+</div>
+
+<div class="popup-content shop-error-message" *ngIf="isSuccess == 'shop-popup-error'">
+    <div class="popup-content shop-error-message">
+        <div class="close" (click)="closePopup()">
+            FECHAR
+            <ion-icon class="close-btn" name="close"></ion-icon>
+        </div>
+        <div class="error-content">
+            <h5 class="error-description">
+                {{alertMessage}}
+            </h5>
+        </div>
+        <div class="pagamento">
+            <img src="assets/images/icons/pagamento-failure.png" alt="Shop-Failure">
+        </div>
+    </div>
+</div>
+
+<div class="popup-content aprenda-success-message" *ngIf="isSuccess == 'aprendaSuccess'">
+    <div class="popup-content aprenda-success-message">
+        <div class="pagamento">
+            <img src="assets/images/icons/pagamento-failure.png" alt="aprenda-success">
+        </div>
+        <div>
+            Success
+            <p>
+                success content
+            </p>
+        </div>
+        <div class="error-content">
+            <h5 class="error-description">
+                {{alertMessage}}
+                <p>PONTOS</p>
+            </h5>
+        </div>
+        <div class="">
+            <ion-button class="btn btn-gradient" (click)="closePopup()">VOLTAR</ion-button>
+        </div>
+    </div>
+</div>
+
+<div class="popup-content contact-success-message" *ngIf="isSuccess == 'contact-page-success'">
+    <!--<div class="close" (click)="closePopup('toHome')">
+      FECHAR
+      <ion-icon class="close-btn" name="close"></ion-icon>
+    </div>-->
+    <div class="contact-success-image">
+        <img src="assets/images/icons/success-popup-icon.png" alt="Contact-Success-Message">
+    </div>
+    <h2 class="title-red">Obrigado!</h2>
+    <div class="success-content">
+        <p class="success-description">
+            Vamos entrar em contato com você o quanto antes.
+        </p>
+    </div>
+    <ion-button class="btn btn-gradient" (click)="closePopup()">ok</ion-button>
+</div>
+
+<!-- selos popup -->
+<div class="popup-content selos-popup" *ngIf="isSuccess == 'selosPopUp'">
+    <div class="selos-header-content">
+        <ion-button class="btn btn-red popup-close" (click)="closePopup()">&lt;</ion-button>
+    </div>
+    <div class="selos-single-image">
+        <img src="{{alertMessage.image_url}}" alt="selo">
+    </div>
+    <div class="content-section">
+        <div class="selos-title-block">
+            <h1 class="title-red selos-title">
+                {{alertMessage.name}}
+            </h1>
+        </div>
+        <span class="glow"></span>
+        <div class="selos-batch-content-block">
+            <p class="selos-description text-center">
+                {{alertMessage.message}}
+            </p>
+        </div>
+    </div>
+</div>
+
+<!-- Rating Popup -->
+
+<div class="popup-content rating-popup" *ngIf="isSuccess == 'appRating'">
+    <div class="image-section">
+        <img src="assets/images/icons/like-popup-icon.png" alt="like-popup-icon">
+    </div>
+    <div class="content-section">
+        <div class="rating-popup-title-block">
+            <h1 class="title-red title">
+                sua opinião faz<span>um clube melhor!</span>
+            </h1>
+        </div>
+        <div class="description-section">
+            <p class="description text-center">
+                Ajude-nos a melhorar cada vez mais o Clube SKY. É super rápido!
+            </p>
+        </div>
+    </div>
+    <div class="popup-footer flex">
+        <ion-button class="btn btn-gradient review-now" (click)="openAppRating()">avaliar agora</ion-button>
+        <ion-button class="btn not-review-now" (click)="closeAppRatingPopup()">não, obrigado</ion-button>
+    </div>
+</div>
+
+
+<!-- LGPD Popup -->
+
+<div class="popup-content regulation-data-content-popup" *ngIf="isSuccess == 'LGPDPopup'">
+    <div class="regulation-data-content-section">
+        <div class="regulation-data-popup-content">
+            <div class="popup-header-section">
+                <h2 class="title title-red">por que pedimos estes dados?</h2>
+            </div>
+            <div class="popup-content-section">
+                <p class="description">Informações pessoais</p>
+                <div class="regulation-description">
+                    <div class="data-description">
+                        <div class="info-description">
+                            <p>
+                                <span>CPF: </span> Este é o dado principal, que identificará seu perfil no Clube SKY e
+                                será usado para confirmar seus resgates e guardar as informações pertinentes ao seu
+                                histórico no programa.
+                            </p>
+                            <p>
+                                <span>Foto de perfil: </span> Você pode ou não inserir uma foto de perfil. Ela é usada
+                                apenas para deixar seus posts na Timeline com a sua cara.
+                            </p>
+                            <p>
+                                <span>Data de nascimento: </span> Sua data de nascimento é necessária para resgates de
+                                cartões Vale Compras, pois é um dado usado para gerar a senha de acesso.
+                            </p>
+                            <p>
+                                <span>Email: </span> Seu email é importante para receber a confirmação de resgates, para
+                                nossas comunicações e interações.
+                            </p>
+                            <p>
+                                <span>Gênero: </span> Este dado é coletado apenas para análises e possíveis melhoras em
+                                sua experiência no Clube SKY, porém disponibilizamos a opção de não quero declarar.
+                            </p>
+                            <p>
+                                <span>Nome completo: </span>Seu nome é necessário para as nossas comunicações e para a
+                                identificação de alguns tipos de resgate. Telefone com DDD: Esse dado é importante para
+                                que possamos entrar em contato em casos de problemas de resgate, promoções, etc.
+                            </p>
+                        </div>
+                        <div class="address-description">
+                            <p class="margin-bottom">
+                                <span>Endereço </span> CEP, Logradouro, Número, Complemento, Ponto de referência,
+                                Bairro, Cidade, Estado: Seu endereço é necessário para entregar os produtos resgatados.
+                                Você também pode cadastrar um outro endereço na hora do resgate, caso queira enviar um
+                                presente para alguém. Não se preocupe, não usaremos seu endereço para nada além disso.
+                            </p>
+                            <p>
+                                <span>Senha</span>
+                            </p>
+                            <p>
+                                <span>Sua senha:</span>Sua senha de acesso ao programa. Fique tranquilo, ninguém da
+                                equipe SKY terá acesso à sua senha ou parte dela. Seus dados estão seguros! Escolha uma
+                                senha de no mínimo 8 caracteres.
+                            </p>
+                            <p>
+                                <span>Confirmar senha:</span>Repita sua senha neste campo, apenas para garantir que não
+                                haverá erro de digitação.
+                            </p>
+                        </div>
+                        <div class="regulation-description">
+                            <p>
+                                <span>Regulamento </span>
+                            </p>
+                            <p>
+                                <span>Aceite dos termos:</span>Leia atentamente os termos do programa Clube SKY. Você
+                                deve aceitar os termos para entrar no programa.
+                            </p>
+                        </div>
+                        <div class="important-description">
+                            <p class="title-red">
+                                <span>Importante! </span>
+                            </p>
+                            <p>
+                                Além dos dados necessários para solicitar seus resgates, nós não compartilhamos seus
+                                dados com ninguém! Garantimos que seus dados estão salvos e seguros. Caso deseje excluir
+                                seus dados de nossa base, entre em contato com o SAC e faremos a exclusão de seu usuário
+                                do programa.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="popup-footer-section">
+                <ion-button class="btn btn-gradient regulation-data-btn" (click)="closePopup()">Ok, entendi</ion-button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Popup PG Contas -->
+
+<div class="popup-content shop-error-message" *ngIf="isSuccess == 'pcontas-popup-error'">
+    <div class="popup-content shop-error-message">
+        <div class="close" (click)="closePopup()">
+            FECHAR
+            <ion-icon class="close-btn" name="close"></ion-icon>
+        </div>
+        <div class="error-content">
+            <h5 class="error-description">
+                {{alertMessage}}
+            </h5>
+        </div>
+        <div class="pagamento">
+            <img src="assets/images/icons/pagamento-failure.png" alt="Shop-Failure">
+        </div>
+    </div>
+</div>
+
+<div class="popup-content" *ngIf="isSuccess == 'pcontas-popup-alert'">
+    <!-- <img src="assets/images/icons/failiure-popup-icon.png" alt="Error-Success"> -->
+    <h4 class="title-gray">
+        {{alertMessage}}
+    </h4>
+    <ion-button class="btn btn-gradient" (click)="closePopup()">OK</ion-button>
+</div>
+
+<div class="popup-content two-step-factor-popup" *ngIf="isSuccess == 'otp-popup'">
+    <div class="header-content two-step-factor-header">
+        <h1 class="text-center title">Atenção!</h1>
+        <p class="popup-close two-step-factor-close" (click)="closePopup()">x</p>
+    </div>
+    <span class="glow-red"></span>
+    <p class="title-gray">
+        {{alertMessage}}
+    </p>
+    <div class="two-step-factor-footer">
+        <ion-input type="tel" placeholder="Digite aqui seu código" [(ngModel)]="otpValue"></ion-input>
+        <ion-button class="btn btn-gradient" (click)="submitOtp()" [disabled]="!otpValue">Confirmar</ion-button>
+        <ion-button class="btn btn-gradient" (click)="sendEmailOtp()" *ngIf="alertData['key'] == 'checkout'">Reenviar
+            código para e-mail
+        </ion-button>
+    </div>
+
+</div>

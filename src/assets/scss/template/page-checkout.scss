@@ -1,0 +1,135 @@
+app-checkout {
+    ion-content {
+        app-user-info-header {
+            .banner-user-detail {
+                .banner-content {
+                    .banner-content-section {
+                        .content-section {
+                            .title {
+                                font-size: 34px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .page-content {
+            top: 15vw;
+            padding: 0 20px;
+            padding-bottom: calc(100% / 4) !important;
+
+            .category-title {
+                height: 40px;
+                font-size: 14px;
+                padding: 8px 15px;
+                margin: 15px auto;
+                color: $gray-dark;
+                width: fit-content;
+                text-align: center;
+                font-weight: normal;
+                margin-bottom: 30px;
+                border: 3px solid $gray-dark;
+                border-radius: 25px !important;
+                font-family: PFDinTextPro-Medium-Italic;
+            }
+
+            label {
+                font-family: PFDinTextPro-Medium-Italic !important;
+                color: $text-dark;
+                text-transform: uppercase;
+            }
+
+            ion-input {
+                input {
+                    border-radius: 0 !important;
+                }
+            }
+
+            ion-select {
+                border-radius: 0 !important;
+            }
+
+            .form-group {
+                &.error {
+                    ion-input {
+                        input {
+                            border: 1px solid $primary-light-color !important;
+                        }
+                    }
+
+                    .error {
+                        font-family: Roboto-Medium;
+                        color: $primary-light-color;
+                    }
+                }
+            }
+
+            ion-button {
+                width: 100%;
+            }
+
+            .order-success-section {
+                width: 80%;
+                margin: 0 auto;
+                margin-top: 30px;
+
+                .title-gray {
+                    margin: 0;
+                    font-size: 30px;
+                    color: $text-dark;
+                    margin-bottom: 30px;
+                    text-transform: uppercase;
+                    font-family: PFDinTextPro-Light-Italic;
+
+                    span {
+                        font-family: PFDinTextPro-Medium-Italic;
+                    }
+
+                    &.title {
+                        font-size: 20px;
+
+                        span {
+                            color: $primary-light-color;
+                        }
+                    }
+
+                    &.sub-title {
+                        text-align: center;
+                        margin-bottom: 30px;
+
+                        span {
+                            color: $text-dark;
+                            font-family: PFDinTextPro-Light-Italic;
+                        }
+                    }
+                }
+
+                .description {
+                    color: $gray-dark;
+                    text-align: center;
+                    margin-bottom: 30px !important;
+                    font-family: PFDinTextPro-Bold;
+                }
+
+                .order-status-icon {
+                    width: 80px;
+                    height: 80px;
+                    margin: 30px auto;
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: contain;
+                    }
+                }
+                .btn {
+                    &.btn-red {
+                        width: fit-content;
+                        font-size: 14px !important;
+                        background: $primary-light-color !important;
+                    }
+                }
+            }
+        }
+    }
+}

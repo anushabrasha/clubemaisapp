@@ -1,0 +1,199 @@
+/* Login Page */
+
+app-login-page {
+    ion-content {
+        &.bg-default {
+            --padding-top: 0;
+            --padding-end: 0;
+            --padding-start: 0;
+            background-image: unset;
+            background-color: $gray-light-color;
+
+            .logo-section {
+                background-color: $white-color;
+                padding-bottom: 30px;
+                padding-left: 20px;
+                padding-top: 20vw;
+
+                .logo {
+                    width: 200px;
+                    height: 45px;
+                    margin-bottom: 0;
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: contain;
+                    }
+                }
+            }
+
+            .login-landing {
+                padding: 0 20px;
+
+                h1.title-red {
+                    line-height: 1;
+                    font-size: 46px;
+                    margin-top: 20vw;
+                    margin-bottom: 30px;
+                    text-transform: uppercase;
+                    color: $primary-light-color;
+                    font-family: PFDinTextPro-Medium-Italic;
+
+                    span {
+                        color: $text-dark;
+                        font-family: PFDinTextPro-ThinItalic;
+                    }
+                }
+
+                .version-description {
+                    &.title-red {
+                        line-height: 2;
+                        font-size: 20px;
+                        color: $text-dark;
+                        font-family: Roboto-Regular;
+                        margin-bottom: 25px !important;
+
+                        span {
+                            font-family: Roboto-Medium;
+                            color: $primary-light-color;
+                        }
+                    }
+                }
+
+                .login-form-btn {
+                    width: 100%;
+                    margin-bottom: 20px;
+                    text-transform: unset;
+                    font-family: Roboto-Medium;
+                    font-size: 16px !important;
+                    line-height: normal !important;
+                    background-color: $primary-light-color !important;
+                }
+            }
+
+            .login-page {
+                padding: 0 20px;
+
+                .login-description {
+                    font-size: 20px;
+                    color: $text-dark;
+                    font-family: Roboto-Regular;
+                    margin-top: 20vw !important;
+                    margin-bottom: 30px !important;
+
+                    span {
+                        color: $text-dark;
+                        font-family: Roboto-Medium;
+                    }
+                }
+
+                .login-form {
+                    .form-group {
+                        label {
+                            color: $text-dark;
+                            margin-bottom: 5px;
+                            font-family: Roboto-Regular;
+                        }
+
+                        select,
+                        input[type="tel"],
+                        input[type="text"],
+                        input[type="number"],
+                        input[type="email"],
+                        input[type="date"],
+                        input[type="password"] {
+                            border: unset !important;
+                            color: $text-dark !important;
+                            background-color: $white-color !important;
+
+                            &:-internal-autofill {
+                                -webkit-text-fill-color: #5b5b5b;
+                                -webkit-box-shadow: 0 0 0px 1000px $white-color inset;
+                                transition: background-color 5000s ease-in-out 0s;
+                            }
+
+                            &:-internal-autofill-selected {
+                                -webkit-text-fill-color: #5b5b5b;
+                                -webkit-box-shadow: 0 0 0px 1000px $white-color inset;
+                                transition: background-color 5000s ease-in-out 0s;
+                            }
+                        }
+
+                        &.error {
+                            label {
+                                font-family: Roboto-Medium;
+                                color: $primary-light-color !important;
+                            }
+
+                            select,
+                            input[type="tel"],
+                            input[type="text"],
+                            input[type="number"],
+                            input[type="email"],
+                            input[type="date"],
+                            input[type="password"] {
+                                border: 1px solid $primary-light-color !important;
+                            }
+
+                            .error {
+                                font-family: Roboto-Medium;
+                                color: $primary-light-color;
+                            }
+                        }
+
+                        .login-btn {
+                            width: 100%;
+                            margin-bottom: 20px;
+                            text-transform: unset;
+                            font-family: Roboto-Medium;
+                            font-size: 16px !important;
+                            line-height: normal !important;
+                            background-color: $primary-light-color !important;
+                        }
+                    }
+                }
+            }
+
+            .footer-nav-link {
+                padding: 0 20px;
+
+                p.first-access-label {
+                    font-size: 20px;
+                    color: $text-dark;
+                    text-align: center;
+                    font-family: Roboto-Regular;
+                    margin-bottom: 30px !important;
+
+                    span {
+                        font-family: Roboto-Medium;
+                        color: $primary-light-color !important;
+                    }
+                }
+
+                .lost-password-label {
+                    font-size: 16px;
+                    color: $text-dark;
+                    text-align: center;
+                    text-decoration: underline;
+                    font-family: Roboto-Regular;
+                }
+
+                .footer-nav-menu {
+                    display: flex;
+                    justify-content: center;
+
+                    .politica-label,
+                    .contact-us-label {
+                        font-size: 14px;
+                        text-align: center;
+                        margin: 20px !important;
+                        color: $primary-light-color;
+                        text-decoration: underline;
+                        font-family: Roboto-Regular;
+                    }
+                }
+            }
+        }
+    }
+}

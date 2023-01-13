@@ -1,0 +1,102 @@
+app-footer {
+    position: fixed;
+    width: 100%;
+    z-index: 9;
+    bottom: 0;
+
+    footer {
+        padding: 15px 8px;
+        background: $white-color;
+        border-top-left-radius: 25px;
+        border-top-right-radius: 25px;
+        box-shadow: 0 -5px 8px 0px rgba(0, 0, 0, 0.58);
+
+        .footer-tab {
+            align-items: center;
+            justify-content: space-around;
+
+            .footer-icon {
+                text-align: center;
+                position: relative;
+                padding: 0;
+                margin: 0;
+                width: 20%;
+
+                @media screen and (min-width: 320px) {
+                    width: 26%;
+                }
+
+                @media screen and (min-width: 360px) {
+                    width: 25%;
+                }
+
+                @media screen and (width: 375px) {
+                    width: 25%;
+                }
+
+                @media screen and (min-width: 380px) {
+                    width: 23%;
+                }
+
+                @media screen and (width: 414px) {
+                    width: 20%;
+                }
+
+                span {
+                    display: none;
+                }
+
+                .icon {
+                    margin: 0 auto;
+                    height: 30px;
+                    width: 30px;
+
+                    img {
+                        height: 100%;
+                        width: 100%;
+                        object-fit: contain;
+                        filter: grayscale(10) contrast(0.7) brightness(1.7);
+                    }
+                }
+
+                p.title {
+                    font-size: 14px;
+                    color: $text-dark;
+                    font-family: Roboto-Regular;
+
+                    @media screen and (min-width: 360px) {
+                        font-size: 12px;
+                    }
+                }
+
+                &:nth-child(2),
+                &:nth-child(3) {
+                    span {
+                        top: -3px;
+                        left: 50px;
+                        width: 12px;
+                        height: 12px;
+                        display: block;
+                        position: absolute;
+                        border-radius: 50%;
+                        color: $white-color;
+                        background-color: $primary-light-color;
+                    }
+                }
+
+                &.active {
+                    .icon {
+                        img {
+                            filter: unset;
+                        }
+                    }
+
+                    p.title {
+                        font-family: Roboto-Bold;
+                        color: $primary-light-color;
+                    }
+                }
+            }
+        }
+    }
+}

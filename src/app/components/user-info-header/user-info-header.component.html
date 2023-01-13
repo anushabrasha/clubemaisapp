@@ -1,0 +1,16 @@
+<!-- banner with user detail -->
+<div class="banner-user-detail">
+  <div class="banner-content">
+    <img [src]="getPageImage(pageKey)" alt="banner">
+    <div class="banner-content-section" [ngClass]="setclass()">
+      <app-user-info *ngIf="!hideUserInfo"></app-user-info>
+      <div class="content-section">
+
+        <h2 class="title" [innerHTML]=getPageTitle(pageKey)>
+        </h2>
+        <p class="description" [innerHTML]=getPageSubTitle(pageKey)>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

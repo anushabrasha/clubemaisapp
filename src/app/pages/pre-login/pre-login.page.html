@@ -1,0 +1,122 @@
+<ion-header>
+    <app-header class="" [ngClass]="hideHeader ? 'hide-header' : ''" [preventAll]="true"></app-header>
+</ion-header>
+<ion-content class="home" [scrollEvents]="true" (ionScroll)="onScroll($event)">
+    <div class="bg-gradient w-100 h-100 background"></div>
+    <div class="page-content">
+        <img class="background-image" src="assets/images/background/news-background.jpg" alt="pre-login-image" />
+        <div class="pre-login-content">
+            <h1 class="title-gray">Seja um<span>Credenciado!</span></h1>
+            <p>
+                Se torne um representante SKY e entre para um time vencedor.
+            </p>
+        </div>
+        <div class="pre-login-image">
+            <div class="pre-login-image-content">
+                <h1 class="title-white">conheça o<span>clube sky!</span></h1>
+                <label class="btn-outline-white" (click)="openPage('login-page')">clique aqui e comece agora!</label>
+            </div>
+        </div>
+        <div class="enter-sky text-center">
+            <h1 class="title-gray title">Empreenda com <span>a sky</span></h1>
+            <div class="bg-white flex pre-login-list">
+                <img src="assets/images/icons/year-icon.png" alt="year-icon" />
+                <h6 class="title-gray sub-title">20 anos no mercado brasileiro</h6>
+            </div>
+            <div class="bg-white flex pre-login-list">
+                <img src="assets/images/icons/dish-icon.png" alt="dish-icon" />
+                <h6 class="title-gray sub-title">Maior empresa de TV por assinatura via satélite</h6>
+            </div>
+            <div class="bg-white flex pre-login-list">
+                <img src="assets/images/icons/map-icon.png" alt="map-icon" />
+                <h6 class="title-gray sub-title">Presença em todo o território nacional</h6>
+            </div>
+            <div class="bg-white flex pre-login-list">
+                <img src="assets/images/icons/award-icon.png" alt="award-icon" />
+                <h6 class="title-gray sub-title">Pioneira no lançamento de uma série de inovações tecnológicas</h6>
+            </div>
+            <div class="bg-white flex pre-login-list">
+                <img src="assets/images/icons/group-icon.png" alt="group-icon" />
+                <h6 class="title-gray sub-title">Mais de 5 milhões de clientes satisfeitos</h6>
+            </div>
+            <div class="bg-white flex pre-login-list">
+                <img src="assets/images/icons/broadband-icon.png" alt="broadband-icon" />
+                <h6 class="title-gray sub-title">Oferece TV Pré-paga e Pós-paga, além de pacotes de Banda Larga</h6>
+            </div>
+            <div class="bg-gradient pre-login-list description">
+                <h6 class="title-yellow sub-title"><span>Para ser um credenciado SKY, </span>você deverá ter uma equipe focada em vendas e serviços. Ter excelência no trabalho e na execução dos serviços. Ser comprometido com o assinante e ter ética e responsabilidade no desenvolvimento do negócio.</h6>
+            </div>
+        </div>
+        <div class="card-section">
+            <div class="card-item flex">
+                <div class="card">
+                    <div class="icon">
+                        <img src="assets/images/icons/pre-login-market-products-icon.png" alt="market-products-icon" />
+                    </div>
+                    <h5 class="title-gray"><span>Melhor oferta de </span> produtos do merCado</h5>
+                </div>
+                <div class="card">
+                    <div class="icon">
+                        <img src="assets/images/icons/pre-login-scale-icon.png" alt="scale-icon" />
+                    </div>
+                    <h5 class="title-gray"><span>Ganho</span> em escala</h5>
+                </div>
+                <div class="card">
+                    <div class="icon">
+                        <img src="assets/images/icons/pre-login-performance-icon.png" alt="performance-icon" />
+                    </div>
+                    <h5 class="title-gray">Remuneração variável <span> por desempenho </span></h5>
+                </div>
+                <div class="card">
+                    <div class="icon">
+                        <img src="assets/images/icons/pre-login-support-icon.png" alt="support-icon" />
+                    </div>
+                    <h5 class="title-gray"><span>Apoio </span> de Marketing</h5>
+                </div>
+                <div class="card">
+                    <div class="icon">
+                        <img src="assets/images/icons/pre-login-training-support-icon.png" alt="training-support-icon" />
+                    </div>
+                    <h5 class="title-gray"><span>Treinamento e suporte </span> de vendas</h5>
+                </div>
+                <div class="card">
+                    <div class="icon">
+                        <img src="assets/images/icons/pre-login-lending-icon.png" alt="lending-icon" />
+                    </div>
+                    <h5 class="title-gray"><span>Fornecimento de materiais </span>(em comodato)</h5>
+                </div>
+            </div>
+        </div>
+        <div class="pre-login-como-funtion text-center">
+            <h1 class="title-gray title">COMO <span>FUNCIONA?</span></h1>
+            <p class="btn-outline-red">Em 5 passos, você já pode se tornar um credenciado SKY. É simples, veja como fazer.</p>
+            <div class="flex wrap pre-login-como-list">
+                <div class="item">
+                    <span class="bg-gradient">01</span>
+                    <h5 class="title-gray"><span>Cadastre-se</span></h5>
+                </div>
+                <div class="item">
+                    <span class="bg-gradient">02</span>
+                    <h5 class="title-gray">Aguarde o contato <span>da sky</span></h5>
+                </div>
+                <div class="item">
+                    <span class="bg-gradient">03</span>
+                    <h5 class="title-gray">Aguarde a <span>Análise de perfil</span></h5>
+                </div>
+                <div class="item">
+                    <span class="bg-gradient">04</span>
+                    <h5 class="title-gray">Envie <span> seus documentos</span></h5>
+                </div>
+                <div class="item flex">
+                    <span class="bg-gradient">05</span>
+                    <h3 class="title-gray">Bem-vindo <span>à sky.</span></h3>
+                </div>
+            </div>
+        </div>
+        <div class="pre-login-declaration">
+            <label class="btn-green" (click)="openUrl()">quero fazer parte</label>
+        </div>
+    </div>
+</ion-content>
+<ion-footer>
+</ion-footer>

@@ -1,0 +1,90 @@
+<ion-header>
+  <app-header class="" [ngClass]="hideHeader ? 'hide-header' : ''"></app-header>
+</ion-header>
+<ion-content class="shop-page" [scrollEvents]="true" (ionScroll)="onScroll($event)">
+  <app-user-info-header pageKey='shop'></app-user-info-header>
+  <!-- points removed -->
+  <div class="product-category-icon">
+    <div class="category-icon">
+      <img src="assets/images/icons/shop-list-icon.png" alt="CONTAS" />
+    </div>
+  </div>
+  <div class="page-content">
+    <div class="product-category flex wrap">
+
+      <h2 class="category-title">PAGAMENTO DE CONTAS</h2>
+      <!-- <div class="product-search">
+      <input type="text" placeholder="DIGITE O PRODUTO QUE VOCÊ PROCURA" class="input" />
+      <ion-icon name="search"></ion-icon>
+      </div> -->
+
+      <div *ngIf="firstStep">
+        <div class="form-group">
+          <p [innerHTML]="rules"></p>
+        </div>
+        <div class="margin-bottom">
+          <ion-button class="btn btn-gradient block full" (click)="acceptTerms()">Concordo
+          </ion-button>
+        </div>
+      </div>
+
+      <div class="w-100" *ngIf="secondStep">
+        <p>Disponibilidade para pagamento de segunda à sexta-feira, de 10h às 18h.</p>
+        <p style="font-weight: bold; color:#e30609;">O serviço de pagamento sofreu uma alteração e a partir de hoje este
+          benefício é exclusivo para pagamento de contas de concessionárias (água, luz, gás, telefone etc).
+          para identificar se o seu boleto é válido, certifique-se de que o código de barras inicia com o número 8
+          (exceto para pagamento de tributos, sejam eles municipais, estaduais ou federais).</p>
+        <p>Campos com (*) são obrigatórios.</p>
+
+        <div class="form-group">
+          <label>Código de Barras*</label>
+          <ion-input type="text" name="Código" [(ngModel)]="barCodeValue" (change)="checkBarcode()"></ion-input>
+        </div>
+        <div class="form-group">
+          <div class="flex align-center bar-code">
+            <img src="assets/images/common/bar-code.jpg" alt="barcode" />
+            <ion-button (click)="openBarcode()" [disabled]="disableBarCodeScaner">
+              USAR O LEITOR (CÂMERA)
+            </ion-button>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Vencimento*</label>
+          <ion-datetime type="date" class="input" displayFormat="DD/MM/YYYY" name="Vencimento"
+            [(ngModel)]="contaData.vencimento">
+          </ion-datetime>
+        </div>
+        <div class="form-group">
+          <label>Valor do Boleto (R$)*</label>
+          <ion-input type="tel" name="Boleto" placeholder="0,00" [(ngModel)]="contaData.boleto"
+            (keyup)="maskMoney($event)">
+          </ion-input>
+        </div>
+        <div class="form-group">
+          <label>Desconto (R$)*</label>
+          <ion-input type="tel" name="discount" placeholder="0,00" [(ngModel)]="contaData.discount"
+            (keyup)="maskMoney($event)">
+          </ion-input>
+        </div>
+
+        <div class="form-group">
+          <label>Valor total*</label>
+          <ion-input type="tel" name="totalValue" placeholder="0,00" [(ngModel)]="contaData.totalValue" disabled="true">
+          </ion-input>
+        </div>
+        <div class="form-group">
+          <label>Valor em Pontos*</label>
+          <ion-input type="tel" name="Pontos" placeholder="0,00" [(ngModel)]="contaData.pontos" disabled="true">
+          </ion-input>
+        </div>
+
+        <div class="form-group flex">
+          <ion-button class="btn btn-green" (click)="submitConta()">FINALIZAR RESGATE</ion-button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>
+<ion-footer>
+  <app-footer></app-footer>
+</ion-footer>

@@ -1,0 +1,138 @@
+<ion-header>
+    <app-header [preventAll]="hideUSerInfo" [ngClass]="hideHeader ? 'hide-header' : ''">
+    </app-header>
+</ion-header>
+<ion-content [scrollEvents]="true" class="contact" (ionScroll)="onScroll($event)">
+    <app-user-info-header [hideUserInfo]="hideUSerInfo" pageKey='fale-conoso'></app-user-info-header>
+    <!-- <div class="bg-gradient w-100 h-100 background"></div> -->
+    <div class="page-content">
+        <!-- <img src="assets/images/background/fale-conosco-background.jpg" alt="mission">
+        <div class="fale-conosco-content">
+            <label class="btn btn-outline-yellow ">
+                fale conosco
+            </label>
+            <h1 class="title-yellow">o clube sky quer <span>ouvir você.</span></h1>
+            <p>Preencha abaixo os campos e deixe a sua mensagem que retornaremos o quanto antes.</p>
+        </div>
+        <div class="fale-conosco-message-section justify-evenly">
+            <ion-button class="btn btn-white" [ngClass]="showNewForm ? 'active': ''" (click)="toggleContent('new')">Nova
+                mensagem</ion-button>
+            <ion-button class="btn btn-white" [ngClass]="showHistory ? 'active': ''" (click)="toggleContent('history')">
+                Histórico</ion-button>
+        </div> -->
+        <div *ngIf="!successView">
+            <div class="fale-conosco-content-section">
+                <div class="new-message" *ngIf="showNewForm">
+                    <div class="bg-gradient flex regulamento document">
+                        <img src="assets/images/icons/list-icon.png" alt="list icon" />
+                        <h6 class="title-yellow"><span (click)="openFAQPage()">Clique aqui </span>para acessar o nosso
+                            guia
+                            <i>perguntas frequentes
+                            </i>que pode ajudar a responder a sua dúvida.
+                        </h6>
+                    </div>
+                    <!-- <span class="glow-gray"></span>
+                    <div class="bg-gradient flex regulamento contact">
+                        <img src="assets/images/icons/phone-icon.png" alt="phone icon" />
+                        <h6 class="title-yellow">
+                            Entre em contato pelo telefone
+                            <span class="title-red">0800 042 0514</span>
+                            <span class="title-gray">TEMPORARIAMENTE INDISPONÍVEL</span>
+                        </h6>
+                    </div>
+                    -->
+                    <span class="glow-gray"></span>
+                    <div class="bg-green flex regulamento whatsapp">
+                        <img src="assets/images/icons/whatsapp-icon.png" alt="whatsapp-icon" />
+                        <h6 class="title-yellow">
+                            ou clique no ícone ao final da página para nos enviar uma <span> mensagem via
+                                whatsapp.</span>
+                        </h6>
+                    </div>
+                    <div class="content-section">
+                        <p class="title-red"><span>Preencha abaixo os campos</span> e deixe a sua mensagem que
+                            retornaremos o
+                            quanto antes.</p>
+                    </div>
+                    <form class="form-content-section" [formGroup]="contactForm" *ngIf="contactForm">
+                        <div class="form-group"
+                            [ngClass]="!contactForm.controls.name.valid && contactForm.controls.name.touched ? 'error' : ''">
+                            <label>Nome</label>
+                            <ion-input type="text" name="username" formControlName="name"></ion-input>
+                            <div class="" [ngClass]="errorClass"
+                                *ngIf="!contactForm.controls.name.valid && contactForm.controls.name.touched">
+                                {{getError(contactForm.value.name , 'name')}}
+                            </div>
+                        </div>
+                        <div class="form-group"
+                            [ngClass]="!contactForm.controls.email.valid && contactForm.controls.email.touched ? 'error' : ''">
+                            <label>Seu e-mail</label>
+                            <ion-input type="text" name="email" formControlName="email"></ion-input>
+                            <div class="" [ngClass]="errorClass"
+                                *ngIf="!contactForm.controls.email.valid && contactForm.controls.email.touched">
+                                {{getError(contactForm.value.email , 'email')}}
+                            </div>
+                        </div>
+                        <div class="form-group"
+                            [ngClass]="!contactForm.controls.telephone.valid && contactForm.controls.telephone.touched ? 'error' : ''">
+                            <label>Seu telefone (com DDD)</label>
+                            <ion-input type="tel" name="telefone" formControlName="telephone"
+                                [brmasker]="{phone: true}">
+                            </ion-input>
+                            <div class="" [ngClass]="errorClass"
+                                *ngIf="!contactForm.controls.telephone.valid && contactForm.controls.telephone.touched">
+                                Telefone inválido
+                            </div>
+                        </div>
+                        <div class="form-group"
+                            [ngClass]="!contactForm.controls.subject.valid && contactForm.controls.subject.touched ? 'error' : ''">
+                            <label>Assunto</label>
+                            <ion-input type="email" name="assunto" formControlName="subject"></ion-input>
+                            <div class="" [ngClass]="errorClass"
+                                *ngIf="!contactForm.controls.subject.valid && contactForm.controls.subject.touched">
+                                Assunto inválido
+                            </div>
+                        </div>
+                        <div class="form-group"
+                            [ngClass]="!contactForm.controls.message.valid && contactForm.controls.message.touched ? 'error' : ''">
+                            <label class="description">Mensagem</label>
+                            <ion-textarea class="description" formControlName="message"></ion-textarea>
+                            <div class="" [ngClass]="errorClass"
+                                *ngIf="!contactForm.controls.message.valid && contactForm.controls.message.touched">
+                                Mensagem inválido
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <ion-button class=" btn submit-btn" type="submit" (click)="submitForm()"
+                                [disabled]="!contactForm.valid">
+                                Enviar
+                            </ion-button>
+                        </div>
+                    </form>
+                </div>
+                <div class="message-history" *ngIf="showHistory">
+                    <div class="form-group" *ngFor="let history of historyList;">
+                        <h3>{{history['your-subject']}}</h3>
+                        <p>{{history['your-message']}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="success-section" *ngIf="successView">
+            <h1 class="contact-update title-gray"><span>obrigado!</span></h1>
+            <p class="description">Em breve retornaremos a sua mensagem.</p>
+        </div>
+        <ion-button class="btn btn-gray margin-auto" (click)="toBack()">voltar</ion-button>
+    </div>
+</ion-content>
+
+<div class="open-whatsapp-section">
+    <div class="whatsapp-icon">
+        <img src="assets/images/icons/whatsapp-icon.png" alt="whatsapp-icon" (click)="openWhatsapp()" />
+    </div>
+</div>
+
+<ion-footer *ngIf="!hideUSerInfo">
+    <app-footer></app-footer>
+</ion-footer>

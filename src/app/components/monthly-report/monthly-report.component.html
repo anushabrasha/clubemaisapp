@@ -1,0 +1,86 @@
+<div class="bar-detail" *ngIf="userList.length">
+    <ion-slides pager="true" [options]="slideOpts" *ngFor="let reportList of userList;">
+                <ion-slide class="bar-report" *ngFor="let reports of listingData; let i = index;">
+               <div class="bar-report-detail">
+                <div class="sub-header text-center">
+                    <!-- <h5 class="title-gray">evolutivo mensal</h5> -->
+                </div>
+                <div class="bar-header-content">
+                    <p class="title-gray" [innerHTML]="title[i]"></p>
+                </div>
+                <ul class="bar-chart" *ngIf="reports && reports.length">
+                    <li *ngFor="let list of reports">
+                        <span [ngStyle]="{'height': list.total }" [title]="list.month"><i>{{list.value}}</i></span>
+                        <span [ngStyle]="{'height': list.total }" ><i>{{list.value}}</i></span>
+                    </li>
+                </ul>
+            </div>
+        </ion-slide>
+    </ion-slides>
+</div>
+<div class="constala" *ngIf="isConselta">
+    <div class="btn-group">
+        <ion-button class="btn btn-outline-gray" (click)="show = !show" [ngClass]="{active: !show}">REABERTAS AT</ion-button>
+        <ion-button class="btn btn-outline-gray" (click)="show = !show" [ngClass]="{active: show}">REABERTAS PP</ion-button>
+    </div>
+    <div class="at-reopening" *ngIf="!show">
+        <div class="performance-table nota-table">
+            <table>
+                <thead>
+                    <tr class="bg-gradient">
+                        <td>PDV</td>
+                        <td>ID</td>
+                        <td>NOME DO TÉCNICO</td>
+                        <td>NUMERADOR</td>
+                        <td>DENOMINADOR</td>
+                        <td>%</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let data of listingData">
+                        <td>{{data.PDV}}</td>
+                        <td>{{data.ID}}</td>
+                        <td>{{data.NOME_DO_TECNICO}}</td>
+                        <td>{{data.NUMERADOR_REAB_AT}}</td>
+                        <td>{{data.DENOMINADOR_REAB_AT}}</td>
+                        <td>{{data.perc_REAB_AT}}%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <hr />
+        <div class="margin-left margin-bottom">
+            <p>Dados atualizados semanalmente.</p>
+        </div>
+    </div>
+    <div class="pp-reopening" *ngIf="show">
+        <div class="performance-table nota-table">
+            <table>
+                <thead>
+                    <tr class="bg-gradient">
+                        <td>PDV</td>
+                        <td>ID</td>
+                        <td>NOME DO TÉCNICO</td>
+                        <td>NUMERADOR</td>
+                        <td>DENOMINADOR</td>
+                        <td>%</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let data of listingData">
+                        <td>{{data.PDV}}</td>
+                        <td>{{data.ID}}</td>
+                        <td>{{data.NOME_DO_TECNICO}}</td>
+                        <td>{{data.NUMERADOR_REAB_PP}}</td>
+                        <td>{{data.DENOMINADOR_REAB_PP}}</td>
+                        <td>{{data.perc_REAB_PP}}%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <hr />
+        <div class="margin-left margin-bottom">
+            <p>Dados atualizados semanalmente.</p>
+        </div>
+    </div>
+</div>

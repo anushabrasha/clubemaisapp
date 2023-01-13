@@ -1,0 +1,41 @@
+<ion-header>
+    <app-header pageKey="vantages" class="" [ngClass]="hideHeader ? 'hide-header' : ''"></app-header>
+</ion-header>
+
+<ion-content class="home" [scrollEvents]="true" (ionScroll)="onScroll($event)">
+    <app-user-info-header pageKey='vantages'></app-user-info-header>
+    <div class="page-content">
+        <div class="benefit-card-content">
+            <div class="benefit-card-item">
+                <div class="benefit-card-details">
+                    <label>Clube de Vantagens</label>
+                    <h1 class="title-gray">
+                        este é mais um espaço onde você poderá desfrutar de
+                        <span>benefícios exclusivos</span> e <span>descontos em produtos e serviços</span> escolhidos
+                        especialmente para você.
+                    </h1>
+                </div>
+            </div>
+        </div>
+        <div class="vantagens-slick-content">
+            <!-- <ion-slides pager="true" mode="ios" >
+                <ion-slide *ngFor="let item of list;" [ngClass]="item.post_disable ? '' : 'active'">
+                    <h1 class="vantagens-category">{{item.post_category}}</h1>
+                    <div class="vantagens-slide">
+                        <div class="vantagens-slide-item">
+                            <img [src]="item.post_image" [alt]="item.post_title">
+                            <div class="vantagens-card-details" (click)="openUrl(item)">
+                            </div>
+                        </div>
+                    </div>
+                </ion-slide>
+            </ion-slides>  -->
+            <div class="app-vantagens-page-card">
+                <app-vantagens-card *ngIf="vantagensList.length" toList='2' [list]='vantagensList'></app-vantagens-card>
+            </div>
+        </div>
+    </div>
+</ion-content>
+<ion-footer>
+    <app-footer></app-footer>
+</ion-footer>

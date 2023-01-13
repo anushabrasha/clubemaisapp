@@ -1,0 +1,26 @@
+<ion-header>
+  <app-header class="" [ngClass]="hideHeader ? 'hide-header' : ''"></app-header>
+</ion-header>
+<ion-content class="mission-page-content-section" [scrollEvents]="true" (ionScroll)="onScroll($event)">
+  <div class="bg-gradient w-100 h-100 background"></div>
+  <div class="page-content">
+    <div class="mission-page-content" [ngClass]="mission.mission_type">
+      <div class="content-block">
+        <div class="post-content hex-grid">
+          <div class="mission-background">
+            <img src="assets/images/background/tele-cine-banner-background-v1.jpg" alt="mission dashboard banner" />
+          </div>
+          <div class="hex-grid__list">
+            <div class="hex-grid__content">
+              <div class="hex-grid__item" *ngFor="let stage of stages" [ngClass]="setStatus(stage.status)">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-banner">
+        <ion-button class="btn btn-outline-white" (click)="toBack()">Voltar</ion-button>
+      </div>
+    </div>
+  </div>
+</ion-content>

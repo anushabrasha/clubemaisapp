@@ -1,0 +1,83 @@
+<ion-header>
+  <app-header [ngClass]="hideHeader ? 'hide-header' : ''"></app-header>
+</ion-header>
+<ion-content class="" [scrollEvents]="true" (ionScroll)="onScroll($event)">
+  <app-user-info-header pageKey='extrato'></app-user-info-header>
+  <div class="page-content bg-default ion-padding">
+    <div class="points-details">
+      <h1 class="title-gray">seus <span> pontos</span></h1>
+    </div>
+    <div class="points flex justify-between">
+      <div class="point bg-gray">
+        <h3 class="points current-points">{{currentPoints}} <span>pontos</span></h3>
+      </div>
+      <div class="point btn-gradient">
+        <h3 class="points expired-points">{{expiredPoints}} <span>em 30 dias</span></h3>
+      </div>
+    </div>
+    <div class="extrato-page-period">
+      <h1 class="title-gray">filtro por <span>período</span></h1>
+      <div class="filter flex">
+        <div class="in-date flex">
+          <label class="filter-label">de:</label>
+          <ion-datetime type="date" class="from input" placeholder="DD/MM/AAAA" displayFormat="DD/MM/YYYY"
+            [(ngModel)]="fromDate"></ion-datetime>
+        </div>
+        <div class="up-date flex">
+          <label class="filter-label">até:</label>
+          <ion-datetime type="date" type="date" class="to input" placeholder="DD/MM/AAAA" displayFormat="DD-MM-YYYY"
+            [(ngModel)]="toDate"></ion-datetime>
+        </div>
+        <ion-button class="btn btn-red margin-auto" (click)="dateFilter()">filtrar</ion-button>
+      </div>
+    </div>
+    <div class="credits-filter flex">
+      <h1 class="title-gray">filtrar por</h1>
+      <div class="btn-section flex">
+        <ion-button class="btn btn-gray" (click)="filterByTipo('credito')">créditos</ion-button>
+        <ion-button class="btn btn-gray" (click)="filterByTipo('resgate')">resgates</ion-button>
+      </div>
+    </div>
+    <h1 class="title-gray">extrato <span>detalhado</span></h1>
+    <div class="extrato-page-period-detail"></div>
+    <div class="tab" *ngFor="let order of orderList;let i = index;">
+      <div *ngIf="orderList.length">
+        <input type="checkbox" [id]="i">
+        <label class="tab-label flex" [for]="i" (click)="showContent(order)">
+          <span></span>
+          <p class="date text-center">{{order.data ? order.data :'--'}}</p>
+          <div>
+            <p>Tipo: <span>{{order.tipo}}</span></p>
+            <p><b>Pontos: <span>{{order.pontos | ptQrFormat:'true'}}</span></b></p>
+          </div>
+        </label>
+        <div class="tab-content" *ngIf="order.showContent">
+          <p>Descrição: <span>{{order.description}}</span></p>
+          <hr>
+          <p>Expiração: <span>{{order.expiracao}}</span></p>
+          <hr>
+          <p>Valor em pontos: <span>{{order.pontos | ptQrFormat:'true'}}</span></p>
+          <hr>
+          <p>Saldo: <span>{{order.saldo | ptQrFormat:'true'}}</span></p>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="!orderList.length">
+      <h1 class="title-gray text-center">
+        <span>
+          Nenhum registro encontrado
+        </span>
+      </h1>
+    </div>
+
+    <ion-infinite-scroll threshold="100px" (ionInfinite)="loadMoreData($event)">
+      <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Carregando...">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+
+    <ion-button class="btn btn-gray margin-auto" (click)="toBack()">Voltar</ion-button>
+  </div>
+</ion-content>
+<ion-footer>
+  <app-footer></app-footer>
+</ion-footer>

@@ -1,0 +1,80 @@
+<ion-header>
+  <app-header class="" [ngClass]="hideHeader ? 'hide-header' : ''"></app-header>
+</ion-header>
+<ion-content class="cart-page" [scrollEvents]="true" (ionScroll)="onScroll($event)">
+  <app-user-info-header pageKey='cart'></app-user-info-header>
+
+  <div class="page-content">
+    <div *ngIf="productlist.length">
+      <a class="btn btn-outline-gray">RESUMO DO PEDIDO</a>
+      <div *ngFor="let product of productlist" class="flex cart-item">
+        <div class="product-image">
+          <img [src]="product.image_url" [alt]="product.id" />
+        </div>
+        <div class="product-details">
+          <h3 class="product-title">{{product.post_title}}</h3>
+          <div class="flex">
+            <div>
+              <h4 class="points title-red">{{product.selectedPoints | ptQrFormat:'true'}} PTS</h4>
+              <p class="freight-points" *ngIf="product.frete > 0">Frete: <span class="red">{{product.frete |
+                  ptQrFormat:'true'}} pts</span></p>
+              <h4 class="points title-red" *ngIf="product.currency > 0">R$ {{product.currency | ptQrFormat:'true'}}</h4>
+            </div>
+
+            <div class="flex quantity" *ngIf="!hidePointSlider">
+              <ion-button class="btn" (click)="updateQuantity(product, '-')">-</ion-button>
+              <ion-input type="tel" name="quantity" [(ngModel)]="product.quantity"></ion-input>
+              <ion-button class="btn" (click)="updateQuantity(product, '+')">+</ion-button>
+            </div>
+          </div>
+          <ion-button class="btn btn-outline-gray remove" (click)="removeProduct(product)">Remover</ion-button>
+        </div>
+      </div>
+
+      <div class="total-points" *ngIf="totalDetail.points">
+        <hr>
+        <h3>
+          Produtos:
+          <span>{{totalDetail.points | ptQrFormat:'true'}} PTS</span>
+          <span *ngIf="totalDetail.currency > 0"> +
+            R$ {{totalDetail.currency | ptQrFormat:'true'}}
+          </span>
+          <span *ngIf="totalDetail.currency == 0"> +
+            R$0,00
+          </span>
+        </h3>
+        <p *ngIf="totalDetail.frete">Frete: {{totalDetail.frete | ptQrFormat:'true'}} Pts</p>
+        <h1>
+          Total:
+          <span>{{totalDetail.totalWithFrete | ptQrFormat:'true'}} PTS</span>
+          <span *ngIf="totalDetail.currency > 0"> +
+            R$ {{totalDetail.currency | ptQrFormat:'true'}}
+          </span>
+          <span *ngIf="totalDetail.currency == 0"> +
+            R$0,00
+          </span>
+        </h1>
+        <hr>
+        <ion-button class="btn full block cart-button btn-red" (click)="toBack()">
+          CONTINUAR COMPRANDO
+        </ion-button>
+        <ion-button class="btn full block cart-button btn-green" (click)="toCheckout()"
+          [disabled]="!totalDetail.points || preventOrder">
+          Finalizar compra
+        </ion-button>
+      </div>
+    </div>
+
+    <div class="empty-cart-section"*ngIf="!productlist.length">
+      <h1 class="title-gray title">meu <span>carrinho</span></h1>
+      <h1 class="title-gray sub-title"><span>Seu carrinho está vazio. </span></h1>
+      <ion-button class="btn btn-outline-gray" routerLink="/shop">CONTINUE COMPRANDO</ion-button>
+    </div>
+
+    <ion-button class="btn btn-gray margin-auto back-btn" (click)="toBack()">Voltar</ion-button>
+  </div>
+
+</ion-content>
+<ion-footer>
+  <app-footer></app-footer>
+</ion-footer>

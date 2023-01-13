@@ -1,0 +1,301 @@
+<div class="mission-report">
+    <div *ngIf="role=='tecnico'">
+        <div class="sub-header">
+            <h5 class="title-gray text-center">MISSÃO RETIRADAS!</h5>
+        </div>
+
+        <div class="points-progress">
+            <div class="revisit-bar">
+                <div class="bar-detail">
+                    <div class="revisit-bar-detail">
+                        <label class="italic">RETIRADAS COM SUCESSO (PDV)</label>
+                        <div class="progress weekly-progress revisita-progress" *ngIf="listingData.fillerData">
+                            <div class="progress-bar italic" role="progressbar" style="width: 20%"
+                                [ngClass]="listingData.fillerData[0].isHighlight ? 'title-white': ''">
+                                >=90% <span style="width: 100%"
+                                    [ngClass]="listingData.fillerData[0].isHighlight ? 'bg-green-bar': ''">
+                                </span>
+                            </div>
+                            <div class="progress-bar italic" role="progressbar" style="width: 20%"
+                                [ngClass]="listingData.fillerData[1].isHighlight ? 'title-white': ''">>= 80% e
+                                <br />
+                                < 90% <span style="width: 100%"
+                                    [ngClass]="listingData.fillerData[1].isHighlight ? 'btn-green': ''">
+                                    </span>
+                            </div>
+                            <div class="progress-bar italic" role="progressbar" style="width: 20%"
+                                [ngClass]="listingData.fillerData[2].isHighlight ? 'title-white': ''">>= 65% e<br />
+                                < 80% <span style="width: 100%"
+                                    [ngClass]="listingData.fillerData[2].isHighlight ? 'bg-yellow-bar': ''">
+                                    </span>
+                            </div>
+                            <div class="progress-bar italic" role="progressbar" style="width: 20%"
+                                [ngClass]="listingData.fillerData[3].isHighlight ? 'title-white': ''">>= 50% e
+                                <br />
+                                < 65% <span style="width: 100%"
+                                    [ngClass]="listingData.fillerData[3].isHighlight ? 'btn-yellow': ''">
+                                    </span>
+                            </div>
+                            <div class="progress-bar italic" role="progressbar" style="width: 20%"
+                                [ngClass]="listingData.fillerData[4].isHighlight ? 'title-white': ''">
+                                < 50% <span style="width: 100%"
+                                    [ngClass]="listingData.fillerData[4].isHighlight ? 'bg-red-bar': ''">
+                                    </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p class="revisit-bar-value" id="iq"><span
+                    [ngStyle]="{'width': listingData.position }">{{listingData.revisita}}%</span></p>
+        </div>
+
+        <div class="weekly-points-detail">
+            <label class="italic">QTD DE RETIRADAS (INDIVIDUAL)</label>
+            <h2 class="total-points">{{userData.qtde_retirada | ptQrFormat:'false'}}</h2>
+        </div>
+
+        <div class="weekly-points-detail">
+            <label class="italic">PONTOS CALCULADOS*</label>
+            <h2 class="total-points">{{userData.Total_De_Pontos | ptQrFormat:'false' }}</h2>
+            <small class="description">* APURAÇÃO FINAL APENAS APÓS FECHAMENTO DO MÊS. MÁXIMO DE RETIRADAS REMUNERADAS = 250.</small>
+        </div>
+
+        <div class="flex mission-btn">
+            <ion-button class="btn btn-outline-gray" (click)="toggle(0)" [ngClass]="ToshowRegras ? 'active': ''">
+                Regras
+            </ion-button>
+            <ion-button class="btn btn-outline-gray" (click)="toggle(1)" [ngClass]="ToshowRegras ? '': 'active'">
+                Pontos por Faixa
+            </ion-button>
+        </div>
+
+        <div *ngIf="ToshowRegras">
+            <div class="margin-bottom revisit-header-detail">
+                <div class="eligibility-criteria-Table">
+                    <div class="eligibility-content">
+                        <div class="padding-top">
+                            <p class="table-right-arrow"><span>PERÍODO:</span> 01/06 A 31/07.</p>
+                            <p class="table-right-arrow"><span class="d-block">PARTICIPANTES:</span>TÉCNICOS OU
+                                RETIRADORES ELEGÍVEIS E CADASTRADOS NO CLUBE SKY.</p>
+                            <p class="table-right-arrow"><span class="d-block">RETIRADORES:</span>
+                                CARGO: <i>TÉCNICO.</i>
+                                <br />FUNÇÃO: <i>RETIRADAS.</i>
+                            </p>
+                            <p class="table-right-arrow"><span class="d-block">COMO GANHAR:</span>
+                                CÁLCULO DO INDICADOR: <i>RETIRADAS COM SUCESSO (PDV) X QUANTIDADE DE RETIRADAS NO MÊS
+                                    (INDIVIDUAL).</i>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="!ToshowRegras">
+            <div class="divTable content-section indicatorTable margin-bottom">
+                <div class="eligibility-content content-section">
+
+                    <div class="table-row flex table-head">
+                        <div class="divTableCell">
+                            <p>RETIRADAS COM SUCESSO (PDV)</p>
+                        </div>
+                        <div class="divTableCell">
+                            <p>PONTOS</p>
+                        </div>
+                    </div>
+                    <div class="table-row flex">
+                        <div class="divTableCell">
+                            <p>
+                                < 50% </p>
+                        </div>
+                        <div class="divTableCell">
+                            <p>0</p>
+                        </div>
+                    </div>
+                    <div class="table-row flex">
+                        <div class="divTableCell">
+                            <p> >= 50% e < 65% </div>
+                                    <div class="divTableCell">
+                                        <p>5</p>
+                                    </div>
+                        </div>
+                        <div class="table-row flex">
+                            <div class="divTableCell">
+                                <p> >= 65% e < 80% </p>
+                            </div>
+                            <div class="divTableCell">
+                                <p>9</p>
+                            </div>
+                        </div>
+                        <div class="table-row flex">
+                            <div class="divTableCell">
+                                <p> >= 80% e < 90% </p>
+                            </div>
+                            <div class="divTableCell">
+                                <p> 12 </p>
+                            </div>
+                        </div>
+                        <div class="table-row flex">
+                            <div class="divTableCell">
+                                <p> >= 90% </p>
+                            </div>
+                            <div class="divTableCell">
+                                <p> 13 </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="role=='retirador'">
+            <div class="sub-header">
+                <h5 class="title-gray text-center">MISSÃO RETIRADAS!</h5>
+            </div>
+
+            <div class="points-progress">
+                <div class="revisit-bar">
+                    <div class="bar-detail">
+                        <div class="revisit-bar-detail">
+                            <label class="italic">RETIRADAS COM SUCESSO (PDV)</label>
+                            <div class="progress weekly-progress revisita-progress" *ngIf="listingData.fillerData">
+                                <div class="progress-bar italic" role="progressbar" style="width: 20%"
+                                    [ngClass]="listingData.fillerData[0].isHighlight ? 'title-white': ''">
+                                    >=90% <span style="width: 100%"
+                                        [ngClass]="listingData.fillerData[0].isHighlight ? 'bg-green-bar': ''">
+                                    </span>
+                                </div>
+                                <div class="progress-bar italic" role="progressbar" style="width: 20%"
+                                    [ngClass]="listingData.fillerData[1].isHighlight ? 'title-white': ''">>= 80% e
+                                    <br />
+                                    < 90% <span style="width: 100%"
+                                        [ngClass]="listingData.fillerData[1].isHighlight ? 'btn-green': ''">
+                                        </span>
+                                </div>
+                                <div class="progress-bar italic" role="progressbar" style="width: 20%"
+                                    [ngClass]="listingData.fillerData[2].isHighlight ? 'title-white': ''">>= 65% e<br />
+                                    < 80% <span style="width: 100%"
+                                        [ngClass]="listingData.fillerData[2].isHighlight ? 'bg-yellow-bar': ''">
+                                        </span>
+                                </div>
+                                <div class="progress-bar italic" role="progressbar" style="width: 20%"
+                                    [ngClass]="listingData.fillerData[3].isHighlight ? 'title-white': ''">>= 50% e
+                                    <br />
+                                    < 65% <span style="width: 100%"
+                                        [ngClass]="listingData.fillerData[3].isHighlight ? 'btn-yellow': ''">
+                                        </span>
+                                </div>
+                                <div class="progress-bar italic" role="progressbar" style="width: 20%"
+                                    [ngClass]="listingData.fillerData[4].isHighlight ? 'title-white': ''">
+                                    < 50% <span style="width: 100%"
+                                        [ngClass]="listingData.fillerData[4].isHighlight ? 'bg-red-bar': ''">
+                                        </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p class="revisit-bar-value" id="iq"><span
+                        [ngStyle]="{'width': listingData.position }">{{listingData.revisita}}%</span></p>
+            </div>
+
+            <div class="weekly-points-detail">
+                <label class="italic">QTD DE RETIRADAS (INDIVIDUAL)</label>
+                <h2 class="total-points">{{userData.qtde_retirada | ptQrFormat:'false'}}</h2>
+            </div>
+
+            <div class="weekly-points-detail">
+                <label class="italic">PONTOS CALCULADOS*</label>
+                <h2 class="total-points">{{userData.Total_De_Pontos | ptQrFormat:'false' }}</h2>
+                <small class="description">* APURAÇÃO FINAL APENAS APÓS FECHAMENTO DO MÊS. MÁXIMO DE RETIRADAS REMUNERADAS = 250.</small>
+            </div>
+
+            <div class="flex mission-btn">
+                <ion-button class="btn btn-outline-gray" (click)="toggle(0)" [ngClass]="ToshowRegras ? 'active': ''">
+                    Regras
+                </ion-button>
+                <ion-button class="btn btn-outline-gray" (click)="toggle(1)" [ngClass]="ToshowRegras ? '': 'active'">
+                    Pontos por Faixa
+                </ion-button>
+            </div>
+
+            <div *ngIf="ToshowRegras">
+                <div class="margin-bottom revisit-header-detail">
+                    <div class="eligibility-criteria-Table">
+                        <div class="eligibility-content">
+                            <div class="padding-top">
+                                <p class="table-right-arrow"><span>PERÍODO:</span> 01/06 A 31/07.</p>
+                                <p class="table-right-arrow"><span class="d-block">PARTICIPANTES:</span>TÉCNICOS OU
+                                    RETIRADORES ELEGÍVEIS E CADASTRADOS NO CLUBE SKY.</p>
+                                <p class="table-right-arrow"><span class="d-block">RETIRADORES:</span>
+                                    CARGO: <i>TÉCNICO.</i>
+                                    <br />FUNÇÃO: <i>RETIRADAS.</i>
+                                </p>
+                                <p class="table-right-arrow"><span class="d-block">COMO GANHAR:</span>
+                                    CÁLCULO DO INDICADOR: <i>RETIRADAS COM SUCESSO (PDV) X QUANTIDADE DE RETIRADAS NO
+                                        MÊS (INDIVIDUAL).</i>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="!ToshowRegras">
+                <div class="divTable content-section indicatorTable margin-bottom">
+                    <div class="eligibility-content content-section">
+
+                        <div class="table-row flex table-head">
+                            <div class="divTableCell">
+                                <p>RETIRADAS COM SUCESSO (PDV)</p>
+                            </div>
+                            <div class="divTableCell">
+                                <p>PONTOS</p>
+                            </div>
+                        </div>
+                        <div class="table-row flex">
+                            <div class="divTableCell">
+                                <p>
+                                    < 50% </p>
+                            </div>
+                            <div class="divTableCell">
+                                <p>0</p>
+                            </div>
+                        </div>
+                        <div class="table-row flex">
+                            <div class="divTableCell">
+                                <p> >= 50% e < 65% </div>
+                                        <div class="divTableCell">
+                                            <p>5</p>
+                                        </div>
+                            </div>
+                            <div class="table-row flex">
+                                <div class="divTableCell">
+                                    <p> >= 65% e < 80% </p>
+                                </div>
+                                <div class="divTableCell">
+                                    <p>9</p>
+                                </div>
+                            </div>
+                            <div class="table-row flex">
+                                <div class="divTableCell">
+                                    <p> >= 80% e < 90% </p>
+                                </div>
+                                <div class="divTableCell">
+                                    <p> 12 </p>
+                                </div>
+                            </div>
+                            <div class="table-row flex">
+                                <div class="divTableCell">
+                                    <p> >= 90% </p>
+                                </div>
+                                <div class="divTableCell">
+                                    <p> 13 </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>

@@ -1,0 +1,70 @@
+<ion-header>
+  <app-header [backArrow]="missionToBackEvent" class="" [ngClass]="hideHeader ? 'hide-header' : ''"></app-header>
+</ion-header>
+<ion-content [scrollEvents]="true" (ionScroll)="onScroll($event)" scrollEvents="false" [ngClass]="mission.mission_type">
+  <app-user-info-header [pageKey]="isGameMission ? 'game': 'mission'" [missionBannerImage]="mission.thumbnail_url">
+  </app-user-info-header>
+
+  <div class="page-content">
+    <div class="mission-info mission-content"
+      [ngClass]="mission.automatic_enrollment ? 'mission-pending' : mission.customStatus">
+      <label class="btn" *ngIf="mission.customStatus">
+        {{getButtonName(mission,'label')}}
+      </label>
+      <!-- switch case added to get label name -->
+      <h1 class="title-yellow" *ngIf="mission.mission_type == 'type4'">
+        {{mission.post_title1}} <span>{{mission.post_title2}}</span>
+      </h1>
+
+      <h1 class="title-yellow">
+        {{getPostTitle (mission)}}
+      </h1>
+
+      <div class="single-mission">
+        <p>{{mission.hover_title}}</p>
+
+        <div class="steps flex">
+          <div class="item" *ngFor="let instruction of instructions;let i = index;">
+            <h2>{{i+1}}</h2>
+            <p>
+              <small>{{instruction.instruction}}</small>
+            </p>
+          </div>
+        </div>
+
+        <div class="description">
+          <h4 *ngIf="mission.points">
+            <small>{{ mission.mission_type != 'type6' ? 'valem': 'VALEM ATÉ'}}</small>{{mission.points |
+            ptQrFormat:'false'
+            }}<small>Pontos</small>
+          </h4>
+
+          <pinch-zoom style="background-color: rgba(255, 255, 255, 0);">
+            <p class="discription" [innerHTML]="mission.hover_description"> </p>
+          </pinch-zoom>
+        </div>
+
+        <app-mission-type *ngIf="showForm" [missionInfo]="mission" [isGameMission]="isGameMission"></app-mission-type>
+        <p class="margin-top" *ngIf="mission.mission_type != 'type7'">
+          Período: {{mission.start_date | dateFormater}} a {{mission.expiry_date | dateFormater}}
+        </p>
+
+        <div>
+          <ion-button class="btn btn-green" *ngIf="mission.customStatus && !isGameMission && showActionButton"
+            (click)="submitMission(mission)">
+            {{getButtonName(mission,'button')}}
+          </ion-button>
+          <!-- switch case added to get button name -->
+        </div>
+
+        <ion-button class="btn btn-gray" (click)="closeIntimationView()">voltar</ion-button>
+        <!-- cancel button removed -->
+      </div>
+    </div>
+    <!-- info view code removed bcz its not updating in ts file -->
+  </div>
+
+</ion-content>
+<ion-footer>
+  <app-footer></app-footer>
+</ion-footer>

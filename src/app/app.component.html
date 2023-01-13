@@ -1,0 +1,37 @@
+<ion-app>
+    <div class="splash-holder" *ngIf="showSplash">
+        <div *ngIf="showSplashOne" class="splashOne"></div>
+        <div *ngIf="showSplashTwo" class="splashTwo"> </div>
+        <!-- <div *ngIf="showSplashThree" class="splashThree"></div> -->
+    </div>
+    <ion-split-pane contentId="main-content" *ngIf="!showSplash">
+        <ion-menu contentId="main-content" type="overlay">
+            <ion-content class="ion-padding">
+                <app-user-avatar [data]="avatarData" (avatarChangeEvent)="changeAvatar()"></app-user-avatar>
+                <a class="close" (click)="closeSideMenu($event)">
+                    <ion-icon name="close"></ion-icon>
+                </a>
+                <div auto-hide="false" *ngFor="let p of userPages">
+                    <ion-item lines="none" [routerDirection]="'root'" (click)="openPage(p)">
+                        <ion-icon slot="start" [name]="p.icon" *ngIf="p.icon"></ion-icon>
+                        <ion-label>{{p.title}}</ion-label>
+                    </ion-item>
+                </div>
+            </ion-content>
+            <ion-footer class="ion-padding">
+                <div class="footer" auto-hide="false" *ngFor="let p of appPages">
+                    <ion-item lines="none" [routerDirection]="'root'" (click)="openPage(p)">
+                        <ion-icon slot="start" [name]="p.icon" *ngIf="p.icon"></ion-icon>
+                        <ion-label>
+                            {{p.title}}
+                        </ion-label>
+                    </ion-item>
+                </div>
+                <div class="account-delete-info" *ngIf="isIosPlatform">
+                    <p>Se quiser remover sua conta, <span (click)="showAccountRemovePopup()">clique aqui</span> </p>
+                </div>
+            </ion-footer>
+        </ion-menu>
+        <ion-router-outlet id="main-content" [swipeGesture]="false"></ion-router-outlet>
+    </ion-split-pane>
+</ion-app>

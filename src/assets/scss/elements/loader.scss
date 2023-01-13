@@ -1,0 +1,118 @@
+ion-loading {
+    background-color: rgba(255, 255, 255, 0.37);
+    backdrop-filter: blur(20px) brightness(115%);
+
+    .loading-wrapper {
+        -webkit-animation: loader-1 30s infinite linear;
+        animation: loader-1 30s infinite linear;
+        background: transparent !important;
+        box-shadow: none !important;
+
+        ion-spinner {
+            display: none;
+        }
+
+        &:before,
+        &:after {
+            top: 0;
+            left: 10px;
+            content: "";
+            width: 150px;
+            height: 150px;
+            position: absolute;
+            border-radius: 100%;
+            border: 5px solid $gray-light;
+            border-top-color: $primary-light-color;
+            border-right-color: $primary-light-color;
+        }
+
+        &:after {
+            border: 5px solid transparent;
+        }
+
+        &:before {
+            z-index: 100;
+            -webkit-animation: spin 1s infinite;
+            animation: spin 2s infinite;
+        }
+
+        .loading-spinner {
+            width: 110px;
+            height: 110px;
+            position: relative;
+            border-radius: 100%;
+            background-size: 80px;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: $primary-light-color;
+            animation: breathing 10s ease-out infinite normal;
+            -webkit-animation: breathing 10s ease-out infinite normal;
+            background-image: url("~/assets/images/logo/loader-logo.png");
+        }
+    }
+}
+
+@keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@-webkit-keyframes breathing {
+    0% {
+        -webkit-opacity: 1;
+        opacity: 1;
+    }
+
+    25% {
+        -webkit-opacity: 0;
+        opacity: 0;
+    }
+
+    50% {
+        -webkit-opacity: 1;
+        opacity: 1;
+    }
+
+    75% {
+        -webkit-opacity: 0;
+        opacity: 0;
+    }
+
+    100% {
+        -webkit-opacity: 1;
+        opacity: 1;
+    }
+}
+
+@keyframes breathing {
+    0% {
+        opacity: 1;
+    }
+
+    25% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    75% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}

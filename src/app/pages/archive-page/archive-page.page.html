@@ -1,0 +1,56 @@
+<ion-header>
+  <app-header class="" [ngClass]="hideHeader ? 'hide-header' : ''"></app-header>
+</ion-header>
+<ion-content class="shop-page" [scrollEvents]="true" (ionScroll)="onScroll($event)">
+  <app-user-info-header pageKey='shop'></app-user-info-header>
+  <div class="product-category-icon">
+    <div class="category-icon">
+      <img [src]="selectedMenu.icon" [alt]="selectedMenu.title || selectedMenu.parentTitle" />
+    </div>
+  </div>
+  <div class="page-content">
+
+    <h2 class="category-title">{{selectedMenu.title || selectedMenu.parentTitle}}</h2>
+    <div class="product-search" *ngIf="!hideSearchBar">
+      <input type="text" placeholder="DIGITE O PRODUTO QUE VOCÊ PROCURA" class="input" [(ngModel)]="searchString"
+        (change)="search()" />
+      <ion-icon name="search"></ion-icon>
+    </div>
+
+    <div class="product-category flex wrap">
+      <div class="product-card" *ngFor="let product of productList" (click)="openProduct(product)"
+        [ngClass]="toHideProductInfo ? 'hide-product-info': ''">
+
+        <div class="product-image">
+          <img [src]="product.image_url" alt="product-image" />
+        </div>
+        <div class="product-details" *ngIf="!toHideProductInfo">
+          <h4 class="product-title">{{product.post_title}}</h4>
+          <p *ngIf="product.price" class="points"><small class="uppercase">{{product.variations &&
+              product.variations.length ? 'a partir de': 'por'}}</small>{{product.price | ptQrFormat:'true'}}
+            <small>Pts</small>
+          </p>
+          <a class="btn btn-gradient" *ngIf="product.price && !isParaAjudar">
+            <img src="assets/images/icons/cart-icon.png" alt="category-title" />
+            <span>Resgatar</span>
+          </a>
+          <a class="btn btn-gradient" *ngIf="isParaAjudar">
+            <span>DOAR</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <ion-button class="btn btn-gray margin-auto back-btn" (click)="toBack()">Voltar</ion-button>
+
+
+    <ion-infinite-scroll threshold="100px" (ionInfinite)="loadMoreData($event)">
+      <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Carregando mais produtos...">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </div>
+
+</ion-content>
+<ion-footer>
+  <app-footer></app-footer>
+</ion-footer>

@@ -1,0 +1,169 @@
+app-single-product {
+    ion-content {
+        app-user-info-header {
+            .banner-user-detail {
+                .banner-content {
+                    .banner-content-section {
+                        .content-section {
+                            .title {
+                                font-size: 34px;
+                                @media screen and (min-width: 320px) {
+                                    font-size: 30px;
+                                }
+                            }
+
+                            .description {
+                                color: $white-color;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .product-category-icon {
+            position: absolute;
+            margin-top: 20px;
+            z-index: 2;
+            right: 0;
+            left: 0;
+            @media screen and (min-width: 320px) {
+                margin-top: 30px;
+            }
+            .category-icon {
+                box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.58);
+                background-color: $white-color;
+                border-radius: 50%;
+                max-width: 100px;
+                margin: 0 auto;
+                padding: 20px;
+                height: 100px;
+                width: 100px;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: contain;
+                }
+            }
+        }
+
+        .page-content {
+            top: 15vw;
+            padding-top: 65px;
+            padding-bottom: calc(100% / 4) !important;
+            @media screen and (min-width: 320px) {
+                padding-top: 70px;
+            }
+            .category-title {
+                height: 40px;
+                font-size: 14px;
+                padding: 8px 15px;
+                margin: 15px auto;
+                color: $gray-dark;
+                width: fit-content;
+                text-align: center;
+                font-weight: normal;
+                border: 3px solid $gray-dark;
+                border-radius: 25px !important;
+                font-family: PFDinTextPro-Medium-Italic;
+            }
+
+            .single-product {
+                padding: 0 20px;
+
+                hr {
+                    border-bottom: 3px solid $gray-medium;
+                }
+
+                .product-image {
+                    margin-bottom: 15px;
+                }
+
+                h2 {
+                    font-family: PFDinTextPro-Italic;
+                    color: $text-dark;
+                    margin: 0;
+                }
+
+                .description {
+                    text-align: justify;
+                    margin-bottom: 25px !important;
+                }
+
+                .product-price {
+                    margin-bottom: 30px;
+
+                    span {
+                        color: $primary-light-color;
+                    }
+
+                    small {
+                        color: $gray-dark;
+                    }
+                }
+
+                .category-title {
+                    font-family: PFDinTextPro-Light-Italic;
+                    color: $text-dark;
+                    border: 0;
+                    padding: 0;
+                    line-height: normal;
+                    height: auto;
+                }
+
+                label {
+                    font-family: PFDinTextPro-Medium-Italic;
+                    text-transform: uppercase;
+                    color: $gray-dark;
+                }
+
+                p {
+                    color: $text-dark;
+                    font-family: PFDinTextPro-Regular;
+                }
+
+                .btn-green {
+                    max-width: 100%;
+                    width: 100%;
+                    margin: 10px 0;
+                    font-size: 14px !important;
+                }
+            }
+
+            .recharge-product {
+                label {
+                    color: $text-dark;
+                }
+
+                ion-select {
+                    border-radius: 25px !important;
+                    margin-bottom: 25px;
+                    background-color: $gray-medium !important;
+                    background-image: url(~\assets\images\icons\down-icon.png);
+                    background-repeat: no-repeat;
+                    background-size: 25px;
+                    background-position: right 10px center;
+                }
+
+                .select-icon {
+                    position: absolute;
+                    top: 15px;
+                    right: 10px;
+                }
+
+                ion-input {
+                    margin-bottom: 25px;
+
+                    input {
+                        border-radius: 25px !important;
+                    }
+                }
+
+                ion-button {
+                    width: 100%;
+                }
+            }
+        }
+    }
+}

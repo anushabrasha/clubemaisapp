@@ -1,0 +1,46 @@
+<ion-header>
+  <app-header [backArrow]="archiveToBackEvent" class="" [ngClass]="hideHeader ? 'hide-header' : ''"></app-header>
+</ion-header>
+<ion-content class="shop-page" [scrollEvents]="true" (ionScroll)="onScroll($event)">
+
+  <div class="bg-gradient w-100 h-100 background"></div>
+  <div class="points-header flex">
+    <a (click)="toBack()"><i class="arrow-left"></i>voltar</a>
+    <p>Você tem <span>{{userPoints | ptQrFormat:'true'}}<small> PTS</small></span></p>
+  </div>
+  <div class="product-category-icon">
+    <div class="category-icon">
+      <img [src]="selectedMenu.icon" [alt]="selectedMenu.title" />
+    </div>
+  </div>
+
+  <div class="page-content">
+
+    <h2 class="category-title">{{selectedMenu.title}}</h2>
+    <div class="product-search">
+      <input type="text" placeholder="DIGITE O PRODUTO QUE VOCÊ PROCURA" class="input" />
+      <ion-icon name="search"></ion-icon>
+    </div>
+
+    <div class="product-category flex wrap">
+      <div class="product-card" *ngFor="let product of productList" (click)="openPage(product)">
+
+        <div class="product-image">
+          <img [src]="product.image_url" alt="product-image" />
+        </div>
+        <div class="product-details">
+          <h4 class="product-title">{{product.post_title}}</h4>
+          <p *ngIf="product.price" class="points">{{product.price | ptQrFormat:'true'}} <small>Pts</small></p>
+          <a class="btn btn-gradient" *ngIf="product.price">
+            <img src="assets/images/icons/cart-icon.png" alt="category-title" />
+            <span>Resgatar</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</ion-content>
+<ion-footer>
+  <app-footer></app-footer>
+</ion-footer>

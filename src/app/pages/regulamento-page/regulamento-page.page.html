@@ -1,0 +1,24 @@
+<ion-header>
+  <app-header class="" [ngClass]="hideHeader ? 'hide-header' : ''" ></app-header>
+</ion-header>
+<ion-content [scrollEvents]="true" (ionScroll)="onScroll($event)">
+  <app-user-info-header pageKey='regulamento'></app-user-info-header>
+  <div class="page-content padding">
+    <div [innerHTML]="regulamentoTheory"></div>
+
+    <div *ngIf="isForced">
+      <ion-item class="">
+        <ion-label class="title-white">Aceito regulamento</ion-label>
+        <ion-radio slot="start" color="danger" [(ngModel)]="isChecked"></ion-radio>
+      </ion-item>
+      <ion-button class="btn btn-red" [disabled]="!isChecked" (click)="submit()">
+        Ok
+      </ion-button>
+    </div>
+    <ion-button class="btn btn-gray" (click)="toBack()" *ngIf="showButton && !isForced">Voltar</ion-button>
+  </div>
+
+</ion-content>
+<ion-footer *ngIf="!isForced">
+  <app-footer></app-footer>
+</ion-footer>

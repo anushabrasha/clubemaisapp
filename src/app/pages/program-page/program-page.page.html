@@ -1,0 +1,259 @@
+<ion-header>
+    <app-header class="" [ngClass]="hideHeader ? 'hide-header' : ''"></app-header>
+</ion-header>
+<ion-content class="program" [scrollEvents]="true" (ionScroll)="onScroll($event)">
+    <div class="page-content">
+        <div class="program-banner">
+            <div class="program-container">
+                <div class="header-title-content margin-bottom">
+                    <h1 class="title-gray">apresentamos o <span> CLUBE MAIS</span></h1>
+                </div>
+                <div class="banner-title">
+                    <p class="banner-title-description" *ngIf="showTechnicoContent">Mais do que um programa de
+                        incentivo, a plataforma do
+                        <span> Clube Mais </span>tem como objetivo auxiliar na <span>atração de novos clientes
+                        </span> e no aumento do número de
+                        <span>apontamentos de antena</span> para a SKY, através de <span>capacitação, informação e
+                            incentivo.</span>
+                    </p>
+
+                    <!-- vendedor isp -->
+                    <p class="banner-title-description" *ngIf="showVendedorContent">Mais do que um programa de
+                        incentivo, a plataforma do
+                        <span> Clube Mais </span>tem como objetivo auxiliar na <span>atração de novos clientes
+                        </span>e no incremento de suas vendas, através de capacitação, informação e incentivo.
+                    </p>
+
+                    <p class="banner-title-description">Tudo isso de maneira <span>simples e divertida, </span>para que
+                        você obtenha resultados ainda melhores!
+                        E claro, <span *ngIf="showVendedorContent">acumule pontos </span> e troque por <span
+                            *ngIf="showVendedorContent">prêmios!</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="goal-banner-image">
+            <img src="assets/images/background/goal-banner-image.jpg" alt="Goal Banner">
+        </div>
+        <div class="card-section rules-detail">
+            <h1 class="title-yellow">como <span> funciona?</span></h1>
+            <div class="card-slider">
+                <div class="card-item flex" *ngIf="showTechnicoContent">
+                    <div class="card performance">
+                        <h3 class="card-title title-gray"><span class="count">1</span>+<span>performance</span></h3>
+                        <p class="description">Você <span>ganhará pontos</span> pela 1° recarga válida do cliente após o
+                            <span>apontamento de antena</span> para a SKY.
+                        </p>
+                        <div class="flex">
+                            <table class="point-table">
+                                <tbody>
+                                    <tr class="bg-yellow">
+                                        <td>recarga <span>smart hd</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="title-gray"><span>XXX</span> pts</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <table class="point-table">
+                                <tbody>
+                                    <tr class="bg-gradient">
+                                        <td>recarga <span>master hd</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="title-gray"><span>XXX</span> pts</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p class="description">Quanto mais <span>apontamentos,</span> mais <span>pontos!</span></p>
+                    </div>
+                    <div class="card earn-points">
+                        <h3 class="card-title title-gray"><span class="count">2</span>ganhe<span> pontos</span></h3>
+                        <p class="description margin-bottom">Nossa equipe consolida os relatórios das <span> recargas
+                                válidas</span> para <span>creditar os pontos </span> na sua conta do Clube Mais.</p>
+                        <p class="description">Os pontos têm validade de <span>6 meses </span> e serão creditados
+                            <span>semanalmente. </span> Acompanhe no extrato toda a movimentação de créditos e resgates.
+                        </p>
+                    </div>
+                    <div class="card your-points">
+                        <h3 class="card-title title-gray"><span class="count">3</span>troque<span> seus pontos</span>
+                        </h3>
+                        <p class="description margin-bottom">Troque seus <span> pontos acumulados </span> por
+                            <span>produtos e experiências </span> incríveis no catálogo de <span>prêmios
+                            </span>exclusivo do Clube Mais.
+                        </p>
+                    </div>
+                    <div class="card earn-more-points">
+                        <h3 class="card-title title-gray"><span class="count">4</span>ganhe<span> (mais) pontos</span>
+                        </h3>
+                        <p class="description margin-bottom">Você pode acumular <span> pontos extras</span>de diversas
+                            formas, como participando dos <span> Desafios </span> e de outras surpresas.</p>
+                        <p class="description no-before"><span>Fique ligado!</span></p>
+                    </div>
+                </div>
+                <!-- vendedor isp -->
+                <div class="card-item flex vendedor-isp" *ngIf="showVendedorContent">
+                    <div class="card performance">
+                        <h3 class="card-title title-gray"><span class="count">1</span>+<span>performance</span></h3>
+                        <p class="description">É simples: você ganhará 140 pontos <span>por cada venda</span>
+                            Directv Go.</p>
+                        <div class="flex justify-center">
+                            <table class="point-table">
+                                <tbody>
+                                    <tr class="bg-gradient">
+                                        <td><span>directv go</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="title-gray"><span>XXX</span> pts</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p class="description"><span>Quanto melhor </span> a sua performance, <span> mais
+                                pontos </span> você ganha!</p>
+                    </div>
+                    <div class="card earn-points">
+                        <h3 class="card-title title-gray"><span class="count">2</span>ganhe<span> pontos</span></h3>
+                        <p class="description margin-bottom">Cadastre suas vendas de Directv Go de maneira<span> simples
+                                e rápida </span> na página Cadastre Suas Vendas. Os resultados serão consolidados em
+                            pontos na sua conta do Clube Mais <span>mensalmente.</span></p>
+                        <p class="description">Os pontos têm validade de <span>6 meses. </span> Acompanhe no <span>seu
+                                extrato </span> toda a movimentação de créditos e resgates.</p>
+                    </div>
+                    <div class="card your-points">
+                        <h3 class="card-title title-gray"><span class="count">3</span>troque<span> seus pontos</span>
+                        </h3>
+                        <p class="description margin-bottom">Troque seus <span> pontos acumulados </span> por
+                            <span>produtos e experiências </span> incríveis no catálogo de <span>prêmios
+                            </span>exclusivo do Clube Mais.
+                        </p>
+                    </div>
+                    <div class="card earn-more-points">
+                        <h3 class="card-title title-gray"><span class="count">4</span>ganhe<span> (mais) pontos</span>
+                        </h3>
+                        <p class="description margin-bottom">Você pode acumular <span> pontos extras</span>de diversas
+                            formas, como participando dos <span> Desafios </span> e de outras surpresas.</p>
+                        <p class="description no-before"><span>Fique ligado!</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="catalog-products-detail bg-white">
+            <div class="catalog-banner">
+                <img src="assets/images/background/category-products-banner-header.png" alt="catalog Product Banner">
+            </div>
+            <div class="catalog-products-card-section">
+                <div class="catalog-products-card">
+                    <div class="bg-overlay"></div>
+                    <img class="card-products-image" src="assets/images/common/food-icon.png" alt="Cards Image" />
+                    <div class="catalog-products-details">
+                        <div class="like-icon">
+                            <img src="assets/images/icons/like-icon-white.png" alt="Like Icon" />
+                        </div>
+                        <p class="card-name">alimentação <span>e transporte</span></p>
+                    </div>
+                </div>
+                <div class="catalog-products-card">
+                    <div class="bg-overlay"></div>
+                    <img class="card-products-image" src="assets/images/common/electro-domestic-icon.png"
+                        alt="Cards Image" />
+                    <div class="catalog-products-details">
+                        <div class="like-icon">
+                            <img src="assets/images/icons/like-icon-white.png" alt="Like Icon" />
+                        </div>
+                        <p class="card-name">eletro- <span>domésticos</span></p>
+                    </div>
+                </div>
+                <div class="catalog-products-card">
+                    <div class="bg-overlay"></div>
+                    <img class="card-products-image" src="assets/images/common/combustivel-icon.png"
+                        alt="Cards Image" />
+                    <div class="catalog-products-details">
+                        <div class="like-icon">
+                            <img src="assets/images/icons/like-icon-white.png" alt="Like Icon" />
+                        </div>
+                        <p class="card-name">vale <span>combustível</span></p>
+                    </div>
+                </div>
+                <div class="catalog-products-card">
+                    <div class="bg-overlay"></div>
+                    <img class="card-products-image" src="assets/images/common/product-icon.png" alt="Cards Image" />
+                    <div class="catalog-products-details">
+                        <div class="like-icon">
+                            <img src="assets/images/icons/like-icon-white.png" alt="Like Icon" />
+                        </div>
+                        <p class="card-name">cama, mesa <span>e banho</span></p>
+                    </div>
+                </div>
+                <div class="catalog-products-card">
+                    <div class="bg-overlay"></div>
+                    <img class="card-products-image" src="assets/images/common/vale-compras-icon.png"
+                        alt="Cards Image" />
+                    <div class="catalog-products-details">
+                        <div class="like-icon">
+                            <img src="assets/images/icons/like-icon-white.png" alt="Like Icon" />
+                        </div>
+                        <p class="card-name">vale <span>compras</span></p>
+                    </div>
+                </div>
+                <div class="catalog-products-card">
+                    <div class="bg-overlay"></div>
+                    <img class="card-products-image" src="assets/images/common/recharge-icon.png" alt="Cards Image" />
+                    <div class="catalog-products-details">
+                        <div class="like-icon">
+                            <img src="assets/images/icons/like-icon-white.png" alt="Like Icon" />
+                        </div>
+                        <p class="card-name">crédito para <span>celular</span></p>
+                    </div>
+                </div>
+                <div class="catalog-products-card">
+                    <div class="bg-overlay"></div>
+                    <img class="card-products-image" src="assets/images/common/electro-laptops-icon.png"
+                        alt="Cards Image" />
+                    <div class="catalog-products-details">
+                        <div class="like-icon">
+                            <img src="assets/images/icons/like-icon-white.png" alt="Like Icon" />
+                        </div>
+                        <p class="card-name">eletro- <span>portáteis</span></p>
+                    </div>
+                </div>
+                <div class="catalog-products-card">
+                    <div class="bg-overlay"></div>
+                    <img class="card-products-image" src="assets/images/common/destiny-vacation-icon.png"
+                        alt="Cards Image" />
+                    <div class="catalog-products-details">
+                        <div class="like-icon">
+                            <img src="assets/images/icons/like-icon-white.png" alt="Like Icon" />
+                        </div>
+                        <p class="card-name">destino <span>férias</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="regulamento-detail bg-white">
+            <div class="regulamento-link btn btn-gray">
+                <p class="regulamento-label" (click)="openRegulamentoPage()">Clique aqui</p>
+                <button class="btn btn-red">para acessar o regulamento</button>
+            </div>
+        </div>
+        <div class="program-detail bg-yellow">
+            <div class="program-container">
+                <h1 class="title-gray">vamos <span>juntos </span> em busca de <span>novos desafios</span> e
+                    <span>evoluindo sempre!</span>
+                </h1>
+            </div>
+        </div>
+        <div class="logo-section bg-white">
+            <div class="logo-container bg-white">
+                <img src="assets/images/logo/clube-mais-gray-red-login-logo.png" alt="Logo">
+            </div>
+            <div class="back-btn-section">
+                <ion-button class="btn btn-gray margin-auto btn-back" (click)="toBack()">Voltar</ion-button>
+            </div>
+        </div>
+    </div>
+</ion-content>
+<ion-footer>
+    <app-footer></app-footer>
+</ion-footer>

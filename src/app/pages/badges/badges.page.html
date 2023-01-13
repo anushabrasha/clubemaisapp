@@ -1,0 +1,68 @@
+<ion-header>
+    <app-header class="" [ngClass]="hideHeader ? 'hide-header' : ''"></app-header>
+</ion-header>
+<ion-content [scrollEvents]="true" (ionScroll)="onScroll($event)">
+    <app-user-info-header pageKey='selos'></app-user-info-header>
+    <div class="page-content text-center">
+        <!-- <img src="assets/images/background/selos–background-image.jpg" alt="selos banner" /> -->
+        <div class="selos-content">
+            <ion-button class="btn btn-red">selos</ion-button>
+        </div>
+        <div class="selos-details text-center">
+            <h1 class="selos-points title-gray">Veja aqui<span>seus selos</span></h1>
+            <p class="selos-description">Aqui vocẽ encontra todos os <span>selos</span> que vocẽ já conquistou e poderá
+                conquistar
+            </p>
+            <div class="selos-detail-button">
+                <ion-button class="btn btn-red" (click)="showDetails = !showDetails">
+                    O que são selos?
+                </ion-button>
+            </div>
+            <div class="selos-detail" *ngIf="showDetails">
+                <h3 class="title-gray">
+                    <span>Os selos são uma super novidade para deixar o clube sky ainda mais emocionante</span>
+                </h3>
+                <p class="selos-description">Selecionamos alguns desafios exclusivos para você participar e ganhar
+                    selos! Cada desafio superado é um novo selo que você ganha.
+                </p>
+                <p class="selos-description">E aqui nesse espaço você tem acesso à cartela com todos os selos
+                    disponíveis para você colecionar, além dos selos bônus que você pode ganhar surpresa.
+                </p>
+                <h3 class="title-gray">
+                    <span>Quanto mais você participar, mais selos poderá ganhar!</span>
+                </h3>
+            </div>
+        </div>
+        <div class="selos-available-details">
+            <h2 class="available-title title-gray">
+                Selos disponíveis <span>para conquistar</span>
+            </h2>
+            <div class="card-section">
+                <app-selos-card *ngIf="badgeList.length" toList='2' [list]='badgeList'></app-selos-card>
+            </div>
+        </div>
+        <div class="selos-achieved-details">
+            <div class="selos-section tab">
+                <ion-button class="btn btn-red" [ngClass]="isSpecialView ? '': 'active'"
+                    (click)="toggleContent('NormalView')">
+                    selos colecionáveis
+                </ion-button>
+                <ion-button class="btn btn-red history-active" [ngClass]="isSpecialView ? 'active': ''"
+                    (click)="toggleContent('SpecialView')">
+                    selos especiais
+                </ion-button>
+                <h2 class="achieved-title title-gray">
+                    {{totalCount}} <span>Selo{{totalCount > 1 ? 's' : ''}} conquistado{{totalCount > 1 ? 's' :
+                        ''}}</span>
+                </h2>
+                <p class="selos-description">Clique nos selos para visualizar detalhes</p>
+            </div>
+            <div class="card-section">
+                <app-selos-card *ngIf="badgeOwnerList.length" [list]='badgeOwnerList' toList="2"></app-selos-card>
+            </div>
+        </div>
+    </div>
+</ion-content>
+<ion-footer>
+    <app-footer></app-footer>
+</ion-footer>

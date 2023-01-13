@@ -1,0 +1,328 @@
+.points-header {
+    position: relative;
+    margin: 20px 0;
+    margin-top: 70px;
+    padding: 0 12px;
+    justify-content: space-between;
+
+    p, a, span {
+        color: $white-color;
+        text-transform: uppercase;
+        font-size: 14px;
+    }
+
+    p {
+        text-align: right;
+
+        span {
+            font-size: 24px;
+            display: block;
+
+            small {
+                font-size: 14px;
+            }
+        }
+    }
+
+    + .page-content {
+        top: 0;
+    }
+}
+
+.product-search {
+    max-width: 88%;
+    margin: 30px 20px;
+    position: relative;
+
+    input {
+        width: 100%;
+        height: 40px;
+        font-size: 14px;
+        color: $gray-dark;
+        text-indent: 50px;
+        border-radius: 25px !important;
+        border-width: 3px !important;
+        transition: all .5s ease-in-out;
+        font-family: PFDinTextPro-Medium-Italic;
+
+        &:hover,
+        &:focus {
+            outline: none;
+            text-indent: 30px;
+
+            + ion-icon {
+                left: 10px;
+            }
+        }
+
+        &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+            color: $gray-dark;
+        }
+
+        &::-moz-placeholder { /* Firefox 19+ */
+            color: $gray-dark;
+        }
+
+        &:-ms-input-placeholder { /* IE 10+ */
+            color: $gray-dark;
+        }
+
+        &:-moz-placeholder { /* Firefox 18- */
+            color: $gray-dark;
+        }
+    }
+
+    ion-icon {
+        position: absolute;
+        top: 12px;
+        left: 31px;
+        transition: all .5s ease-in-out;
+    }
+}
+
+.product-category {
+    padding: 20px;
+
+    .item {
+        width: 30%;
+        margin-right: 15px;
+        margin-bottom: 35px;
+        text-align: center;
+
+        &:nth-child(3n) {
+            margin-right: 0;
+        }
+
+        .icon {
+            width: 100px;
+            height: 100px;
+            padding: 15px;
+            border: 1px solid $text-dark;
+            border-radius: 20px;
+            margin-bottom: 10px;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+            }
+        }
+
+        span {
+            color: $text-dark;
+            font-size: 14px;
+        }
+    }
+}
+
+.btn-gray {
+    &.margin-auto {
+        &.back-btn {
+            height: 40px;
+        }
+    }
+}
+
+.product-card {
+    background-color: $gray-color;
+    margin-bottom: 15px;
+    overflow: hidden;
+    box-shadow: 1px 1px 3px $text-gray;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    &.recharge {
+        .product-image {
+            height: 100%;
+        }
+
+        .product-details {
+            display: none;
+        }
+    }
+
+    .product-image {
+        height: 42vw;
+        background-color: $white-color;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    }
+
+    .product-details {
+        padding: 12px;
+
+        .product-title {
+            text-transform: uppercase;
+            margin: 0;
+            margin-bottom: 15px;
+            font-family: PFDinTextPro-Italic;
+            font-size: 16px;
+            height: auto;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            -webkit-line-clamp: 4;
+            -webkit-box-orient: vertical;
+            display: -webkit-box;
+            color: $text-dark;
+            line-height: normal;
+            min-height: 75px;
+        }
+
+        .points {
+            margin-bottom: 12px !important;
+            font-size: 20px;
+            font-family: PFDinTextPro-Medium-Italic;
+            color: $text-dark;
+
+            small {
+                font-style: 60%;
+                color: $gray-dark;
+                text-transform: uppercase;
+                font-family: PFDinTextPro-Italic;
+
+                &.uppercase {
+                    display: block;
+                }
+            }
+        }
+
+        .btn {
+            display: flex;
+            width: 100%;
+            align-items: center;
+
+            &.btn-gradient {
+                height: 40px;
+                background: $primary-light-color !important;
+            }
+
+            img {
+                width: 20px;
+                margin-right: 7px;
+            }
+
+            span {
+                font-family: PFDinTextPro-Medium-Italic;
+                margin: 0 auto;
+            }
+        }
+    }
+}
+
+.product-price {
+    margin: 20px auto;
+    text-align: center;
+
+    span {
+        font-family: PFDinTextPro-Medium-Italic !important;
+        margin: 0 10px;
+        font-size: 34px;
+    }
+
+    small {
+        font-family: PFDinTextPro-Italic;
+    }
+}
+
+.quantity {
+    justify-content: center;
+
+    ion-button {
+        --width: auto;
+        --padding-start: 0;
+        --padding-end: 0;
+        margin: 0;
+        color: $primary-light-color !important;
+        font-size: 24px !important;
+    }
+
+    ion-input {
+        width: 50px !important;
+        min-width: 0;
+        max-width: 50px;
+
+        input {
+            border: 0 !important;
+            width: 50px !important;
+            font-size: 24px !important;
+            text-align: center !important;
+            font-family: PFDinTextPro-Medium-Italic !important;
+            color: $primary-light-color !important;
+            height: auto;
+            text-indent: 0;
+        }
+    }
+}
+
+app-conta-page {
+    ion-content {
+        .page-content {
+            padding-top: 50px;
+
+            .product-category {
+                .form-group {
+                    p {
+                        margin-bottom: 15px !important;
+                        color: $text-dark;
+                    }
+
+                    ion-input {
+                        input {
+                            border-radius: 25px !important;
+                        }
+                    }
+
+                    ion-datetime {
+                        border-radius: 25px !important;
+                    }
+                }
+            }
+
+            p {
+                margin-bottom: 15px !important;
+                color: $text-dark;
+            }
+
+            .bar-code {
+                max-width: 250px;
+                width: 100%;
+                margin: 0 auto;
+                padding: 0 10px;
+                border-top: 1px solid #707070;
+                border-bottom: 1px solid #707070;
+
+                img {
+                    width: 50px;
+                    height: auto;
+                    border: 1px solid #707070;
+                    padding: 5px;
+                    border-radius: 3px;
+                }
+
+                ion-button {
+                    --background: transparent;
+                    color: $text-dark;
+                    font-family: PFDinTextPro-Medium-Italic !important;
+                    text-transform: uppercase;
+                }
+            }
+
+            label {
+                font-family: PFDinTextPro-Medium-Italic !important;
+                color: $text-dark;
+                text-transform: uppercase;
+            }
+
+            .btn {
+                width: 80%;
+                margin: 15px auto;
+                font-size: 16px !important;
+            }
+        }
+    }
+}

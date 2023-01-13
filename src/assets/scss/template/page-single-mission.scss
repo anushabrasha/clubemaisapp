@@ -1,0 +1,238 @@
+app-mission-single {
+    --overflow: hidden;
+
+    ion-content {
+        app-user-info-header {
+            .banner-user-detail {
+                .banner-content {
+                    .banner-content-section {
+                        top: 0;
+                        height: 100%;
+                        backdrop-filter: blur(0) brightness(110%);
+                        background: rgba(227, 6, 9, 0.65) !important;
+
+                        @media screen and (min-width: 360px) {
+                            padding-top: 25px;
+                        }
+
+                        @media screen and (width: 375px) {
+                            padding-top: 20px;
+                        }
+
+                        @media screen and (min-width: 380px) {
+                            padding-top: 20px;
+                        }
+
+                        @media screen and (width: 414px) {
+                            padding-top: 35px;
+                        }
+
+                        .content-section {
+                            .description {
+                                color: $white-color;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .page-content {
+            top: 15vw;
+            overflow: scroll;
+            padding-bottom: 0 !important;
+
+            img.feature-image {
+                height: 100vh;
+                object-position: center;
+            }
+
+            .mission-content {
+                background: transparent;
+                padding-top: 30px;
+                text-align: center;
+                height: 100%;
+                width: 100%;
+                overflow: scroll;
+
+                label, h1 {
+                    margin: 0 auto;
+                    text-align: center;
+                }
+
+                label.btn {
+                    width: fit-content;
+                    margin-bottom: 25px;
+                    padding: 10px 20px !important;
+                    height: 40px !important;
+                }
+
+                h1 {
+                    margin-bottom: 25px;
+                    color: $primary-light-color;
+
+                    span {
+                        font-family: PFDinTextPro-Regular !important;
+                        font-weight: 500 !important;
+                    }
+                }
+
+                .single-mission {
+                    background-color: rgba(255, 255, 255, 0.6);
+                    border-radius: 25px;
+                    padding: 35px 20px;
+
+                    .title-red {
+                        span {
+                            color: $primary-dark-color;
+                            font-family: PFDinTextPro-Medium !important;
+                            text-transform: initial;
+                        }
+                    }
+
+                    .feature-image {
+                        display: none;
+                    }
+
+                    * {
+                        color: $black-color;
+                    }
+
+                    .steps {
+                        justify-content: center;
+                        margin: 30px 0;
+
+                        &:empty {
+                            display: none;
+                        }
+
+                        .item {
+                            width: 33%;
+                            padding: 0 5px;
+
+                            h2 {
+                                margin: 0 auto;
+                                border: 1px solid $black-color;
+                                border-radius: 50%;
+                                width: 40px;
+                                height: 40px;
+                                line-height: 40px;
+                            }
+
+                            p {
+                                line-height: 1;
+                                margin-bottom: 0;
+
+                                small {
+                                    line-height: 1;
+                                }
+                            }
+                        }
+                    }
+
+                    .description {
+                        border: 1px solid $text-dark;
+                        border-radius: 25px;
+
+                        // padding: 5px 20px;
+                        padding: 14px;
+                        text-align: left;
+                        margin-bottom: 20px;
+
+                        h4 {
+                            font-family: PFDinTextPro-Bold;
+                            font-size: 14px;
+                        }
+
+                        p {
+                            margin-bottom: 10px;
+
+                            img {
+                                max-width: 100%;
+                            }
+
+                            &.discription {
+                                padding: 0 !important;
+                                margin-bottom: 10px !important;
+
+                                p,
+                                h5 {
+                                    padding: 0 !important;
+                                    margin-bottom: 10px !important;
+                                }
+                            }
+                        }
+                    }
+
+                    .condition {
+                        align-items: center;
+                        justify-content: center;
+                        margin-bottom: 12px;
+                    }
+
+                    ion-button {
+                        margin: 12px auto;
+                        line-height: 1 !important;
+                        font-size: 11px !important;
+
+                        &.btn-green {
+                            width: max-content;
+                            padding: 0 !important;
+                        }
+                    }
+
+                    .playgame-btn {
+                        background-color: $white-color !important;
+                        color: #5b5b5b !important;
+                        margin: 12px auto !important;
+                        width: max-content;
+                        line-height: 2.6 !important;
+                    }
+                }
+
+                &.mission-new {
+                    label {
+                        background: linear-gradient(180deg, $primary-dark-color, $primary-light-color);
+                    }
+
+                    ion-button.btn-green {
+                        background-color: $white-color !important;
+                        color: $text-dark !important;
+                    }
+                }
+
+                &.mission-pending {
+                    label {
+                        background-color: $text-blue !important;
+                    }
+
+                    ion-button.btn-green {
+                        background-color: $text-blue !important;
+                        color: $white-color !important;
+                    }
+                }
+
+                &.mission-completed {
+                    label {
+                        background-color: $green-color !important;
+                    }
+
+                    ion-button.btn-green {
+                        background-color: $green-color !important;
+                        color: $white-color !important;
+                    }
+                }
+            }
+        }
+    }
+
+    .type5 {
+        .page-content {
+            img.feature-image {
+                height: 100vh;
+                object-fit: cover;
+                object-position: -140vh top;
+            }
+        }
+    }
+}

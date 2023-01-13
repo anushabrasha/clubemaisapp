@@ -1,0 +1,114 @@
+app-faq {
+    ion-content {
+        app-user-info-header {
+            .banner-user-detail {
+                .banner-content {
+                    .banner-content-section {
+                        &.unlog-in {
+                            top: 100px !important;
+                        }
+                    }
+                }
+            }
+        }
+
+        .page-content {
+            top: 30px;
+            position: relative;
+            padding-left: 20px;
+            padding-right: 20px;
+            padding-bottom: 80px !important;
+
+            .faq-accordion-section {
+                padding-top: 55px;
+
+                .tab {
+                    margin-bottom: 15px;
+
+                    input[type='checkbox'] {
+                        &:checked {
+                            + label {
+                                background-color: $secondary-color;
+                            }
+                        }
+                    }
+
+                    label {
+                        background-color: $gray-medium;
+                        justify-content: normal;
+                        position: relative;
+                        padding: 15px;
+
+                        h5 {
+                            margin: 0;
+                            width: 75%;
+                            color: $text-dark;
+                            text-transform: uppercase;
+                            font-family: PFDinTextPro-Medium-Italic;
+                        }
+
+                        span {
+                            min-width: 40px;
+                            width: 40px;
+                            height: 40px;
+                            font-family: PFDinTextPro-Medium-Italic;
+                            background-color: $white-color;
+                            color: $primary-dark-color;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            border-radius: 50%;
+                            margin-right: 20px;
+                        }
+
+                        &:before {
+                            display: none;
+                        }
+
+                        &:after {
+                            content: '\25BC';
+                            top: 20px;
+                            right: 5px;
+                            padding: 5px 10px;
+                            transition: 0.2s ease-in-out;
+                            position: absolute;
+                            transform: scale(1.2);
+                            color: #5b5b5b;
+                        }
+
+                        &.active {
+                            background-color: $secondary-color !important;
+
+                            &:after {
+                                transform: rotate(180deg);
+                            }
+                        }
+                    }
+
+                    .tab-content {
+                        background-color: $gray-light;
+                        max-height: unset;
+                        padding: 10px 0;
+
+                        p {
+                            padding: 0 15px;
+                            flex-direction: column;
+                        }
+                    }
+                }
+            }
+
+            .info {
+                padding: 15px;
+                text-transform: uppercase;
+                font-family: PFDinTextPro-Light-Italic;
+
+                span {
+                    text-decoration-line: underline;
+                    font-family: PFDinTextPro-Medium-Italic;
+                    color: $primary-dark-color;
+                }
+            }
+        }
+    }
+}

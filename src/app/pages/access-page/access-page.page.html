@@ -1,0 +1,136 @@
+<ion-content class="bg-default ion-padding" *ngIf='pageOneFlag'>
+    <div class="logo-section">
+        <div class="logo">
+            <img src="assets/images/logo/clube-mais-gray-red-login-logo.png" alt="Clube Mais" />
+        </div>
+    </div>
+    <div class="first-access-landing">
+        <div class="page-description">
+            <h4 class="title-red">Primeiro acesso.</h4>
+            <p class="description"><span>Insira seu CPF e E-Mail</span> para receber as instruções para se cadastrar e
+                acessar o <span>Clube MAIS.</span></p>
+        </div>
+        <div class="first-access-form">
+            <form [formGroup]="accessPageStepOneForm">
+                <div class="form-group"
+                    [ngClass]="!accessPageStepOneForm.controls.username.valid && accessPageStepOneForm.controls.username.touched ? 'error' : ''">
+                    <label>Insira seu CPF</label>
+                    <ion-input type="tel" placeholder="CPF" formControlName="username"
+                        [brmasker]="{mask: '000.000.000-00',len:14, type:'num'}"></ion-input>
+                    <div class="error"
+                        *ngIf="!accessPageStepOneForm.controls.username.valid && accessPageStepOneForm.controls.username.touched">
+                        cpf inválido
+                    </div>
+                </div>
+                <div class="form-group"
+                    [ngClass]="!accessPageStepOneForm.controls.email.valid && accessPageStepOneForm.controls.email.touched ? 'error' : ''">
+                    <label>Email</label>
+                    <ion-input type="text" placeholder="Email" formControlName="email"></ion-input>
+                    <div class="error"
+                        *ngIf="!accessPageStepOneForm.controls.email.valid && accessPageStepOneForm.controls.email.touched">
+                        Email inválido
+                    </div>
+                </div>
+                <div class="form-group flex">
+                    <ion-button class="btn btn-gray" (click)="toBack()">Cancelar</ion-button>
+                    <ion-button class="btn btn-red" (click)="getUserDetails()"
+                        [disabled]="!accessPageStepOneForm.valid">
+                        Enviar
+                    </ion-button>
+                </div>
+            </form>
+        </div>
+    </div>
+</ion-content>
+
+<ion-content class="bg-default ion-padding" *ngIf='pageTwoFlag'>
+    <div class="logo-section">
+        <div class="logo">
+            <img src="assets/images/logo/clube-mais-gray-red-login-logo.png" alt="Clube Mais" />
+        </div>
+    </div>
+    <div class="first-access-page">
+        <div class="page-description">
+            <h4 class="title-red">Primeiro acesso.</h4>
+            <p class="description"><span>Confirme as informações abaixo</span> e escolha se deseja receber o link para
+                finalizar o cadastro por E-mail, Telefone Celular ou pelos dois.</p>
+        </div>
+        <div class="first-access-form">
+            <form [formGroup]="accessPageStepTwoForm">
+                <div class="form-group"
+                    [ngClass]="!accessPageStepTwoForm.controls.nome_completo.valid && accessPageStepTwoForm.controls.nome_completo.touched ? 'error' : ''">
+                    <label>Nome</label>
+                    <ion-input type="text" name="username" placeholder="Nome" class="text-enable"
+                        formControlName="nome_completo" [disabled]="!isNameEditable"></ion-input>
+                    <div class="error"
+                        *ngIf="!accessPageStepTwoForm.controls.nome_completo.valid && accessPageStepTwoForm.controls.nome_completo.touched">
+                        Nome inválido
+                    </div>
+                </div>
+                <div class="form-group"
+                    [ngClass]="!accessPageStepTwoForm.controls.email.valid && accessPageStepTwoForm.controls.email.touched ? 'error' : ''">
+                    <label>E-mail</label>
+                    <div class="editable">
+                        <ion-input type="text" name="email" placeholder="E-mail" formControlName="email"
+                            [disabled]="!isEmailEditable">
+                        </ion-input>
+                        <span (click)="editable('isEmailEditable')">Editar</span>
+                    </div>
+                    <div class="error"
+                        *ngIf="!accessPageStepTwoForm.controls.email.valid && accessPageStepTwoForm.controls.email.touched">
+                        E-mail inválido
+                    </div>
+                    <div class="flex align-center" (click)="actionReceber()">
+                        <ion-checkbox color="medium" name="access_email" formControlName="emailAccess" value="no">
+                        </ion-checkbox>
+                        <label>Receber o link por e-mail.</label>
+                    </div>
+                </div>
+                <div class="form-group"
+                    [ngClass]="!accessPageStepTwoForm.controls.telefone.valid && accessPageStepTwoForm.controls.telefone.touched ? 'error' : ''">
+                    <label>Telefone</label>
+                    <div class="editable">
+                        <ion-input type="tel" name="telefone" placeholder="Telefone" formControlName="telefone"
+                            [disabled]="!isTelefoneEditable" [brmasker]="{phone: true}"></ion-input>
+                        <span (click)="editable('isTelefoneEditable')">Editar</span>
+                    </div>
+                    <div class="error"
+                        *ngIf="!accessPageStepTwoForm.controls.telefone.valid && accessPageStepTwoForm.controls.telefone.touched">
+                        Telefone inválido
+                    </div>
+                    <div class="flex align-center" [ngClass]="!isUserAcceptReceber ? 'error':''"
+                        (click)="actionReceber()">
+                        <ion-checkbox color="medium" name="access_phone" formControlName="phoneAccess" value="no">
+                        </ion-checkbox>
+                        <label>Receber o link por SMS.</label>
+                    </div>
+                    <div class="error" *ngIf="!isUserAcceptReceber">
+                        Escolha opção para receber o link.
+                    </div>
+
+                </div>
+                <div class="form-group flex">
+                    <ion-button class="btn btn-gray" (click)="passToForm(1)">Cancelar</ion-button>
+                    <ion-button class="btn btn-red" type="submit" (click)="registerUserDetails()"
+                        [disabled]="!accessPageStepTwoForm.valid">Enviar</ion-button>
+                </div>
+            </form>
+        </div>
+    </div>
+</ion-content>
+
+<ion-content class="bg-default ion-padding" *ngIf='pageThreeFlag'>
+    <div class="logo-section">
+        <div class="logo">
+            <img src="assets/images/logo/clube-mais-gray-red-login-logo.png" alt="Clube Mais" />
+        </div>
+    </div>
+    <div class="confirmation-content">
+        <h4 class="title-red">Confirmação.</h4>
+        <p class="description">Você vai receber o link de confirmação por:</p>
+        <p class="description access-email">E-mail: <span>{{userDetail.email | encryptEmail}}</span></p>
+        <p class="description access-phone">Celular: <span>{{userDetail.telefone | encryptTelephone}}</span></p>
+        <p class="description">Siga as orientações para concluir o seu cadastro e acessar o <span>Clube MAIS.</span></p>
+        <ion-button class="btn btn-gray" (click)="passToForm(1)">Voltar</ion-button>
+    </div>
+</ion-content>

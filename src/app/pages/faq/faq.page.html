@@ -1,0 +1,25 @@
+<ion-header>
+  <app-header [preventAll]="hideUSerInfo" class="" [ngClass]="hideHeader ? 'hide-header' : ''">
+  </app-header>
+</ion-header>
+<ion-content [scrollEvents]="true" (ionScroll)="onScroll($event)">
+  <app-user-info-header [hideUserInfo]="hideUSerInfo" pageKey='faq'></app-user-info-header>
+  <div class="page-content">
+    <div class="faq-accordion-section">
+      <div class="tab" *ngFor="let faq of faqList;let i = index;">
+        <input type="checkbox" [id]="i">
+        <label class="tab-label flex" [ngClass]="faq.status ? faq.status : ''" [for]="i" (click)="toggleAnswer(faq,i)">
+          <span>{{i+1}}</span>
+          <h5>{{faq.question}}</h5>
+        </label>
+        <div class="tab-content" *ngIf='selectedQuestion === i'>
+          <p [innerHTML]="faq.answer"></p>
+        </div>
+      </div>
+    </div>
+    <ion-button class="btn btn-gray margin-auto" (click)="toBack()">voltar</ion-button>
+  </div>
+</ion-content>
+<ion-footer *ngIf="!hideUSerInfo">
+  <app-footer></app-footer>
+</ion-footer>

@@ -1,0 +1,102 @@
+.tab {
+    overflow: hidden;
+
+    input {
+        position: absolute;
+        opacity: 0;
+        z-index: -1;
+    }
+
+    &-label {
+        display: flex !important;
+        justify-content: space-between;
+        cursor: pointer;
+
+        &::before {
+            content: "+";
+            width: 20px;
+            height: 20px;
+            text-align: center;
+            transition: all .35s;
+            background-color: $primary-dark-color;
+            border-radius: 50%;
+            color: $white-color;
+            line-height: normal;
+        }
+
+        p {
+            color: $text-dark !important;
+        }
+
+        .date {
+            width: 100px;
+        }
+    }
+
+    &-content {
+        max-height: 0;
+        padding: 0 1em;
+        transition: all .35s;
+
+        hr {
+            border-bottom: 0 !important;
+            background-color: $text-gray !important;
+            margin: 10px 0 !important;
+        }
+
+        p {
+            color: $text-dark !important;
+            display: flex;
+            padding: 10px;
+
+            span {
+                display: block;
+                margin-left: auto;
+            }
+        }
+
+        ol {
+            padding-left: 20px;
+
+            li {
+                margin-bottom: 15px;
+
+                p {
+                    padding: 0 !important;
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+            }
+        }
+    }
+
+    &-close {
+        display: flex;
+        justify-content: flex-end;
+        padding: 1em 0;
+        font-size: 0.75em;
+        background: $white-color;
+        cursor: pointer;
+
+        &:hover {
+            background: darken($white-color, 10%);
+        }
+    }
+
+    // :checked
+    input:checked {
+        + .tab-label {
+            &::before {
+                content: '-';
+            }
+        }
+
+        ~ .tab-content {
+            max-height: fit-content;
+            padding: 1em 0;
+        }
+    }
+}

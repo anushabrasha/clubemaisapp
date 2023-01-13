@@ -1,0 +1,43 @@
+<ion-header>
+    <app-header pageKey="aprenda" class="" [ngClass]="hideHeader ? 'hide-header' : ''"></app-header>
+</ion-header>
+<ion-content [scrollEvents]="true" (ionScroll)="onScroll($event)">
+    <app-user-info-header pageKey='aprenda'></app-user-info-header>
+    <div class="page-content">
+        <div *ngIf="isAprendaPresent">
+            <div class="categories-select-section">
+                <ion-button class="btn btn-red categories-btn" [ngClass]="showCategory ? 'active':''"
+                    (click)="showCategory = !showCategory">CATEGORIAS
+                </ion-button>
+                <div class="categories-section" *ngIf="showCategory">
+                    <div class="training-category" *ngFor="let category of trainingCategory"
+                        (click)="changeCategory(category)">
+                        <div class="category-icon">
+                            <img [src]="category.icon" />
+                        </div>
+                        <p class="category-title" [ngClass]="category.status">{{category.menu_title}}</p>
+                    </div>
+                </div>
+            </div>
+            <ion-searchbar class="search-section" placeholder="DIGITE O QUE VOCÊ PROCURA" [(ngModel)]="searchString"
+                (change)="searchCourse()">
+            </ion-searchbar>
+            <app-aprenda-archive-card isFor="aprenda">
+            </app-aprenda-archive-card>
+
+            <!-- pagination removed -->
+        </div>
+
+        <div *ngIf="isAprendaNotFound">
+            <p>No news found</p>
+        </div>
+
+        <div *ngIf="!isAprendaPresent" class="comingsoon margin-auto">
+            <h2>EM BREVE</h2>
+        </div>
+        <ion-button class="btn btn-gray back-btn" (click)="toBack()">voltar</ion-button>
+    </div>
+</ion-content>
+<ion-footer>
+    <app-footer></app-footer>
+</ion-footer>

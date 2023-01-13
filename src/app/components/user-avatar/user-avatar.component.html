@@ -1,0 +1,4 @@
+<div class="user-avatar" (click)="changeAvatar()">
+  <img *ngIf="!showNameLabel" [src]="avatarUrl" />
+  <h3 *ngIf="showNameLabel" class="avatar-alt">{{userNameLabel}}</h3>
+</div>

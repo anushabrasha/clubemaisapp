@@ -1,0 +1,12 @@
+<div class="card-item wrap">
+    <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig">
+        <div class="card incomplete slide" ngxSlickItem *ngFor="let badge of list;let i = index;" (click)="openPopUp(badge)" [ngClass]="badge.owned ? 'owned' : ''">
+            <div class="icon">
+                <img [src]="badge.image_url" [alt]="badge.name" />
+            </div>
+            <div class="selos-card-content">
+                <h2 class="selos-title">{{badge.name}}</h2>
+            </div>
+        </div>
+    </ngx-slick-carousel>
+</div>

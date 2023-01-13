@@ -1,0 +1,32 @@
+<ion-header>
+    <app-header class="" [ngClass]="hideHeader ? 'hide-header' : ''"></app-header>
+</ion-header>
+<ion-content class="home" [scrollEvents]="true" (ionScroll)="onScroll($event)">
+    <div class="page-content skew">
+        <app-user-info></app-user-info>
+
+        <div class="flex wrap dashboard-links">
+            <div class="item" *ngFor="let menu of menuList" (click)="openPage(menu)">
+                <div class="menu-image">
+                    <img [src]="menu.img" alt="icon" />
+                </div>
+                <h3 class="title-white menu-title">{{menu.title}}</h3>
+            </div>
+        </div>
+
+        <div class="menu-link-section" *ngIf="homeBannerImages.length">
+            <div class="menu-link" *ngFor="let banner of homeBannerImages"
+                (click)="openBannerPage(banner)">
+                <div class="banner-image">
+                    <img class="banner" [src]="banner.image" alt="image" />
+                </div>
+                <p *ngIf="banner.title">{{banner.title}}</p>
+                <p *ngIf="banner.sub_title" [innerHTML]="banner.sub_title"></p>
+            </div>
+        </div>
+
+    </div>
+</ion-content>
+<ion-footer>
+    <app-footer></app-footer>
+</ion-footer>

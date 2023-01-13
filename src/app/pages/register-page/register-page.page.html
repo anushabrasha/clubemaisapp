@@ -1,0 +1,388 @@
+<app-header class="hide-header" [preventAll]="isProfilePage ? false : true "
+  [ngClass]="hideHeader ? 'hide-header' : ''"></app-header>
+
+<ion-content class="bg-default ion-padding" [ngClass]="isProfilePage ? 'header-footer': ''">
+  <app-user-info-header [pageKey]="isProfilePage ? 'conta': 'profile'" [hideUserInfo]="isProfilePage ? false : true">
+  </app-user-info-header>
+
+  <div class="segment-section" *ngIf="isProfilePage || !isProfilePage && !showSuccessView">
+    <ion-segment *ngFor="let step of formSteps">
+      <ion-segment-button [disabled]="!step.enabled" [ngClass]="step.className" (click)="changeView(step.id)">
+        <ion-label>{{step.title}}</ion-label>
+      </ion-segment-button>
+      <span class="step"></span>
+    </ion-segment>
+  </div>
+
+  <div class="page-content bg-default" *ngIf="!showSuccessView">
+    <div class="stepOne" *ngIf="pageOneFlag">
+
+      <!-- heading removed -->
+
+      <div class="form">
+        <form [formGroup]="registerPageStepOneForm" *ngIf="registerPageStepOneForm">
+          <div class="user-avatar">
+            <img class="" [src]="profileSRC" />
+            <span (click)="openCameraAction()">Editar Foto</span>
+          </div>
+          <div class="form-group"
+            [ngClass]="!registerPageStepOneForm.controls.nome_completo.valid && registerPageStepOneForm.controls.nome_completo.touched ? 'error' : ''">
+            <label>Nome completo</label>
+            <ion-input type="text" name="name" placeholder="Nome" formControlName="nome_completo"
+              [readonly]="(isProfilePage || isDeeplink) ? 'true' : 'false'">
+            </ion-input>
+            <div class="" [ngClass]="errorClass" *ngIf="!registerPageStepOneForm.controls.nome_completo.valid">
+              nome inválido
+            </div>
+          </div>
+          <div class="form-group"
+            [ngClass]="!registerPageStepOneForm.controls.genero.valid && registerPageStepOneForm.controls.genero.touched ? 'error' : ''">
+            <label>Gênero</label>
+            <ion-select placeholder="Gênero" formControlName="genero" cancelText="CANCELAR">
+              <ion-select-option value="male">Masculino</ion-select-option>
+              <ion-select-option value="female">Feminino</ion-select-option>
+              <ion-select-option value="not_declared">Não quero declarar</ion-select-option>
+            </ion-select>
+            <div class="" [ngClass]="errorClass"
+              *ngIf="!registerPageStepOneForm.controls.genero.valid && registerPageStepOneForm.controls.genero.touched">
+              Genero inválido
+            </div>
+          </div>
+          <div class="form-group"
+            [ngClass]="!registerPageStepOneForm.controls.username.valid && registerPageStepOneForm.controls.username.touched ? 'error' : ''">
+            <label>CPF</label>
+            <ion-input type="tel" name="cpf" placeholder="CPF" formControlName="username"
+              [readonly]="(isProfilePage || isDeeplink) ? 'true' : 'false'"
+              [brmasker]="{mask: '000.000.000-00',len:14, type:'num'}">
+            </ion-input>
+            <div class="" [ngClass]="errorClass" *ngIf="!registerPageStepOneForm.controls.username.valid">
+              cpf inválido
+            </div>
+          </div>
+          <div class="form-group"
+            [ngClass]="!registerPageStepOneForm.controls.data_de_nascimento.valid && registerPageStepOneForm.controls.data_de_nascimento.touched ? 'error' : ''">
+            <label>Data de nascimento</label>
+            <ion-datetime type="date" class="input" displayFormat="DD/MM/YYYY" name="dop"
+              formControlName="data_de_nascimento" placeholder="Data de nascimento">
+            </ion-datetime>
+            <div class="" [ngClass]="errorClass"
+              *ngIf="!registerPageStepOneForm.controls.data_de_nascimento.valid && registerPageStepOneForm.controls.data_de_nascimento.touched">
+              Data de nascimento inválido
+            </div>
+          </div>
+          <div class="form-group"
+            [ngClass]="!registerPageStepOneForm.controls.email.valid && registerPageStepOneForm.controls.email.touched ? 'error' : ''">
+            <label>E-mail</label>
+            <ion-input type="text" name="email" placeholder="E-mail" formControlName="email"></ion-input>
+            <div class="" [ngClass]="errorClass"
+              *ngIf="!registerPageStepOneForm.controls.email.valid && registerPageStepOneForm.controls.email.touched">
+              E-mail inválido
+            </div>
+          </div>
+
+          <!-- input field id removed-->
+          <div class="form-group"
+            [ngClass]="!registerPageStepOneForm.controls.telefone.valid && registerPageStepOneForm.controls.telefone.touched ? 'error' : ''">
+            <label>Telefone (com DDD)</label>
+            <ion-input type="tel" name="telefone" placeholder="DDD + Telefone" formControlName="telefone"
+              [brmasker]="{phone: true}"></ion-input>
+            <div class="" [ngClass]="errorClass" *ngIf="!registerPageStepOneForm.controls.telefone.valid">
+              Telefone inválido
+            </div>
+          </div>
+          <div class="term-conditions-popup-description">
+            <span class="term-conditions-popup-content" (click)="openLGPD()">Por que pedimos estes dados?</span>
+          </div>
+
+          <div class="form-group flex">
+            <ion-button class="btn btn-green" (click)="stepOneValidationFunction()"
+              [disabled]="!registerPageStepOneForm.valid">
+              SALVAR
+            </ion-button>
+            <ion-button class="btn btn-gray" (click)="toBack()">
+              VOLTAR
+            </ion-button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="stepTwo" *ngIf="pageTwoFlag">
+
+
+      <div class="form">
+        <form [formGroup]="registerPageStepTwoForm">
+          <div class="user-avatar">
+            <img class="" [src]="profileSRC" />
+            <span (click)="openCameraAction()">Editar Foto</span>
+          </div>
+          <h1 class="btn btn-gray margin-auto autofill">autopreencher</h1>
+          <div class="form-group"
+            [ngClass]="!registerPageStepTwoForm.controls.cep.valid && registerPageStepTwoForm.controls.cep.touched ? 'error' : ''">
+            <label>CEP*(somente números)</label>
+            <ion-input type="tel" name="cep" placeholder="" [formControl]="registerPageStepTwoForm.controls['cep']"
+              (change)="getLocationDetail()" [brmasker]="{mask: '00000-000', type:'num'}">
+            </ion-input>
+            <div class="" [ngClass]="errorClass"
+              *ngIf="!registerPageStepTwoForm.controls.cep.valid && registerPageStepTwoForm.controls.cep.touched">
+              CEP inválido
+            </div>
+          </div>
+          <div class="form-group flex">
+            <div class="form-group w-80"
+              [ngClass]="!registerPageStepTwoForm.controls.rua.valid && registerPageStepTwoForm.controls.rua.touched ? 'error' : ''">
+              <label>Rua*</label>
+              <ion-input type="text" name="rua" placeholder="" [formControl]="registerPageStepTwoForm.controls['rua']"
+                [(ngModel)]="cepDetails.rua">
+              </ion-input>
+              <div class="" [ngClass]="errorClass"
+                *ngIf="!registerPageStepTwoForm.controls.rua.valid && registerPageStepTwoForm.controls.rua.touched">
+                Rua inválido
+              </div>
+            </div>
+            <div class="form-group w-20"
+              [ngClass]="!registerPageStepTwoForm.controls.numero.valid && registerPageStepTwoForm.controls.numero.touched ? 'error' : ''">
+              <label>Número</label>
+              <ion-input type="tel" name="numero" placeholder=""
+                [formControl]="registerPageStepTwoForm.controls['numero']">
+              </ion-input>
+              <div class="" [ngClass]="errorClass"
+                *ngIf="!registerPageStepTwoForm.controls.numero.valid && registerPageStepTwoForm.controls.numero.touched">
+                Número inválido
+              </div>
+            </div>
+          </div>
+          <div class="form-group flex">
+            <div class="form-group w-40"
+              [ngClass]="!registerPageStepTwoForm.controls.complemento.valid && registerPageStepTwoForm.controls.complemento.touched ? 'error' : ''">
+              <label>Complemento</label>
+              <ion-input type="text" name="complemento" [formControl]="registerPageStepTwoForm.controls['complemento']">
+              </ion-input>
+              <div class="" [ngClass]="errorClass"
+                *ngIf="!registerPageStepTwoForm.controls.complemento.valid && registerPageStepTwoForm.controls.complemento.touched">
+                Complemento inválido
+              </div>
+            </div>
+            <div class="form-group w-60"
+              [ngClass]="!registerPageStepTwoForm.controls.bairro.valid && registerPageStepTwoForm.controls.bairro.touched ? 'error' : ''">
+              <label>Bairro*</label>
+              <ion-input type="text" name="bairro" placeholder=""
+                [formControl]="registerPageStepTwoForm.controls['bairro']" [(ngModel)]="cepDetails.bairro">
+              </ion-input>
+              <div class="" [ngClass]="errorClass"
+                *ngIf="!registerPageStepTwoForm.controls.bairro.valid && registerPageStepTwoForm.controls.bairro.touched">
+                Bairro inválido
+              </div>
+            </div>
+          </div>
+          <div class="form-group flex">
+            <div class="form-group w-70"
+              [ngClass]="!registerPageStepTwoForm.controls.cidade.valid && registerPageStepTwoForm.controls.cidade.touched ? 'error' : ''">
+              <label>Cidade*</label>
+              <ion-input type="text" name="cidade" placeholder=""
+                [formControl]="registerPageStepTwoForm.controls['cidade']" [(ngModel)]="cepDetails.cidade">
+              </ion-input>
+              <div class="" [ngClass]="errorClass"
+                *ngIf="!registerPageStepTwoForm.controls.cidade.valid && registerPageStepTwoForm.controls.cidade.touched">
+                Cidade inválido
+              </div>
+            </div>
+            <div class="form-group w-30"
+              [ngClass]="!registerPageStepTwoForm.controls.estado.valid && registerPageStepTwoForm.controls.estado.touched ? 'error' : ''">
+              <label>Estado*</label>
+              <ion-select name="estado" placeholder="" [formControl]="registerPageStepTwoForm.controls['estado']"
+                cancelText="CANCELAR" [(ngModel)]="cepDetails.estado">
+                <ion-select-option *ngFor="let state of stateList" [value]="state.key">
+                  {{dataProvider.stateReversed [state.text]}}
+                </ion-select-option>
+              </ion-select>
+              <div class="" [ngClass]="errorClass"
+                *ngIf="!registerPageStepTwoForm.controls.estado.valid && registerPageStepTwoForm.controls.estado.touched">
+                Estado inválido
+              </div>
+            </div>
+          </div>
+          <div class="form-group"
+            [ngClass]="!registerPageStepTwoForm.controls.ponto_de_referencia.valid && registerPageStepTwoForm.controls.ponto_de_referencia.touched ? 'error' : ''">
+            <label>Ponto de referência*</label>
+            <ion-input type="text" name="ponto_de_referencia" placeholder="Ao lado da padaria."
+              [formControl]="registerPageStepTwoForm.controls['ponto_de_referencia']">
+            </ion-input>
+            <div class="" [ngClass]="errorClass"
+              *ngIf="!registerPageStepTwoForm.controls.ponto_de_referencia.valid && registerPageStepTwoForm.controls.ponto_de_referencia.touched">
+              Ponto de referência inválido
+            </div>
+          </div>
+          <div class="term-conditions-popup-description">
+            <span class="term-conditions-popup-content" (click)="openLGPD()">Por que pedimos estes dados?</span>
+          </div>
+          <div class="form-group flex">
+            <ion-button class="btn btn-green" (click)="stepTwoValidationFunction()"
+              [disabled]="!registerPageStepTwoForm.valid">
+              SALVAR
+            </ion-button>
+            <ion-button class="btn btn-gray" (click)="changeView('1')">
+              VOLTAR
+            </ion-button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="stepThree" *ngIf="pageThreeFlag && !isProfilePage">
+      <div>
+        <h1 class="title-white">
+          Senha
+        </h1>
+      </div>
+
+      <div class="form">
+        <form [formGroup]="registerPageStepThreeForm">
+          <div class="form-group input-password"
+            [ngClass]="!registerPageStepThreeForm.controls.newpassword.valid && registerPageStepThreeForm.controls.newpassword.touched ? 'error' : ''">
+            <label>Digite sua senha</label>
+            <ion-input [type]="hideRegPassword ? 'password' : 'text'" name="newpassword" placeholder=""
+              (ionChange)="domChange()" [formControl]="registerPageStepThreeForm.controls['newpassword']"
+              [(ngModel)]="userData.password">
+            </ion-input>
+            <span class="password-toggle" [ngClass]="hideRegPassword ? 'eye-off' : 'eye'"
+              (click)="hideRegPassword = !hideRegPassword"></span>
+            <div class="" [ngClass]="errorClass"
+              *ngIf="!registerPageStepThreeForm.controls.newpassword.valid && registerPageStepThreeForm.controls.newpassword.touched">
+              Senha inválido
+            </div>
+            <label class="" [ngClass]="errorClass">A sua senha deverá ter pelo menos 8 (oito) caracteres. </label>
+          </div>
+          <div class="form-group input-password"
+            [ngClass]="!registerPageStepThreeForm.controls.confirmPassword.valid && registerPageStepThreeForm.controls.confirmPassword.touched ? 'error' : ''">
+            <label>Confirmar senha</label>
+            <ion-input [type]="hideRegConfirmPassword ? 'password' : 'text'" name="confirmPassword" placeholder=""
+              (ionChange)="domChange()" [formControl]="registerPageStepThreeForm.controls['confirmPassword']"
+              [(ngModel)]="userData.confirmPassword">
+            </ion-input>
+            <span class="password-toggle" [ngClass]="hideRegConfirmPassword ? 'eye-off' : 'eye'"
+              (click)="hideRegConfirmPassword = !hideRegConfirmPassword"></span>
+            <div class="" [ngClass]="errorClass"
+              *ngIf="!registerPageStepThreeForm.controls.confirmPassword.valid && registerPageStepThreeForm.controls.confirmPassword.touched">
+              Confirmar a senha inválido
+            </div>
+          </div>
+          <div class="form-group flex">
+            <ion-button class="btn btn-green" (click)="stepThreeValidationFunction()"
+              [disabled]="!registerPageStepThreeForm.valid">
+              SALVAR
+            </ion-button>
+            <ion-button class="btn btn-gray" (click)="changeView('2')">
+              VOLTAR
+            </ion-button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="stepThree" *ngIf="pageThreeFlag && isProfilePage">
+      <div class="form">
+        <form [formGroup]="profilePageStepThreeForm">
+          <div class="form-group input-password"
+            [ngClass]="!profilePageStepThreeForm.controls.password.valid && profilePageStepThreeForm.controls.password.touched ? 'error' : ''">
+            <label>Senha atual </label>
+            <ion-input [type]="hidePassword ? 'password' : 'text'" name="password" placeholder=""
+              [formControl]="profilePageStepThreeForm.controls['password']"></ion-input>
+            <span class="password-toggle" [ngClass]="hidePassword ? 'eye-off' : 'eye'"
+              (click)="hidePassword = !hidePassword"></span>
+            <div class="" [ngClass]="errorClass"
+              *ngIf="!profilePageStepThreeForm.controls.password.valid && profilePageStepThreeForm.controls.password.touched">
+              Senha atual inválido
+            </div>
+          </div>
+          <div class="form-group input-password"
+            [ngClass]="!profilePageStepThreeForm.controls.newpassword.valid && profilePageStepThreeForm.controls.newpassword.touched ? 'error' : ''">
+            <label>Nova senha </label>
+            <ion-input [type]="hideNewPassword ? 'password' : 'text'" name="newpassword" placeholder=""
+              [formControl]="profilePageStepThreeForm.controls['newpassword']"></ion-input>
+
+            <span class="password-toggle" [ngClass]="hideNewPassword ? 'eye-off' : 'eye'"
+              (click)="hideNewPassword = !hideNewPassword"></span>
+            <p class="password-description">A sua senha deverá ter pelo menos 8 (oito) caracteres (letras, números e, de
+              preferência, caracteres especiais).</p>
+
+            <div class="" [ngClass]="errorClass"
+              *ngIf="!profilePageStepThreeForm.controls.newpassword.valid && profilePageStepThreeForm.controls.newpassword.touched">
+              nova inválido
+            </div>
+          </div>
+          <div class="form-group input-password"
+            [ngClass]="!profilePageStepThreeForm.controls.confirmPassword.valid && profilePageStepThreeForm.controls.confirmPassword.touched ? 'error' : ''">
+            <label>Confirmar nova senha </label>
+            <ion-input [type]="hideConfirmPassword ? 'password' : 'text'" name="confirmPassword" placeholder=""
+              [formControl]="profilePageStepThreeForm.controls['confirmPassword']">
+            </ion-input>
+            <span class="password-toggle" [ngClass]="hideConfirmPassword ? 'eye-off' : 'eye'"
+              (click)="hideConfirmPassword = !hideConfirmPassword"></span>
+            <div class="" [ngClass]="errorClass"
+              *ngIf="!profilePageStepThreeForm.controls.confirmPassword.valid && profilePageStepThreeForm.controls.confirmPassword.touched">
+              As senhas fornecidas não são iguais.
+            </div>
+          </div>
+          <div class="form-group flex">
+            <ion-button class="btn btn-green" (click)="generateOtp()" [disabled]="!profilePageStepThreeForm.valid">
+              SALVAR
+            </ion-button>
+            <ion-button class="btn btn-gray" (click)="changeView('2')">
+              VOLTAR
+            </ion-button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="stepFour" *ngIf="pageFourFlag  && !isProfilePage">
+      <div class="regulamento-title-section">
+        <h1 class="title-red">
+          Regulamento
+        </h1>
+      </div>
+      <div class="regulamento">
+        <div class="regulamento-content" [innerHTML]="regulamentoTheory"></div>
+      </div>
+      <div class=" flex regulamento-checkbox">
+        <ion-radio color="success" [(ngModel)]="acceptRegulamento" (click)="domChange()"></ion-radio>
+        <ion-label class="regulamento-content">Li e aceito o regulamento.</ion-label>
+      </div>
+      <div class="form-group flex">
+        <div class="form-group flex">
+          <ion-button class="btn btn-green" [disabled]="!acceptRegulamento" (click)="toCheck()">SALVAR</ion-button>
+          <!-- button removed -->
+        </div>
+        <ion-button class="btn btn-gray back-btn" (click)="changeView('3')">
+          VOLTAR
+        </ion-button>
+      </div>
+    </div>
+  </div>
+
+  <div class="profile-update-section success-section" *ngIf="showSuccessView && isProfilePage">
+    <div class="profile-update-section">
+      <h1 class="profile-update title-gray">
+        informações atualizadas<span> com sucesso!</span>
+      </h1>
+    </div>
+    <ion-button class="btn btn-gray" (click)="naviagateTo()">
+      VOLTAR
+    </ion-button>
+  </div>
+  <div class="register-success-section success-section" *ngIf="showSuccessView  && !isProfilePage">
+    <div class="register-success-section">
+      <h1 class="profile-update title-gray"><span>parabéns!</span></h1>
+      <p class="description">
+        Seu cadastro foi concluído com sucesso, e a partir de agora você pode começar a sua experiência no Clube Mais!
+      </p>
+    </div>
+
+    <ion-button class="btn btn-gray" (click)="naviagateTo()">
+      VOLTAR
+    </ion-button>
+  </div>
+</ion-content>
+
+<app-footer *ngIf="isProfilePage"></app-footer>

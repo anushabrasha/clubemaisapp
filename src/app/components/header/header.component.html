@@ -1,0 +1,14 @@
+<header>
+    <div class="flex">
+        <a class="logo" (click)="openDashboardPage()">
+            <img src="assets/images/logo/clube-mais-gray-red-login-logo.png" alt="Clube Mais" />
+        </a>
+        <!-- <a (click)="openNotificationPage()" *ngIf="!hideAll">
+            <ion-icon name="notifications-outline">{{notificationCount}}</ion-icon>
+        </a> -->
+        <a class="toggle-menu" *ngIf="!hideAll">
+            <ion-icon *ngIf="!backArrow" name="menu" (click)="toggleMenu()"></ion-icon>
+            <!-- <ion-icon *ngIf="backArrow" name="arrow-round-back" (click)="toBack()"></ion-icon> -->
+        </a>
+    </div>
+</header>

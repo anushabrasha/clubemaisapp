@@ -1,0 +1,14 @@
+<div class="user-more-detail" *ngIf="userExtraInfo.perfil !='ADMIN BO'">
+    <div class="user-profile-detail"> <b>Perfil</b>
+        <p class="user-perfil">{{userExtraInfo.perfil}}</p>
+    </div>
+    <div class="user-regional-detail"> <b>Regional</b>
+        <p class="user-regional">{{userExtraInfo.regional}}</p>
+    </div>
+    <div class="user-stamps-detail"> <b>Selos</b>
+        <p class="user-seloes">{{userExtraInfo.selos}}</p>
+    </div>
+    <div class="user-info-close">
+        <p (click)="addNewItem('0')">X</p>
+    </div>
+</div>

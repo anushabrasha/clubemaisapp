@@ -1,0 +1,336 @@
+/* First Access Page */
+app-access-page {
+    ion-content {
+        &.bg-default {
+            --padding-top: 0;
+            --padding-end: 0;
+            --padding-start: 0;
+            background-image: unset;
+            background-color: $gray-light-color;
+
+            .logo-section {
+                background-color: $white-color;
+                padding-bottom: 30px;
+                padding-left: 20px;
+                padding-top: 20vw;
+
+                .logo {
+                    width: 200px;
+                    height: 45px;
+                    margin-bottom: 0;
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: contain;
+                    }
+                }
+            }
+
+            .first-access-landing {
+                padding: 0 20px;
+
+                .page-description {
+                    h4.title-red {
+                        line-height: 1;
+                        font-size: 24px;
+                        margin-top: 15vw;
+                        margin-bottom: 25px;
+                        font-family: Roboto-Medium;
+                        color: $primary-light-color;
+                    }
+
+                    .description {
+                        font-size: 16px;
+                        color: $text-dark;
+                        font-family: Roboto-Regular;
+                        margin-bottom: 25px !important;
+
+                        span {
+                            color: $text-dark;
+                            font-family: Roboto-Medium;
+                        }
+                    }
+                }
+
+                .first-access-form {
+                    .form-group {
+                        label {
+                            color: $text-dark;
+                            margin-bottom: 5px;
+                            font-family: Roboto-Regular;
+                        }
+
+                        input[type="text"],
+                        input[type="tel"] {
+                            border: unset !important;
+                            color: $text-dark !important;
+                            background-color: $white-color !important;
+
+                            &:-internal-autofill {
+                                -webkit-text-fill-color: #5b5b5b;
+                                -webkit-box-shadow: 0 0 0px 1000px $white-color inset;
+                                transition: background-color 5000s ease-in-out 0s;
+                            }
+
+                            &:-internal-autofill-selected {
+                                -webkit-text-fill-color: #5b5b5b;
+                                -webkit-box-shadow: 0 0 0px 1000px $white-color inset;
+                                transition: background-color 5000s ease-in-out 0s;
+                            }
+                        }
+
+                        &.error {
+                            label {
+                                font-family: Roboto-Medium;
+                                color: $primary-light-color !important;
+                            }
+
+                            select,
+                            input[type="tel"],
+                            input[type="text"] {
+                                border: 1px solid $primary-light-color !important;
+                            }
+
+                            .error {
+                                font-family: Roboto-Medium;
+                                color: $primary-light-color;
+                            }
+                        }
+
+                        &.flex {
+                            margin: 0;
+                            flex-direction: column-reverse;
+
+                            .btn {
+                                width: 100%;
+                                margin-bottom: 20px;
+                                text-transform: unset;
+                                font-family: Roboto-Medium;
+                                font-size: 16px !important;
+                                line-height: normal !important;
+
+                                &.btn-red {
+                                    background-color: $primary-light-color !important;
+                                }
+
+                                &.btn-gray {
+                                    background-color: $text-gray !important;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            .first-access-page {
+                padding: 0 20px;
+
+                .page-description {
+                    h4.title-red {
+                        line-height: 1;
+                        font-size: 24px;
+                        margin-top: 15vw;
+                        margin-bottom: 25px;
+                        font-family: Roboto-Medium;
+                        color: $primary-light-color;
+                    }
+
+                    .description {
+                        font-size: 16px;
+                        color: $text-dark;
+                        font-family: Roboto-Regular;
+                        margin-bottom: 25px !important;
+
+                        span {
+                            color: $text-dark;
+                            font-family: Roboto-Medium;
+                        }
+                    }
+                }
+
+                .first-access-form {
+                    .form-group {
+                        label {
+                            color: $text-dark;
+                            margin-bottom: 5px;
+                            font-family: Roboto-Regular;
+                        }
+
+                        input[type="tel"],
+                        input[type="text"] {
+                            margin-bottom: 5px;
+                            border: unset !important;
+                            color: $text-dark !important;
+                            background-color: $white-color !important;
+
+                            &:-internal-autofill {
+                                -webkit-text-fill-color: #5b5b5b;
+                                -webkit-box-shadow: 0 0 0px 1000px $white-color inset;
+                                transition: background-color 5000s ease-in-out 0s;
+                            }
+
+                            &:-internal-autofill-selected {
+                                -webkit-text-fill-color: #5b5b5b;
+                                -webkit-box-shadow: 0 0 0px 1000px $white-color inset;
+                                transition: background-color 5000s ease-in-out 0s;
+                            }
+                        }
+
+                        .text-enable {
+                            input {
+                                opacity: .7 !important;
+                            }
+                        }
+
+                        .editable {
+                            position: relative;
+
+                            input {
+                                padding-right: 60px !important;
+                            }
+
+                            span {
+                                top: 20px;
+                                z-index: 6;
+                                right: 12px;
+                                position: absolute;
+                                color: $primary-light-color;
+                            }
+                        }
+
+                        ion-checkbox {
+                            width: 15px;
+                            height: 15px;
+                            --border-radius: 5px;
+                            --border-color: #FFFFFF;
+                            --checkmark-color: #878787;
+                            --background-checked: #FFFFFF;
+                            --border-color-checked: #FFFFFF;
+
+                            + label {
+                                margin: 0 5px;
+                            }
+                        }
+
+                        &.error {
+                            label {
+                                font-family: Roboto-Medium;
+                                color: $primary-light-color;
+                            }
+
+                            ion-checkbox {
+                                --border-color: #E30609;
+                            }
+
+                            input[type="tel"],
+                            input[type="text"] {
+                                border: 1px solid $primary-light-color !important;
+                            }
+
+                            .flex {
+                                &.align-center {
+                                    label {
+                                        color: $text-dark;
+                                    }
+                                }
+                            }
+
+                            .error {
+                                font-family: Roboto-Medium;
+                                color: $primary-light-color;
+                            }
+                        }
+
+                        &.flex {
+                            margin: 0;
+                            flex-direction: column-reverse;
+
+                            .btn {
+                                width: 100%;
+                                margin-bottom: 20px;
+                                text-transform: unset;
+                                font-family: Roboto-Medium;
+                                font-size: 16px !important;
+                                line-height: normal !important;
+
+                                &.btn-red {
+                                    background-color: $primary-light-color !important;
+                                }
+
+                                &.btn-gray {
+                                    background-color: $text-gray !important;
+                                }
+                            }
+                        }
+
+                        .error {
+                            font-family: Roboto-Medium;
+                            color: $primary-light-color;
+                        }
+
+                        .flex {
+                            &.align-center {
+                                &.error {
+                                    ion-checkbox {
+                                        --border-color: #e30609 !important;
+                                    }
+
+                                    label {
+                                        font-family: Roboto-Medium;
+                                        color: $primary-light-color;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            .confirmation-content {
+                padding: 0 20px;
+
+                h4.title-red {
+                    line-height: 1;
+                    font-size: 24px;
+                    margin-top: 15vw;
+                    margin-bottom: 25px;
+                    font-family: Roboto-Medium;
+                    color: $primary-light-color;
+                }
+
+                .description {
+                    font-size: 16px;
+                    color: $text-dark;
+                    font-family: Roboto-Regular;
+
+                    span {
+                        color: $text-dark;
+                        font-family: Roboto-Medium;
+                    }
+
+                    &.access-phone,
+                    &.access-email {
+                        font-family: Roboto-Medium;
+                    }
+
+                    &.access-phone {
+                        + .description {
+                            margin: 30px 0 !important;
+                            margin-bottom: 8em !important;
+                        }
+                    }
+                }
+
+                .btn-gray {
+                    width: 100%;
+                    text-transform: unset;
+                    font-family: Roboto-Medium;
+                    font-size: 16px !important;
+                    line-height: normal !important;
+                    background-color: $text-gray !important;
+                }
+            }
+        }
+    }
+}

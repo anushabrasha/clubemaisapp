@@ -1,0 +1,87 @@
+app-notification-page {
+    ion-content {
+        .page-content {
+            border-radius: 40px;
+            background-color: $gray-light-color;
+            @media screen and (max-height: 600px) {
+                top: 33vw;
+            }
+            @media screen and (min-width: 360px) {
+                top: 28vw;
+            }
+            @media screen and (width: 360px) {
+                top: 29vw;
+            }
+            @media screen and (width: 414px) {
+                top: 26vw;
+            }
+            .notification-info {
+                .title-yellow {
+                    margin: 0;
+                    padding: 20px;
+                    font-size: 35px;
+                }
+                .notification-section {
+                    padding: 20px;
+                    padding-bottom: 60px;
+                    .notification-card-section {
+                        .notification-content-section {
+                            .notification-title {
+                                margin-bottom: 15px;
+                                .title {
+                                    margin: 0;
+                                    font-size: 24px;
+                                    text-transform: unset;
+                                    font-family: Roboto-Medium;
+                                    color: $primary-light-color;
+                                }
+                            }
+                            .notification-content {
+                                margin-bottom: 15px;
+                                .content {
+                                    font-size: 16px;
+                                    color: $text-dark;
+                                    font-family: Roboto-Regular;
+                                }
+                            }
+                            .notification-time.flex {
+                                align-items: center;
+                                .new-title {
+                                    margin: 0;
+                                    display: none;
+                                    font-size: 14px;
+                                    padding-right: 20px;
+                                    text-transform: capitalize;
+                                    font-family: Roboto-Medium;
+                                    color: $primary-light-color;
+                                }
+                                .time {
+                                    font-size: 14px;
+                                    color: $text-dark;
+                                    font-family: Roboto-Regular;
+                                }
+                            }
+                        }
+                        &.notification-new {
+                            .notification-time.flex {
+                                .new-title {
+                                    display: block;
+                                }
+                            }
+                        }
+                        &:last-child {
+                            hr {
+                                display: none;
+                            }    
+                        }
+                        hr {
+                            border: none;
+                            margin: 30px 0;
+                            background-color:$white-color;
+                        }
+                    }
+                }
+            }
+        }        
+    }
+}

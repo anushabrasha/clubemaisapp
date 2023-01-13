@@ -1,0 +1,1588 @@
+<div class="rule-detail">
+
+    <div class="constala" *ngIf="role=='proprietrio'">
+        <div class="constala">
+            <div class="btn-group">
+                <ion-button class="btn btn-outline-gray" (click)="show = !show" [ngClass]="{active: !show}">%1ª FATURA PAGA</ion-button>
+                <ion-button class="btn btn-outline-gray" (click)="show = !show" [ngClass]="{active: show}">2ª recarga</ion-button>
+            </div>
+            <div class="p2" *ngIf="!show">
+                <div class="performance-table nota-table">
+                    <table class="p2">
+                        <thead>
+                            <tr class="bg-gradient">
+                                <td>PDV</td>
+                                <td>ID</td>
+                                <td>NOME DO VENDEDOR</td>
+                                <td>NUMERADOR</td>
+                                <td>DENOMINADOR</td>
+                                <td>%</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let data of listdata">
+                                <td>{{data.PDV}}</td>
+                                <td>{{data.ID}}</td>
+                                <td>{{data.NOME_DO_VENDEDOR}}</td>
+                                <td>{{data.NUMERADOR_P2}}</td>
+                                <td>{{data.DENOMINADOR_P2}}</td>
+                                <td>{{data.perc_P2}}%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <hr />
+                <div class="margin-left margin-bottom">
+                    <p>Dados atualizados semanalmente.</p>
+                </div>
+            </div>
+            <div class="refill" *ngIf="show">
+                <div class="performance-table nota-table">
+                    <table class="refill">
+                        <thead>
+                            <tr class="bg-gradient">
+                                <td>PDV</td>
+                                <td>ID</td>
+                                <td>NOME DO VENDEDOR</td>
+                                <td>NUMERADOR</td>
+                                <td>DENOMINADOR</td>
+                                <td>%</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let data of listdata">
+                                <td>{{data.PDV}}</td>
+                                <td>{{data.ID}}</td>
+                                <td>{{data.NOME_DO_VENDEDOR}}</td>
+                                <td>{{data.NUMERADOR_2_RECARGA}}</td>
+                                <td>{{data.DENOMINADOR_2_RECARGA}}</td>
+                                <td>{{data.perc_2_RECARGA}}%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <hr />
+                <div class="margin-left margin-bottom">
+                    <p>Dados atualizados semanalmente.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="role=='almoxarife'">
+        <div class="revisit-content margin-bottom">
+            <div class="revisit-header">
+                <div class="margin-bottom revisit-header-detail no-padding">
+                    <ion-slides pager="true" [options]="slideOpts">
+                        <ion-slide>
+                            <div class="divTable content-section indicatorTable">
+                                <div class="border">
+                                    <div class="header-content">
+                                        <h5 class="title-red">indicadores</h5>
+                                    </div>
+                                    <div class="eligibility-content bg-white content-section">
+                                        <p>
+                                            Faixa sucesso de retiradas (%)<br> <span>X</span> Qtde de Serviços (PDV)
+                                        </p>
+                                        <div class="table-row flex table-head">
+                                            <div class="divTableCell"></div>
+                                            <div class="divTableCell"><p>PONTOS</p></div>
+                                        </div>
+                                        <div class="table-row flex">
+                                            <div class="divTableCell"><p> >=100%</p> </div>
+                                            <div class="divTableCell"><p>25</p></div>
+                                        </div>
+                                        <div class="table-row flex">
+                                            <div class="divTableCell"><p> >=90% e <100% </div>
+                                            <div class="divTableCell"><p>15</p></div>
+                                        </div>
+                                        <div class="table-row flex">
+                                            <div class="divTableCell"><p> >=80% e <90% </p></div>
+                                            <div class="divTableCell"><p>10</p></div>
+                                        </div>
+                                        <div class="table-row flex">
+                                            <div class="divTableCell"><p> >=70% e <80% </p></div>
+                                            <div class="divTableCell"><p>5</p></div>
+                                        </div>
+                                        <div class="table-row flex">
+                                            <div class="divTableCell"><p> >=60% e <70% </p></div>
+                                            <div class="divTableCell"><p>1</p></div>
+                                        </div>
+                                        <div class="table-row flex">
+                                            <div class="divTableCell"><p> <60% </p></div>
+                                            <div class="divTableCell"><p>0</p></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ion-slide>
+                        <ion-slide>
+                            <div class="margin-bottom revisit-header-detail">
+                                <div class="eligibility-criteria-Table">
+                                    <div class="header-content">
+                                        <h5 class="title-red">critérios de elegibilidade</h5>
+                                    </div>
+                                    <div class="eligibility-content bg-gray-light">
+                                        <div class="padding-top">
+                                            <p class="table-right-arrow">Cadastro ativo e correto no iCare.</p>
+                                            <br>
+                                            <p class="table-right-arrow">função: <i>estoque</i></p>
+                                            <br>
+                                            <p class="table-right-arrow">cargo: <i>almoxarife ou supervisor/líder</i></p>
+                                            <br>
+                                            <p class="table-right-arrow">
+                                                Mínimo de serviços mensais:
+                                                <i *ngIf="showMaster"><br />Master: </i><span *ngIf="showMaster">{{min_servicos}}</span>
+                                                <i *ngIf="showEspecial"><br />Especial: </i><span *ngIf="showEspecial">{{min_servicos}}</span>
+                                                <i *ngIf="showSky"><br />Sky: </i><span *ngIf="showSky">{{min_servicos}}</span>
+                                            </p>
+                                            <!--<p class="table-right-arrow">consumo excessivo do pdv não deve ultrapassar
+                                                <span>5%</span>
+                                            </p>-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ion-slide>
+                        <ion-slide>
+                            <div class="margin-bottom revisit-header-detail">
+                                <div class="other-rules-Table">
+                                    <div class="other-rules-header">
+                                        <h5 class="title-red">outras regras</h5>
+                                    </div>
+                                    <div class="other-rules-content justify-between no-padding">
+                                        <div class="other-rules-table-content no-padding bg-gray-light">
+                                            <div class="padding-top">
+                                                <p class="table-right-arrow"> caso o pdv tenha mais de 1 almoxarife, o valor devido será dividido pela quantidade de almoxarifes.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ion-slide>
+                    </ion-slides>
+                </div>
+            </div>
+        </div>
+        <div class="other-rules-footer">
+            <button class="btn btn-gray" (click)="downloadRegulamento()">clique aqui para consultar o regulamento</button>
+        </div>
+    </div>
+    <div *ngIf="role=='supervisor_de_televendas'">
+        <div class="revisit-content margin-bottom">
+            <div class="revisit-header">
+                <div class="margin-bottom revisit-header-detail no-padding">
+                    <ion-slides pager="true" [options]="slideOpts">
+                        <ion-slide>
+                            <div class="margin-bottom revisit-header-detail">
+                                <div class="eligibility-criteria-Table">
+                                    <div class="header-content">
+                                        <h5 class="title-red">indicadores</h5>
+                                    </div>
+                                    <div class="eligibility-content bg-gray-light">
+                                        <div class="padding-top">
+                                            <p class="table-right-arrow"><span>15%</span> do valor total recebido pelos operadores.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ion-slide>
+                        <ion-slide>
+                            <div class="margin-bottom revisit-header-detail">
+                                <div class="eligibility-criteria-Table">
+                                    <div class="header-content">
+                                        <h5 class="title-red">critérios de elegibilidade</h5>
+                                    </div>
+                                    <div class="eligibility-content bg-gray-light">
+                                        <div class="padding-top">
+                                            <p class="table-right-arrow">cadastro ativo e correto no icare.</p>
+                                            <p class="table-right-arrow">função: <i>comercial</i></p>
+                                            <p class="table-right-arrow">cargo: <i>supervisor/líder</i></p>
+                                            <p class="table-right-arrow">validadores - pdv: <br/>mínimo % 1<sup>a</sup> fatura paga = <span>{{fatura_paga}}</span><br/>mínimo 2<sup>a</sup> recarga = <span>70%</span></p>
+                                            <p class="table-right-arrow">% propostas pagas, igual ou superior a <span>50%</span> das vendas cadastradas.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ion-slide>
+                        <ion-slide>
+                            <div class="margin-bottom revisit-header-detail">
+                                <div class="other-rules-Table">
+                                    <div class="other-rules-header">
+                                        <h5 class="title-red">outras regras</h5>
+                                    </div>
+                                    <div class="other-rules-content justify-between no-padding">
+                                        <div class="other-rules-table-content no-padding bg-gray-light">
+                                            <div class="padding-top">
+                                                <p class="table-right-arrow"> caso o pdv tenha mais de 1 supervisor, o valor devido será dividido pela quantidade de supervisores.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ion-slide>
+                    </ion-slides>
+                </div>
+            </div>
+        </div>
+        <div class="other-rules-footer">
+            <button class="btn btn-gray" (click)="downloadRegulamento()">clique aqui para consultar o regulamento</button>
+        </div>
+    </div>
+    <div *ngIf="role=='supervisor_de_vendas'">
+        <div class="revisit-content margin-bottom">
+            <div class="revisit-header">
+                <div class="margin-bottom revisit-header-detail no-padding">
+                    <ion-slides pager="true" [options]="slideOpts">
+                        <ion-slide>
+                            <div class="margin-bottom revisit-header-detail">
+                                <div class="eligibility-criteria-Table">
+                                    <div class="header-content">
+                                        <h5 class="title-red">indicadores</h5>
+                                    </div>
+                                    <div class="eligibility-content bg-gray-light">
+                                        <div class="padding-top">
+                                            <p class="table-right-arrow"><span>15%</span> do valor total recebido pelos vendedores.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ion-slide>
+                        <ion-slide>
+                            <div class="margin-bottom revisit-header-detail">
+                                <div class="eligibility-criteria-Table">
+                                    <div class="header-content">
+                                        <h5 class="title-red">critérios de elegibilidade</h5>
+                                    </div>
+                                    <div class="eligibility-content bg-gray-light">
+                                        <div class="padding-top">
+                                            <p class="table-right-arrow">cadastro ativo e correto no icare.</p>
+                                            <p class="table-right-arrow">função: <i>comercial</i></p>
+                                            <p class="table-right-arrow">cargo: <i>supervisor/líder</i></p>
+                                            <p class="table-right-arrow">validadores - pdv: <br/>mínimo % 1<sup>a</sup> fatura paga = <span>{{fatura_paga}}</span><br/>mínimo 2<sup>a</sup> recarga = <span>70%</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ion-slide>
+                        <ion-slide>
+                            <div class="margin-bottom revisit-header-detail">
+                                <div class="other-rules-Table">
+                                    <div class="other-rules-header">
+                                        <h5 class="title-red">outras regras</h5>
+                                    </div>
+                                    <div class="other-rules-content justify-between no-padding">
+                                        <div class="other-rules-table-content no-padding bg-gray-light">
+                                            <div class="padding-top">
+                                                <p class="table-right-arrow"> caso o pdv tenha mais de 1 supervisor, o valor devido será dividido pela quantidade de supervisores.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ion-slide>
+                    </ion-slides>
+                </div>
+            </div>
+        </div>
+        <div class="other-rules-footer">
+            <button class="btn btn-gray" (click)="downloadRegulamento()">consulte o regulamento</button>
+        </div>
+    </div>
+    <div *ngIf="role=='supervisor_tcnico'">
+        <div class="revisit-content margin-bottom">
+            <div class="revisit-header">
+                <div class="margin-bottom revisit-header-detail no-padding">
+                    <ion-slides pager="true" [options]="slideOpts">
+                        <ion-slide>
+                            <div class="margin-bottom revisit-header-detail">
+                                <div class="eligibility-criteria-Table">
+                                    <div class="header-content">
+                                        <h5 class="title-red">indicadores</h5>
+                                    </div>
+                                    <div class="eligibility-content bg-gray-light">
+                                        <div class="padding-top">
+                                            <p class="table-right-arrow"><span>15%</span> do valor total pago aos técnicos elegíveis.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ion-slide>
+                        <ion-slide>
+                            <div class="margin-bottom revisit-header-detail">
+                                <div class="eligibility-criteria-Table">
+                                    <div class="header-content">
+                                        <h5 class="title-red">critérios de elegibilidade</h5>
+                                    </div>
+                                    <div class="eligibility-content bg-gray-light">
+                                        <div class="padding-top">
+                                            <p class="table-right-arrow">cadastro ativo no icare.</p>
+                                            <p class="table-right-arrow">FUNÇÃO:  <i>serviços <br/>(inst, at e retiradas)</i></p>
+                                            <p class="table-right-arrow">CARGO:  <i>SUPERVISOR/LÍDER </i></p>
+                                            <p class="table-right-arrow">mínimo de serviços mensais*:<br><i> </i><span>{{min_servicos}}</span><small class="italic"><br/>*Total dos técnicos elegíveis ao clube sky no mês.</small></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ion-slide>
+                        <ion-slide>
+                            <div class="margin-bottom revisit-header-detail">
+                                <div class="other-rules-Table">
+                                    <div class="other-rules-header">
+                                        <h5 class="title-red">outras regras</h5>
+                                    </div>
+                                    <div class="other-rules-content justify-between no-padding">
+                                        <div class="other-rules-table-content no-padding bg-gray-light">
+                                            <div class="padding-top">
+                                                <p class="table-right-arrow"> Caso o pdv tenha mais de 1 supervisor, o valor devido será dividido pela quantidade de supervisores.</p>
+                                                <br>
+                                                <p class="table-right-arrow">SERVIÇOS FORA DA POLÍTICA (HABILITAÇÕES SIMULTÂNEAS) ZERAM A PONTUAÇÃO.</p>
+                                                <!-- <p class="table-right-arrow">Serviços fora da política zeram a PONTUAÇÃO:
+                                                    <small class="italic">
+                                                        <br/>Serviço fora do padrão<br/>(habilitações simultâneas)
+                                                    </small>
+                                                    <small class="italic">
+                                                        <br/>Serviço irregular<br/>(auditoria CCS)
+                                                    </small>
+                                                </p> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ion-slide>
+                    </ion-slides>
+                </div>
+            </div>
+        </div>
+        <div class="other-rules-footer">
+            <button class="btn btn-gray" (click)="downloadRegulamento()">consulte o regulamento</button>
+        </div>
+    </div>
+    <div *ngIf="role=='tecnico'">
+        <div class="sub-header">
+            <h5 class="title-gray"><span>revisita</span></h5>
+        </div>
+        <div class="revisit-content margin-bottom">
+            <div class="revisit-header">
+                <div class="margin-bottom revisit-header-detail no-padding">
+                    <ion-slides pager="true" [options]="slideOpts">
+                        <ion-slide>
+                            <div class="divTable content-section indicatorTable">
+                                <div class="header-content">
+                                    <h5 class="title-red">indicadores</h5>
+                                </div>
+                                <div class="eligibility-content bg-white content-section">
+                                    <p>
+                                        Faixa de revisita (%) <br><span>X</span> qtde de serviços
+                                    </p>
+                                    <div class="table-row flex table-head">
+                                        <div class="divTableCell"></div>
+                                        <div class="divTableCell"><p>PONTOS</p></div>
+                                    </div>
+                                    <div class="table-row flex">
+                                        <div class="divTableCell"><p> <=0,7% </p></div>
+                                        <div class="divTableCell"><p>71</p></div>
+                                    </div>
+                                    <div class="table-row flex">
+                                        <div class="divTableCell"><p> >0,7% E <=1% </div>
+                                        <div class="divTableCell"><p>57</p></div>
+                                    </div>
+                                    <div class="table-row flex">
+                                        <div class="divTableCell"><p> >1% E <=2% </p></div>
+                                        <div class="divTableCell"><p>29</p></div>
+                                    </div>
+                                    <div class="table-row flex">
+                                        <div class="divTableCell"><p> >2% E <=4% </p></div>
+                                        <div class="divTableCell"><p> 14 </p></div>
+                                    </div>
+                                    <div class="table-row flex">
+                                        <div class="divTableCell"><p> >4% E <=6% </p></div>
+                                        <div class="divTableCell"><p> 7 </p></div>
+                                    </div>
+                                    <!-- <div class="table-row flex">
+                                        <div class="divTableCell"><p> >6% </p></div>
+                                        <div class="divTableCell"><p> - </p></div>
+                                    </div> -->
+                                    <!-- <div class="table-row flex table-footer">
+                                        <div class="divTableCell"><p> 3 MESES <=1% </p></div>
+                                        <div class="divTableCell"><p> 79 </p></div>
+                                    </div> -->
+                                </div>
+                            </div>
+                        </ion-slide>
+                        <ion-slide>
+                            <div class="margin-bottom revisit-header-detail">
+                                <div class="eligibility-criteria-Table">
+                                    <div class="header-content">
+                                        <h5 class="title-red">critérios de elegibilidade</h5>
+                                    </div>
+                                    <div class="eligibility-content bg-gray-light">
+                                        <div class="padding-top">
+                                            <p class="table-right-arrow">cadastro ativo e correto no icare.</p>
+                                            <p class="table-right-arrow">função: <i>serviços (inst ,at e retiradas)</i></p>
+                                            <p class="table-right-arrow">cargo: <i>técnico</i></p>
+                                            <p class="table-right-arrow">mínimo de serviços
+                                                mensais:
+                                                <i><br /></i>
+                                                <span>{{min_servicos}}</span>
+                                                <!-- <i *ngIf="showEspecial"><br />Especial:</i> -->
+                                                <!-- <span *ngIf="showEspecial">{{min_servicos}}</span> -->
+                                                <!-- <i *ngIf="showSky"><br />Sky: </i><span *ngIf="showSky">{{min_servicos}}</span></p> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ion-slide>
+                        <ion-slide>
+                            <div class="margin-bottom revisit-header-detail">
+                                <div class="other-rules-Table">
+                                    <div class="other-rules-header">
+                                        <h5 class="title-red">outras regras</h5>
+                                    </div>
+                                    <div class="other-rules-content justify-between no-padding">
+                                        <div class="other-rules-table-content no-padding bg-gray-light">
+                                            <div class="padding-top">
+                                                <p class="table-right-arrow"> Máximo de serviços remunerados: <span>250</span></p>
+                                                <p class="table-right-arrow"> SERVIÇOS FORA DA POLÍTICA (HABILITAÇÕES SIMULTÂNEAS) ZERAM A PONTUAÇÃO.</p>                                                
+                                                <!--<p class="table-right-arrow"> Serviços fora da política zeram a PONTUAÇÃO:<br>
+                                                    <i class="tipo-credenciado-master technico-content">Serviço fora do padrão<br>(habilitações simultâneas)</i>
+                                                    <i class="tipo-credenciado-master technico-content"><br>Serviço irregular<br>(auditoria CCS)</i>
+                                                </p>
+                                                    <p class="table-right-arrow" hidden>Nos dias em que o Sirius apresentar instabilidade significativa, não haverá penalização e todos os serviços serão considerados como finalizados no Sirius.<br>
+                                                    <i class="tipo-credenciado-master technico-content">Serviço fora do padrão<br>(habilitações simultâneas)</i>
+                                                    <i class="tipo-credenciado-master technico-content"><br>Serviço irregular<br>(auditoria CCS)</i>
+                                                </p>
+                                                 <p class="table-right-arrow"> Nos dias em que o Sirius apresentar instabilidade significativa, não haverá penalização e todos os serviços serão considerados como finalizados no Sirius.</p> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--<div class="other-rules-footer">
+                                        <button class="btn btn-gray" (click)="downloadRegulamento()">Clique aqui para consultar o
+                                            regulamento</button>
+                                    </div>-->
+                                </div>
+                            </div>
+                        </ion-slide>
+                    </ion-slides>
+                </div>
+            </div>
+        </div>
+        <div class="sub-header">
+            <h5 class="title-gray"><span>CAIXAS CONECTADAS</span></h5>
+        </div>
+        <div class="revisit-content margin-bottom">
+            <div class="revisit-header">
+                <div class="margin-bottom revisit-header-detail no-padding">
+                    <ion-slides pager="true" [options]="slideOpts">
+                        <ion-slide>
+                            <div class="divTable content-section indicatorTable">
+                                <div class="header-content">
+                                    <h5 class="title-red">indicadores</h5>
+                                </div>
+                                <div class="eligibility-content bg-white content-section">
+                                    <p>
+                                        caixas conectadas
+                                    </p>
+                                    <div class="table-row flex table-head">
+                                        <div class="divTableCell"></div>
+                                        <div class="divTableCell"><p>PONTOS</p></div>
+                                    </div>
+                                    <div class="table-row flex">
+                                        <div class="divTableCell"><p> CONEXÕES DO EQUIPAMENTO DVR </p></div>
+                                        <div class="divTableCell"><p> 71 </p></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ion-slide>
+                        <ion-slide>
+                            <div class="margin-bottom revisit-header-detail">
+                                <div class="eligibility-criteria-Table">
+                                    <div class="header-content">
+                                        <h5 class="title-red">critérios de elegibilidade</h5>
+                                    </div>
+                                    <div class="eligibility-content bg-gray-light">
+                                        <div class="padding-top">
+                                            <p class="table-right-arrow">cadastro ativo e correto no icare.</p>
+                                            <p class="table-right-arrow">mínimo de serviços mensais:<i *ngIf="showMaster"><br />
+                                                </i><span *ngIf="showMaster">5</span><i *ngIf="showEspecial"><br />Especial: </i><span *ngIf="showEspecial">4</span><i *ngIf="showSky"><br />Sky:
+                                                </i><span *ngIf="showSky">3</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ion-slide>
+                        <ion-slide>
+                            <div class="margin-bottom revisit-header-detail">
+                                <div class="other-rules-Table">
+                                    <div class="other-rules-header">
+                                        <h5 class="title-red">outras regras</h5>
+                                    </div>
+                                    <div class="other-rules-content justify-between no-padding">
+                                        <div class="other-rules-table-content no-padding bg-gray-light">
+                                            <div class="padding-top">
+                                                <p class="table-right-arrow">Serão consideradas apenas as conexões feitas em até <span>5 dias</span> após a realização do serviço.</p>
+                                                <p class="table-right-arrow">SERVIÇOS FORA DA POLÍTICA (HABILITAÇÕES SIMULTÂNEAS) ZERAM A PONTUAÇÃO.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--<div class="other-rules-footer">
+                                        <button class="btn btn-gray" (click)="downloadRegulamento()">Clique aqui para consultar o
+                                            regulamento</button>
+                                    </div>-->
+                                </div>
+                            </div>
+                        </ion-slide>
+                    </ion-slides>
+                </div>
+            </div>
+        </div>
+        <div class="sub-header">
+            <h5 class="title-gray"><span>QUANTIDADE DE VENDAS</span></h5>
+        </div>
+        <div class="revisit-content margin-bottom">
+            <div class="revisit-header">
+                <div class="margin-bottom revisit-header-detail no-padding">
+                    <ion-slides pager="true" [options]="slideOpts">
+                        <ion-slide>
+                            <div class="divTable content-section indicatorTable">
+                                <div class="header-content">
+                                    <h5 class="title-red">indicadores</h5>
+                                </div>
+                                <div class="eligibility-content bg-white content-section">
+                                    <p>
+                                        QUANTIDADE DE VENDAS
+                                    </p>
+                                    <div class="table-row flex table-head">
+                                        <div class="divTableCell"></div>
+                                        <div class="divTableCell"><p>PONTOS</p></div>
+                                    </div>
+                                    <div class="table-row flex">
+                                        <div class="divTableCell"><p> A CADA VENDA<br>(PRÉ, PÓS, BL E DIRECTV GO)<br> </p></div>
+                                        <div class="divTableCell"><p> 140 </p></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ion-slide>
+                        <ion-slide>
+                            <div class="margin-bottom revisit-header-detail">
+                                <div class="eligibility-criteria-Table">
+                                    <div class="header-content">
+                                        <h5 class="title-red">critérios de elegibilidade</h5>
+                                    </div>
+                                    <div class="eligibility-content bg-gray-light">
+                                        <div class="padding-top">
+                                            <p class="table-right-arrow">cadastro ativo e correto no icare.</p>
+                                            <br><br><br>
+                                            <!-- <p class="table-right-arrow">mínimo de serviços mensais:<i *ngIf="showMaster"><br />
+                                                </i><span *ngIf="showMaster">5</span><i *ngIf="showEspecial"><br />Especial: </i><span *ngIf="showEspecial">4</span><i *ngIf="showSky"><br />Sky:
+                                                </i><span *ngIf="showSky">3</span></p> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ion-slide>
+                        <ion-slide>
+                            <div class="margin-bottom revisit-header-detail">
+                                <div class="other-rules-Table">
+                                    <div class="other-rules-header">
+                                        <h5 class="title-red">outras regras</h5>
+                                    </div>
+                                    <div class="other-rules-content justify-between no-padding">
+                                        <div class="other-rules-table-content no-padding bg-gray-light">
+                                            <div class="padding-top">
+                                                <p class="table-right-arrow">SERVIÇOS FORA DA POLÍTICA (HABILITAÇÕES SIMULTÂNEAS) ZERAM A PONTUAÇÃO.</p>
+                                                <p class="table-right-arrow">MÁXIMO DE VENDAS REMUNERADAS POR ID/MÊS: 30</p>
+                                                <br><br><br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--<div class="other-rules-footer">
+                                        <button class="btn btn-gray" (click)="downloadRegulamento()">Clique aqui para consultar o
+                                            regulamento</button>
+                                    </div>-->
+                                </div>
+                            </div>
+                        </ion-slide>
+                    </ion-slides>
+                </div>
+            </div>
+        </div>
+        <div class="other-rules-footer">
+            <button class="btn btn-gray" (click)="downloadRegulamento()">clique aqui para consultar o regulamento</button>
+        </div>
+    </div>
+    <div *ngIf="role=='torre'">
+        <div class="revisit-content margin-bottom">
+            <div class="revisit-header">
+                <div class="margin-bottom revisit-header-detail no-padding">
+                    <ion-slides pager="true" [options]="slideOpts">
+                        <ion-slide>
+                            <div class="divTable content-section indicatorTable">
+                                <div class="border">
+                                    <div class="header-content">
+                                        <h5 class="title-red">indicadores</h5>
+                                    </div>
+                                    <div class="eligibility-content bg-white content-section">
+                                        <p>
+                                            Faixa do Índice de Qualidade (%) <br><span>X</span> Qtde de Serviços (PDV)
+                                        </p>
+                                        <div class="table-row flex table-head">
+                                            <div class="divTableCell"></div>
+                                            <div class="divTableCell"><p>PONTOS</p></div>
+                                        </div>
+                                        <div class="table-row flex">
+                                            <div class="divTableCell"><p> >=91% a 100% </p></div>
+                                            <div class="divTableCell"><p>7</p></div>
+                                        </div>
+                                        <div class="table-row flex">
+                                            <div class="divTableCell"><p> >85% <91% </div>
+                                            <div class="divTableCell"><p>4</p></div>
+                                        </div>
+                                        <div class="table-row flex">
+                                            <div class="divTableCell"><p> >75% <=85% </p></div>
+                                            <div class="divTableCell"><p>1</p></div>
+                                        </div>
+                                        <!-- <div class="table-row flex">
+                                            <div class="divTableCell"><p> <=75% </p></div>
+                                            <div class="divTableCell"><p>-</p></div>
+                                        </div> -->
+                                        <!-- <div class="table-row flex table-footer">
+                                            <div class="divTableCell"><p> 3 MESES >=90% </p></div>
+                                            <div class="divTableCell"><p>8</p></div>
+                                        </div> -->
+                                    </div>
+                                    
+                                </div>
+                                <div class="pl-4 text-left">
+                                    <h5 class="title-red">IQ = CUMPRIMENTO DE AGENDA –<br> REABERTURA DE AT.</h5>
+                                </div>
+                            </div>
+                        </ion-slide>
+                        <ion-slide>
+                            <div class="margin-bottom revisit-header-detail">
+                                <div class="eligibility-criteria-Table">
+                                    <div class="header-content">
+                                        <h5 class="title-red">critérios de elegibilidade</h5>
+                                    </div>
+                                    <div class="eligibility-content bg-gray-light">
+                                        <div class="padding-top">
+                                            <p class="table-right-arrow">Cadastro ativo e correto no iCare.</p>
+                                            <p class="table-right-arrow">função: <i>torre de controle</i></p>
+                                            <p class="table-right-arrow">cargo: <i>agendador ou controlador ou supervisor/líder</i></p>
+                                            <!--<p class="table-right-arrow">Mínimo de serviços mensais (pdv):<i><br/>Master: </i><span>500</span><i><br/>Especial: </i><span>300</span><i><br/>Sky: </i><span>500</span>//</p>-->
+                                            <p class="table-right-arrow">Mínimo de serviços mensais (pdv):<i><br/> </i><span>{{min_servicos}}</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ion-slide>
+                        <ion-slide>
+                            <div class="margin-bottom revisit-header-detail">
+                                <div class="other-rules-Table">
+                                    <div class="other-rules-header">
+                                        <h5 class="title-red">outras regras</h5>
+                                    </div>
+                                    <div class="other-rules-content justify-between no-padding">
+                                        <div class="other-rules-table-content no-padding bg-gray-light">
+                                            <div class="padding-top">
+                                                <p class="table-right-arrow"> Caso o PDV tenha mais de 1 Torre, o valor devido será dividido pela quantidade de Torres.</p>
+                                                <p class="table-right-arrow">SERVIÇOS FORA DA POLÍTICA (HABILITAÇÕES SIMULTÂNEAS) ZERAM A PONTUAÇÃO.</p>
+                                                <!-- <p class="table-right-arrow">Serviços fora da política zeram a PONTUAÇÃO:
+                                                    <small class="italic">
+                                                        <br/>Serviço fora do padrão<br/>(habilitações simultâneas)
+                                                    </small>
+                                                    <small class="italic">
+                                                        <br/>Serviço irregular<br/>(auditoria CCS)
+                                                    </small>
+                                                </p> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ion-slide>
+                    </ion-slides>
+                </div>
+            </div>
+        </div>
+        <div class="other-rules-footer">
+            <button class="btn btn-gray" (click)="downloadRegulamento()">clique aqui para consultar o regulamento</button>
+        </div>
+    </div>
+     <div *ngIf="role=='televendas'">
+        <div class="revisit-content margin-bottom">
+            <div class="revisit-header">
+                <div class="margin-bottom revisit-header-detail no-padding">
+                    <ion-slides pager="true" [options]="slideOpts">
+                        <ion-slide>
+                            <div class="divTable content-section indicatorTable">
+                                <div class="border">
+                                    <div class="header-content">
+                                        <h5 class="title-red">indicadores</h5>
+                                    </div>
+                                    <div class="eligibility-content bg-white content-section">
+                                        <p>
+                                            bloco de vendas
+                                        </p>
+                                        <p>
+                                            (pré, pós, banda larga e directv go)
+                                        </p>
+                                        <div class="table-row flex table-head">
+                                            <div class="divTableCell"></div>
+                                            <div class="divTableCell"><p>PONTOS</p></div>
+                                        </div>
+                                        <div class="table-row flex">
+                                            <div class="divTableCell"><p> 1 a 4 </p></div>
+                                            <div class="divTableCell"><p> 0 </p></div>
+                                        </div>
+                                        <div class="table-row flex">
+                                            <div class="divTableCell"><p> 5 a 9 </div>
+                                            <div class="divTableCell"><p> 0 </p></div>
+                                        </div>
+                                        <div class="table-row flex">
+                                            <div class="divTableCell"><p> 10 a 14 </p></div>
+                                            <div class="divTableCell"><p> 0 </p></div>
+                                        </div>
+                                        <div class="table-row flex">
+                                            <div class="divTableCell"><p> 15 a 19 </p></div>
+                                            <div class="divTableCell"><p> 0 </p></div>
+                                        </div>
+                                        <div class="table-row flex">
+                                            <div class="divTableCell"><p> 20 a 24 </p></div>
+                                            <div class="divTableCell"><p> 0 </p></div>
+                                        </div>
+                                        <div class="table-row flex">
+                                            <div class="divTableCell"><p> 25 a 29 </p></div>
+                                            <div class="divTableCell"><p> 0 </p></div>
+                                        </div>
+                                        <div class="table-row flex">
+                                            <div class="divTableCell"><p> 30 a 34 </p></div>
+                                            <div class="divTableCell"><p> 1749 </p></div>
+                                        </div>
+                                        <div class="table-row flex">
+                                            <div class="divTableCell"><p> 35 a 39 </p></div>
+                                            <div class="divTableCell"><p> 2213 </p></div>
+                                        </div>
+                                        <div class="table-row flex">
+                                            <div class="divTableCell"><p> 40 a 44 </p></div>
+                                            <div class="divTableCell"><p> 2723 </p></div>
+                                        </div>
+                                        <div class="table-row flex">
+                                            <div class="divTableCell"><p> 45 a 49 </p></div>
+                                            <div class="divTableCell"><p> 3284 </p></div>
+                                        </div>
+                                        <div class="table-row flex">
+                                            <div class="divTableCell"><p> 50 ou mais </p></div>
+                                            <div class="divTableCell"><p> 3893 </p></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ion-slide>
+                        <ion-slide>
+                            <div class="margin-bottom revisit-header-detail">
+                                <div class="eligibility-criteria-Table">
+                                    <div class="header-content">
+                                        <h5 class="title-red">critérios de elegibilidade</h5>
+                                    </div>
+                                    <div class="eligibility-content bg-gray-light">
+                                        <div class="padding-top">
+                                            <p class="table-right-arrow">cadastro ativo e correto no icare.</p>
+                                            <p class="table-right-arrow">função: <i>COLABORADORES TELEVENDAS OU VENDEDOR DO DEALER</i></p>
+                                            <p class="table-right-arrow">cargo: <i>vendedor</i></p>
+                                            <p class="table-right-arrow">validadores:<br>Mínimo % 1<sup>a</sup> fatura paga = <span>{{fatura_paga}}</span><br> mínimo 2<sup>a</sup> recarga = <span>70%</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ion-slide>
+                        <!-- <ion-slide>
+                            <div class="margin-bottom revisit-header-detail">
+                                <div class="eligibility-criteria-Table">
+                                    <div class="header-content">
+                                        <h5 class="title-red">sky play</h5>
+                                    </div>
+                                    <div class="eligibility-content bg-gray-light">
+                                        <div class="padding-top">
+                                            <p><span class="number_sky_play">71</span>PTS</p>
+                                            <p>POR CLIENTE QUE CONSUMIR CONTEÚDO DO SKY PLAY EM ATÉ 7 DIAS ANTES DA HABILITAÇÃO.</p>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ion-slide> -->
+                    </ion-slides>
+                </div>
+            </div>
+        </div>
+        <!-- <p class="text-center margin-bottom">
+            Nova tabela válida a partir de 01/06/2021.
+        </p> -->
+        <div class="other-rules-footer">
+            <button class="btn btn-gray" (click)="downloadRegulamento()">consulte o regulamento</button>
+        </div>
+    </div>
+    <div *ngIf="role=='vendedor_interno'">
+        <div class="revisit-content margin-bottom">
+            <div class="revisit-header">
+                <div class="margin-bottom revisit-header-detail no-padding">
+                    <ion-slides pager="true" [options]="slideOpts">
+                        <ion-slide>
+                            <div class="divTable content-section indicatorTable">
+                                <div class="border">
+                                    <div class="header-content">
+                                        <h5 class="title-red">indicadores</h5>
+                                    </div>
+                                    <div class="eligibility-content bg-white content-section">
+                                        <p>
+                                            bloco de vendas
+                                        </p>
+                                        <p>
+                                            (pré, pós, banda larga e directv go)
+                                        </p>
+                                        <div class="table-row flex table-head">
+                                            <div class="divTableCell"></div>
+                                            <div class="divTableCell"><p>PONTOS</p></div>
+                                        </div>
+                                        <div class="table-row flex">
+                                            <div class="divTableCell"><p> 1 a 4 </p></div>
+                                            <div class="divTableCell"><p> 0 </p></div>
+                                        </div>
+                                        <div class="table-row flex">
+                                            <div class="divTableCell"><p> 5 a 9 </div>
+                                            <div class="divTableCell"><p> 0 </p></div>
+                                        </div>
+                                        <div class="table-row flex">
+                                            <div class="divTableCell"><p> 10 a 14 </p></div>
+                                            <div class="divTableCell"><p> 0 </p></div>
+                                        </div>
+                                        <div class="table-row flex">
+                                            <div class="divTableCell"><p> 15 a 19 </p></div>
+                                            <div class="divTableCell"><p> 0 </p></div>
+                                        </div>
+                                        <div class="table-row flex">
+                                            <div class="divTableCell"><p> 20 a 24 </p></div>
+                                            <div class="divTableCell"><p> 0 </p></div>
+                                        </div>
+                                        <div class="table-row flex">
+                                            <div class="divTableCell"><p> 25 a 29 </p></div>
+                                            <div class="divTableCell"><p> 0 </p></div>
+                                        </div>
+                                        <div class="table-row flex">
+                                            <div class="divTableCell"><p> 30 a 34 </p></div>
+                                            <div class="divTableCell"><p> 1749 </p></div>
+                                        </div>
+                                        <div class="table-row flex">
+                                            <div class="divTableCell"><p> 35 a 39 </p></div>
+                                            <div class="divTableCell"><p> 2213 </p></div>
+                                        </div>
+                                        <div class="table-row flex">
+                                            <div class="divTableCell"><p> 40 a 44 </p></div>
+                                            <div class="divTableCell"><p> 2723 </p></div>
+                                        </div>
+                                        <div class="table-row flex">
+                                            <div class="divTableCell"><p> 45 a 49 </p></div>
+                                            <div class="divTableCell"><p> 3284 </p></div>
+                                        </div>
+                                        <div class="table-row flex">
+                                            <div class="divTableCell"><p> 50 ou mais </p></div>
+                                            <div class="divTableCell"><p> 3893 </p></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ion-slide>
+                        <ion-slide>
+                            <div class="margin-bottom revisit-header-detail">
+                                <div class="eligibility-criteria-Table">
+                                    <div class="header-content">
+                                        <h5 class="title-red">critérios de elegibilidade</h5>
+                                    </div>
+                                    <div class="eligibility-content bg-gray-light">
+                                        <div class="padding-top">
+                                            <p class="table-right-arrow">cadastro ativo e correto no icare.</p>
+                                            <p class="table-right-arrow">função: <i>VENDEDOR INTERNO</i></p>
+                                            <p class="table-right-arrow">cargo: <i>vendedor</i></p>
+                                            <p class="table-right-arrow">validadores:<br> mínimo % 1<sup>a</sup> fatura paga = <span>{{fatura_paga}}</span><br> mínimo 2<sup>a</sup> recarga = <span>70%</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ion-slide>
+                        <!-- <ion-slide>
+                            <div class="margin-bottom revisit-header-detail">
+                                <div class="eligibility-criteria-Table">
+                                    <div class="header-content">
+                                        <h5 class="title-red">sky play</h5>
+                                    </div>
+                                    <div class="eligibility-content bg-gray-light">
+                                        <div class="padding-top">
+                                            <p><span class="number_sky_play">71</span>PTS</p>
+                                            <p>POR CLIENTE QUE CONSUMIR CONTEÚDO DO SKY PLAY EM ATÉ 7 DIAS ANTES DA HABILITAÇÃO.</p>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ion-slide> -->
+                    </ion-slides>
+                </div>
+            </div>
+        </div>
+        <!-- <p class="text-center margin-bottom">
+            Nova tabela válida a partir de 01/06/2021.
+        </p> -->
+        <div class="other-rules-footer">
+            <button class="btn btn-gray" (click)="downloadRegulamento()">consulte o regulamento</button>
+        </div>
+    </div>
+    <div *ngIf="role=='vendedor'">
+        <div class="revisit-content margin-bottom">
+            <div class="revisit-header">
+                <div class="margin-bottom revisit-header-detail no-padding">
+                    <ion-slides pager="true" [options]="slideOpts">
+                        <ion-slide>
+                            <div class="divTable content-section indicatorTable">
+                                <div class="border">
+                                    <div class="header-content">
+                                        <h5 class="title-red">indicadores</h5>
+                                    </div>
+                                    <div class="eligibility-content bg-white content-section">
+                                        <p>
+                                            bloco de vendas
+                                        </p>
+                                        <p>
+                                            (pré, pós, banda larga e directv go)
+                                        </p>
+                                        <div class="table-row flex table-head">
+                                            <div class="divTableCell"></div>
+                                            <div class="divTableCell"><p>PONTOS</p></div>
+                                        </div>
+                                        <div class="table-row flex">
+                                            <div class="divTableCell"><p> 1 a 4 </p></div>
+                                            <div class="divTableCell"><p> 0 </p></div>
+                                        </div>
+                                        <div class="table-row flex">
+                                            <div class="divTableCell"><p> 5 a 9 </div>
+                                            <div class="divTableCell"><p> 243 </p></div>
+                                        </div>
+                                        <div class="table-row flex">
+                                            <div class="divTableCell"><p> 10 a 14 </p></div>
+                                            <div class="divTableCell"><p> 583 </p></div>
+                                        </div>
+                                        <div class="table-row flex">
+                                            <div class="divTableCell"><p> 15 a 19 </p></div>
+                                            <div class="divTableCell"><p> 1071 </p></div>
+                                        </div>
+                                        <div class="table-row flex">
+                                            <div class="divTableCell"><p> 20 a 24 </p></div>
+                                            <div class="divTableCell"><p> 1678 </p></div>
+                                        </div>
+                                        <div class="table-row flex">
+                                            <div class="divTableCell"><p> 25 a 29 </p></div>
+                                            <div class="divTableCell"><p> 2361 </p></div>
+                                        </div>
+                                        <div class="table-row flex">
+                                            <div class="divTableCell"><p> 30 a 34 </p></div>
+                                            <div class="divTableCell"><p> 3205 </p></div>
+                                        </div>
+                                        <div class="table-row flex">
+                                            <div class="divTableCell"><p> 35 a 39 </p></div>
+                                            <div class="divTableCell"><p> 4114 </p></div>
+                                        </div>
+                                        <div class="table-row flex">
+                                            <div class="divTableCell"><p> 40 a 44 </p></div>
+                                            <div class="divTableCell"><p> 5222 </p></div>
+                                        </div>
+                                        <div class="table-row flex">
+                                            <div class="divTableCell"><p> 45 a 49 </p></div>
+                                            <div class="divTableCell"><p> 6365 </p></div>
+                                        </div>
+                                        <div class="table-row flex">
+                                            <div class="divTableCell"><p> 50 ou mais </p></div>
+                                            <div class="divTableCell"><p> 7616 </p></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ion-slide>
+                        <ion-slide>
+                            <div class="margin-bottom revisit-header-detail">
+                                <div class="eligibility-criteria-Table">
+                                    <div class="header-content">
+                                        <h5 class="title-red">critérios de elegibilidade</h5>
+                                    </div>
+                                    <div class="eligibility-content bg-gray-light">
+                                        <div class="padding-top">
+                                            <p class="table-right-arrow">Cadastro ativo e correto no iCare.</p>
+                                            <p class="table-right-arrow">função: <i>pap - porta a porta ou vendedor externo</i></p>
+                                            <p class="table-right-arrow">cargo: <i>vendedor</i></p>
+                                            <p class="table-right-arrow">validadores: <br>mínimo % 1<sup>a</sup> fatura paga = <span>{{fatura_paga}}</span><br>mínimo 2<sup>a</sup> recarga = <span>70%</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ion-slide>
+                        <!-- <ion-slide>
+                            <div class="margin-bottom revisit-header-detail">
+                                <div class="eligibility-criteria-Table">
+                                    <div class="header-content">
+                                        <h5 class="title-red">sky play</h5>
+                                    </div>
+                                    <div class="eligibility-content bg-gray-light">
+                                        <div class="padding-top">
+                                            <p><span class="number_sky_play">71</span>PTS</p>
+                                            <p>POR CLIENTE QUE CONSUMIR CONTEÚDO DO SKY PLAY EM ATÉ 7 DIAS ANTES DA HABILITAÇÃO.</p>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ion-slide> -->
+                    </ion-slides>
+                </div>
+            </div>
+        </div>
+        <!-- <p class="text-center margin-bottom">
+            Nova tabela válida a partir de 01/06/2021.
+        </p> -->
+        <div class="other-rules-footer">
+            <button class="btn btn-gray" (click)="downloadRegulamento()">consulte o regulamento</button>
+        </div>
+    </div>
+    <div *ngIf="role=='almoxarife_distribuidor'">
+        <div class="revisit-content margin-bottom">
+            <div class="revisit-header">
+                <div class="margin-bottom revisit-header-detail no-padding">
+                    <ion-slides pager="true" [options]="slideOpts">
+                        <ion-slide>
+                            <div class="divTable content-section indicatorTable">
+                                <div class="border">
+                                    <div class="header-content">
+                                        <h5 class="title-red">indicadores</h5>
+                                    </div>
+                                    <div class="eligibility-content bg-white content-section">
+                                        <p style="padding: 10px 60px;">
+                                            Sla de abastecimento 
+                                        </p>
+                                        <div class="table-row flex table-head">
+                                            <div class="divTableCell"></div>
+                                            <div class="divTableCell"><p>PONTOS</p></div>
+                                        </div>
+                                        <div class="table-row flex">
+                                            <div class="divTableCell"><p> >=90%</p> </div>
+                                            <div class="divTableCell"><p>2.000</p></div>
+                                        </div>
+                                        <div class="table-row flex">
+                                            <div class="divTableCell"><p> >=80% e <90% </div>
+                                            <div class="divTableCell"><p>1000</p></div>
+                                        </div>
+                                        <div class="table-row flex">
+                                            <div class="divTableCell"><p> <80% </p></div>
+                                            <div class="divTableCell"><p>0</p></div>
+                                        </div>
+                                        <!-- <div class="table-row flex">
+                                            <div class="divTableCell"><p> <95% </p></div>
+                                            <div class="divTableCell"><p>-</p></div>
+                                        </div> -->
+                                        <!-- <div class="table-row flex table-footer">
+                                            <div class="divTableCell"><p> 3 MESES >= 98% </p></div>
+                                            <div class="divTableCell"><p>8</p></div>
+                                        </div> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </ion-slide>
+                        <ion-slide>
+                            <div class="margin-bottom revisit-header-detail">
+                                <div class="eligibility-criteria-Table">
+                                    <div class="header-content">
+                                        <h5 class="title-red">critérios de elegibilidade</h5>
+                                    </div>
+                                    <div class="eligibility-content bg-gray-light">
+                                        <div class="padding-top">
+                                            <p class="table-right-arrow">Cadastro ativo e correto no iCare.</p>
+                                            <p class="table-right-arrow">função: estoque</p>
+                                            <p class="table-right-arrow">cargo: almoxarife ou supervisor/líder</p>
+                                            <!--<p class="table-right-arrow">consumo excessivo do pdv não deve ultrapassar
+                                                <span>5%</span>
+                                            </p>-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ion-slide>
+                        <ion-slide>
+                            <div class="margin-bottom revisit-header-detail">
+                                <div class="other-rules-Table">
+                                    <div class="other-rules-header">
+                                        <h5 class="title-red">outras regras</h5>
+                                    </div>
+                                    <div class="other-rules-content justify-between no-padding">
+                                        <div class="other-rules-table-content no-padding bg-gray-light">
+                                            <div class="padding-top">
+                                                <p class="table-right-arrow"> caso o pdv tenha mais de 1 almoxarife, o valor devido será dividido pela quantidade de almoxarifes ativos.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ion-slide>
+                    </ion-slides>
+                </div>
+            </div>
+        </div>
+        <div class="other-rules-footer">
+            <button class="btn btn-gray" (click)="downloadRegulamento()">clique aqui para consultar o regulamento</button>
+        </div>
+    </div>
+    <div *ngIf="role=='torre_distribuidor'">
+        <div class="revisit-content margin-bottom">
+            <div class="revisit-header">
+                <div class="margin-bottom revisit-header-detail no-padding">
+                    <ion-slides pager="true" [options]="slideOpts">
+                        <ion-slide>
+                            <div class="divTable content-section indicatorTable">
+                                <div class="border">
+                                    <div class="header-content">
+                                        <h5 class="title-red">indicadores</h5>
+                                    </div>
+                                    <div class="eligibility-content bg-white content-section">
+                                        <p style="padding: 10px 60px;">
+                                            Tempo de atendimento do PJ
+                                        </p>
+                                        <div class="table-row flex table-head">
+                                            <div class="divTableCell"></div>
+                                            <div class="divTableCell"><p>PONTOS</p></div>
+                                        </div>
+                                        <div class="table-row flex">
+                                            <div class="divTableCell"><p> <=16h </p></div>
+                                            <div class="divTableCell"><p>4.000</p></div>
+                                        </div>
+                                        <div class="table-row flex">
+                                            <div class="divTableCell"><p> >16h e <72h </div>
+                                            <div class="divTableCell"><p>2.000</p></div>
+                                        </div>
+                                        <div class="table-row flex">
+                                            <div class="divTableCell"><p> >=72h </p></div>
+                                            <div class="divTableCell"><p>0</p></div>
+                                        </div>
+                                        <!-- <div class="table-row flex table-footer">
+                                            <div class="divTableCell"><p> 3 MESES >=90% </p></div>
+                                            <div class="divTableCell"><p>8</p></div>
+                                        </div> -->
+                                    </div>
+                                    <!-- <div class="pl-4 text-left">
+                                        <h5 class="title-red">IQ = CUMPRIMENTO DE AGENDA – REAVERTURA DE AT.</h5>
+                                    </div> -->
+                                </div>
+                            </div>
+                        </ion-slide>
+                        <ion-slide>
+                            <div class="margin-bottom revisit-header-detail">
+                                <div class="eligibility-criteria-Table">
+                                    <div class="header-content">
+                                        <h5 class="title-red">critérios de elegibilidade</h5>
+                                    </div>
+                                    <div class="eligibility-content bg-gray-light">
+                                        <div class="padding-top">
+                                            <p class="table-right-arrow">Cadastro ativo e correto no iCare.</p>
+                                            <p class="table-right-arrow">função: torre de controle</p>
+                                            <p class="table-right-arrow">cargo: agendador ou controlador ou supervisor/líder</p>
+                                            <!--<p class="table-right-arrow">Mínimo de serviços mensais (pdv):<i><br/>Master: </i><span>500</span><i><br/>Especial: </i><span>300</span><i><br/>Sky: </i><span>500</span>//</p>-->
+                                            <!-- <p class="table-right-arrow">Mínimo de serviços mensais (pdv):<i><br/> </i><span>{{min_servicos}}</span></p> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ion-slide>
+                        <ion-slide>
+                            <div class="margin-bottom revisit-header-detail">
+                                <div class="other-rules-Table">
+                                    <div class="other-rules-header">
+                                        <h5 class="title-red">outras regras</h5>
+                                    </div>
+                                    <div class="other-rules-content justify-between no-padding">
+                                        <div class="other-rules-table-content no-padding bg-gray-light">
+                                            <div class="padding-top">
+                                                <p class="table-right-arrow"> Caso o PDV tenha mais de 1 Torre, o valor devido será dividido pela quantidade de Torres ativas.</p>
+                                                <!-- <p class="table-right-arrow">Serviços fora da política zeram a PONTUAÇÃO:
+                                                    <small class="italic">
+                                                        <br/>Serviço fora do padrão<br/>(habilitações simultâneas)
+                                                    </small>
+                                                    <small class="italic">
+                                                        <br/>Serviço irregular<br/>(auditoria CCS)
+                                                    </small>
+                                                </p> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ion-slide>
+                    </ion-slides>
+                </div>
+            </div>
+        </div>
+        <div class="other-rules-footer">
+            <button class="btn btn-gray" (click)="downloadRegulamento()">clique aqui para consultar o regulamento</button>
+        </div>
+    </div>
+    <div *ngIf="role=='supervisor_vendas_distribuidor'">
+        <div class="revisit-content margin-bottom">
+            <div class="revisit-header">
+                <div class="margin-bottom revisit-header-detail no-padding">
+                    <ion-slides pager="true" [options]="slideOpts">
+                        <ion-slide>
+                            <div class="divTable content-section indicatorTable">
+                                <div class="border">
+                                    <div class="header-content">
+                                        <h5 class="title-red">indicadores</h5>
+                                    </div>
+                                    <div class="eligibility-content bg-white content-section">
+                                        <p style="padding: 10px 15px; text-align: left;">
+                                            Atingimento Meta - VENDAS HABILITADAS DA REDE CREDENCIADA SKY + PJ DISTRIBUIDOR 
+                                        </p>
+                                        <div class="table-row flex table-head">
+                                            <div class="divTableCell"></div>
+                                            <div class="divTableCell"><p>PONTOS</p></div>
+                                        </div>
+                                        <div class="table-row flex">
+                                            <div class="divTableCell"><p> <85% </p> </div>
+                                            <div class="divTableCell"><p>0</p></div>
+                                        </div>
+                                        <div class="table-row flex">
+                                            <div class="divTableCell"><p> >=85% e < 90% </div>
+                                            <div class="divTableCell"><p>750</p></div>
+                                        </div>
+                                        <div class="table-row flex">
+                                            <div class="divTableCell"><p> >=90% e < 100% </p></div>
+                                            <div class="divTableCell"><p>1.000</p></div>
+                                        </div>
+                                        <div class="table-row flex">
+                                            <div class="divTableCell"><p> >=100% e < 110% </p></div>
+                                            <div class="divTableCell"><p>1.500</p></div>
+                                        </div> 
+                                        <div class="table-row flex">
+                                            <div class="divTableCell"><p>>=110%</p></div>
+                                            <div class="divTableCell"><p>3.000</p></div>
+                                        </div> 
+                                        <!-- <div class="table-row flex table-footer">
+                                            <div class="divTableCell"><p> 3 MESES >= 98% </p></div>
+                                            <div class="divTableCell"><p>8</p></div>
+                                        </div> -->
+                                    </div>
+                                </div>
+                                <div class="eligibility-content content-section">
+                                    <p style="padding: 10px 15px; text-align: left;">
+                                        (pré, pós, bl e directv go)
+                                    </p>
+                                </div>
+                            </div>
+                        </ion-slide>
+                        <ion-slide>
+                            <div class="margin-bottom revisit-header-detail">
+                                <div class="eligibility-criteria-Table">
+                                    <div class="header-content">
+                                        <h5 class="title-red">critérios de elegibilidade</h5>
+                                    </div>
+                                    <div class="eligibility-content bg-gray-light">
+                                        <div class="padding-top">
+                                            <p class="table-right-arrow">Cadastro ativo e correto no iCare.</p>
+                                            <p class="table-right-arrow">função: comercial</p>
+                                            <p class="table-right-arrow">cargo: supervisor/líder</p>
+                                            <!--<p class="table-right-arrow">consumo excessivo do pdv não deve ultrapassar
+                                                <span>5%</span>
+                                            </p>-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ion-slide>
+                        <ion-slide>
+                            <div class="margin-bottom revisit-header-detail">
+                                <div class="other-rules-Table">
+                                    <div class="other-rules-header">
+                                        <h5 class="title-red">outras regras</h5>
+                                    </div>
+                                    <div class="other-rules-content justify-between no-padding">
+                                        <div class="other-rules-table-content no-padding bg-gray-light">
+                                            <div class="padding-top">
+                                                <p class="table-right-arrow"> CASO O PDV TENHA MAIS DE 1 SUPERVISOR, O VALOR DEVIDO SERÁ DIVIDIDO PELA QUANTIDADE DE SUPERVISORES ATIVOS.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ion-slide>
+                    </ion-slides>
+                </div>
+            </div>
+        </div>
+        <div class="other-rules-footer">
+            <button class="btn btn-gray" (click)="downloadRegulamento()">clique aqui para consultar o regulamento</button>
+        </div>
+    </div>
+    <div *ngIf="role=='gerente_distribuidor'">
+        <div class="revisit-content margin-bottom">
+            <div class="revisit-header">
+                <div class="margin-bottom revisit-header-detail no-padding">
+                    <ion-slides pager="true" [options]="slideOpts">
+                        <ion-slide>
+                            <div class="divTable content-section indicatorTable">
+                                <div class="border">
+                                    <div class="header-content">
+                                        <h5 class="title-red">indicadores</h5>
+                                    </div>
+                                    <div class="eligibility-content bg-white content-section">
+                                        <p style="padding: 10px 15px; text-align: left;">
+                                            30% DA PONTUAÇÃO TOTAL RECEBIDA POR TODOS OS PARTICIPANTES DO PDV (SUPERVISOR DE VENDAS, TORRE E ALMOXARIFE).
+                                        </p>                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </ion-slide>
+                        <ion-slide>
+                            <div class="margin-bottom revisit-header-detail">
+                                <div class="eligibility-criteria-Table">
+                                    <div class="header-content">
+                                        <h5 class="title-red">critérios de elegibilidade</h5>
+                                    </div>
+                                    <div class="eligibility-content bg-gray-light">
+                                        <div class="padding-top">
+                                            <p class="table-right-arrow">Cadastro ativo e correto no iCare.</p>
+                                            <br>
+                                            <p class="table-right-arrow">função: comercial ou administrativo</p>
+                                            <br>
+                                            <p class="table-right-arrow">cargo: diretor/gerente</p>
+                                            <!--<p class="table-right-arrow">consumo excessivo do pdv não deve ultrapassar
+                                                <span>5%</span>
+                                            </p>-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ion-slide>
+                        <ion-slide>
+                            <div class="margin-bottom revisit-header-detail">
+                                <div class="other-rules-Table">
+                                    <div class="other-rules-header">
+                                        <h5 class="title-red">outras regras</h5>
+                                    </div>
+                                    <div class="other-rules-content justify-between no-padding">
+                                        <div class="other-rules-table-content no-padding bg-gray-light">
+                                            <div class="padding-top">
+                                                <p class="table-right-arrow"> CASO O PDV TENHA MAIS DE 1 GERENTE, O VALOR DEVIDO SERÁ DIVIDIDO PELA QUANTIDADE DE GERENTES ATIVOS.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ion-slide>
+                    </ion-slides>
+                </div>
+            </div>
+        </div>
+        <div class="other-rules-footer">
+            <button class="btn btn-gray" (click)="downloadRegulamento()">clique aqui para consultar o regulamento</button>
+        </div>
+    </div>
+    <div *ngIf="role=='multiplicador_elsys'">
+        <div class="revisit-content margin-bottom">
+            <div class="revisit-header">
+                <div class="margin-bottom revisit-header-detail no-padding">
+                    <ion-slides pager="true" [options]="slideOpts">
+                        <ion-slide>
+                            <div class="divTable content-section indicatorTable">
+                                <div class="border">
+                                    <div class="header-content">
+                                        <h5 class="title-red">indicadores</h5>
+                                    </div>
+                                    <div class="eligibility-content bg-white content-section">
+                                        <p style="padding: 10px 15px; text-align: left;">
+                                            VENDAS HABILITADAS (PRÉ-PAGO)
+                                            <br>- ATINGIMENTO DA META
+                                        </p>
+                                        <div class="table-row flex table-head">
+                                            <div class="divTableCell"></div>
+                                            <div class="divTableCell"><p>PONTOS</p></div>
+                                        </div>
+                                        <div class="table-row flex">
+                                            <div class="divTableCell"><p> <100% </p> </div>
+                                            <div class="divTableCell"><p>-</p></div>
+                                        </div>
+                                        <div class="table-row flex">
+                                            <div class="divTableCell"><p> >=100% e < 110% </div>
+                                            <div class="divTableCell"><p>600</p></div>
+                                        </div>
+                                        <div class="table-row flex">
+                                            <div class="divTableCell"><p> >=110% e < 120% </p></div>
+                                            <div class="divTableCell"><p>700</p></div>
+                                        </div>
+                                        <div class="table-row flex">
+                                            <div class="divTableCell"><p> >=120% e < 130% </p></div>
+                                            <div class="divTableCell"><p>800</p></div>
+                                        </div> 
+                                        <div class="table-row flex">
+                                            <div class="divTableCell"><p>>=130%</p></div>
+                                            <div class="divTableCell"><p>1.500</p></div>
+                                        </div> 
+                                        <!-- <div class="table-row flex table-footer">
+                                            <div class="divTableCell"><p> 3 MESES >= 98% </p></div>
+                                            <div class="divTableCell"><p>8</p></div>
+                                        </div> -->
+                                    </div>
+                                </div>
+                            </div>                            
+                        </ion-slide>
+                        <ion-slide>
+                            <div class="divTable content-section indicatorTable">
+                                <div class="border">
+                                    <div class="header-content">
+                                        <h5 class="title-red">indicadores</h5>
+                                    </div>
+                                    <div class="eligibility-content bg-white content-section">
+                                        <p style="padding: 10px 15px; text-align: left;">
+                                            COMPRA DE EQUIPAMENTOS
+                                            <br>- ATINGIMENTO DA META
+                                        </p>
+                                        <div class="table-row flex table-head">
+                                            <div class="divTableCell"></div>
+                                            <div class="divTableCell"><p>PONTOS</p></div>
+                                        </div>
+                                        <div class="table-row flex">
+                                            <div class="divTableCell"><p> <100% </p> </div>
+                                            <div class="divTableCell"><p>-</p></div>
+                                        </div>
+                                        <div class="table-row flex">
+                                            <div class="divTableCell"><p> >=100% e < 110% </div>
+                                            <div class="divTableCell"><p>800</p></div>
+                                        </div>
+                                        <div class="table-row flex">
+                                            <div class="divTableCell"><p> >=110% e < 120% </p></div>
+                                            <div class="divTableCell"><p>900</p></div>
+                                        </div>
+                                        <div class="table-row flex">
+                                            <div class="divTableCell"><p> >=120% e < 130% </p></div>
+                                            <div class="divTableCell"><p>1.000</p></div>
+                                        </div> 
+                                        <div class="table-row flex">
+                                            <div class="divTableCell"><p>>=130%</p></div>
+                                            <div class="divTableCell"><p>1.500</p></div>
+                                        </div> 
+                                        <!-- <div class="table-row flex table-footer">
+                                            <div class="divTableCell"><p> 3 MESES >= 98% </p></div>
+                                            <div class="divTableCell"><p>8</p></div>
+                                        </div> -->
+                                    </div>
+                                </div>
+                                <!-- <div class="border">
+                                    <div class="header-content">
+                                        <h5 class="title-red">indicadores</h5>
+                                    </div>
+                                    <div class="eligibility-content bg-white content-section">
+                                        <p style="padding: 10px 15px; text-align: left;">
+                                            Atingimento Meta - VENDAS HABILITADAS DA REDE CREDENCIADA SKY + PJ DISTRIBUIDOR 
+                                        </p>
+                                        <div class="table-row flex table-head">
+                                            <div class="divTableCell"></div>
+                                            <div class="divTableCell"><p>PONTOS</p></div>
+                                        </div>
+                                        <div class="table-row flex">
+                                            <div class="divTableCell"><p> <85% </p> </div>
+                                            <div class="divTableCell"><p>0</p></div>
+                                        </div>
+                                        <div class="table-row flex">
+                                            <div class="divTableCell"><p> >=85% e < 90% </div>
+                                            <div class="divTableCell"><p>750</p></div>
+                                        </div>
+                                        <div class="table-row flex">
+                                            <div class="divTableCell"><p> >=90% e < 100% </p></div>
+                                            <div class="divTableCell"><p>1.000</p></div>
+                                        </div>
+                                        <div class="table-row flex">
+                                            <div class="divTableCell"><p> >=100% e < 110% </p></div>
+                                            <div class="divTableCell"><p>1.500</p></div>
+                                        </div> 
+                                        <div class="table-row flex">
+                                            <div class="divTableCell"><p>>=110%</p></div>
+                                            <div class="divTableCell"><p>3.000</p></div>
+                                        </div> 
+                                    </div>
+                                </div> -->
+                            </div>                            
+                        </ion-slide>
+                        <ion-slide>
+                            <div class="margin-bottom revisit-header-detail">
+                                <div class="eligibility-criteria-Table">
+                                    <div class="header-content">
+                                        <h5 class="title-red">outras regras</h5>
+                                    </div>
+                                    <div class="eligibility-content bg-gray-light">
+                                        <div class="padding-top">
+                                            <p class="table-right-arrow">
+                                                CASO O PDV TENHA MAIS DE <br>
+                                                1 MULTIPLICADOR, O VALOR<br> 
+                                                DEVIDO SERÁ DIVIDIDO PELA<br>
+                                                 QUANTIDADE DE<br> MULTIPLICADORES ATIVOS.
+                                            </p>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ion-slide>
+                    </ion-slides>
+                </div>
+            </div>
+        </div>
+        <div class="other-rules-footer">
+            <button class="btn btn-gray" (click)="downloadRegulamento()">clique aqui para consultar o regulamento</button>
+        </div>
+    </div>
+    <div *ngIf="role=='proprietario_elsys'">
+        <div class="revisit-content margin-bottom">
+            <div class="revisit-header">
+                <div class="margin-bottom revisit-header-detail no-padding">
+                    <ion-slides pager="true" [options]="slideOpts">
+                        <ion-slide>
+                            <div class="divTable content-section indicatorTable">
+                                <div class="border">
+                                    <div class="header-content">
+                                        <h5 class="title-red">indicadores</h5>
+                                    </div>
+                                    <div class="eligibility-content bg-white content-section">
+                                        <p style="padding: 10px 15px; text-align: left;">
+                                            15% SOBRE A PONTUAÇÃO TOTAL DOS SEUS MULTIPLICADORES.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>                            
+                        </ion-slide>
+                        <ion-slide>
+                            <div class="margin-bottom revisit-header-detail">
+                                <div class="eligibility-criteria-Table">
+                                    <div class="header-content">
+                                        <h5 class="title-red">outras regras</h5>
+                                    </div>
+                                    <div class="eligibility-content bg-gray-light">
+                                        <div class="padding-top">
+                                            <p class="table-right-arrow">
+                                                CASO O PDV TENHA MAIS DE 1 PROPRIETÁRIO, O VALOR DEVIDO SERÁ DIVIDIDO PELA QUANTIDADE DE PROPRIETÁRIOS ATIVOS.
+                                            </p>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ion-slide>
+                    </ion-slides>
+                </div>
+            </div>
+        </div>
+        <div class="other-rules-footer">
+            <button class="btn btn-gray" (click)="downloadRegulamento()">clique aqui para consultar o regulamento</button>
+        </div>
+    </div>
+</div>

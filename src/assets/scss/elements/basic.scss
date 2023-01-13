@@ -1,0 +1,118 @@
+* {
+    font-family: PFDinTextPro-Regular;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: PFDinTextPro-Regular;
+}
+
+h1, h2, h3 {
+    font-family: PFDinTextPro-Medium;
+    text-transform: uppercase;
+}
+
+p {
+    margin: 0 !important;
+}
+
+a {
+    text-decoration: none;
+    color: $white-color;
+}
+
+img {
+    width: 100%;
+    height: auto;
+}
+
+ion-input {
+    --padding-top: 0!important;
+    --padding-end: 0;
+    --padding-bottom: 0!important;
+    --padding-start: 0!important;
+}
+
+select,
+ion-select,
+input[type="text"],
+input[type="number"],
+input[type="email"],
+ion-datetime[type="date"],
+input[type="password"],
+input[type="tel"] {
+    background-color: transparent !important;
+    border: 1px solid $gray-dark !important;
+    border-radius: 5px !important;
+    display: block;
+    height: 50px;
+    text-indent: 15px;
+    margin: 5px 0;
+
+    &:focus {
+        outline-color: $secondary-color !important;
+    }
+}
+
+ion-datetime[type="date"] {
+    line-height: 1.5;
+    text-indent: 0px;
+}
+
+select,
+ion-select,
+input[type="text"],
+input[type="number"],
+input[type="email"],
+ion-datetime[type="date"],
+input[type="password"],
+input[type="tel"] {
+    &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    &::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    &::-webkit-clear-button {
+        display: none;
+    }
+}
+
+ion-select {
+    padding: 0;
+    height: 50px;
+    line-height: 50px;
+    margin-bottom: 20px;
+
+    .select-icon {
+        position: absolute;
+        right: 10px;
+        top: 15px;
+    }
+}
+
+ion-button:host(.activated) {
+    .button-native {
+        background: transparent !important;
+        background-image: none;
+        --box-shadow: none;
+        --background-hover:none !important;
+    }
+}
+
+ion-button {
+    --background-activated: transparent !important;
+}
+
+select {
+    -webkit-appearance: none;
+}
+
+label {
+    display: block !important;
+}

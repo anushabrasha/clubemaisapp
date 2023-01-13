@@ -1,0 +1,290 @@
+app-order-list {
+    ion-content {
+        .page-content {
+            top: 10vw;
+            margin-bottom: 0;
+            padding-bottom: calc(100% / 4) !important;
+
+            @media screen and (min-width: 320px) {
+                top: 15vw;
+            }
+
+            @media screen and (min-width: 360px) {
+                top: 10vw;
+            }
+
+            @media screen and (width: 375px) {
+                top: 15vw;
+            }
+
+            @media screen and (min-width: 380px) {
+                top: 13vw;
+            }
+
+            @media screen and (width: 414px) {
+                top: 10vw;
+            }
+
+            .extrato-page-period {
+                .title-gray {
+                    color: $text-dark;
+                    span {
+                        color: $primary-light-color;
+                    }
+                }
+
+                .filter {
+                    &.flex {
+                        padding: 15px;
+                        flex-wrap: wrap;
+                        background-color: $gray-color;
+
+                        .flex {
+                            width: 48%;
+                            align-items: baseline;
+                            margin-bottom: 15px;
+
+                            &:first-child {
+                                margin-right: 5px;
+                            }
+
+                            label {
+                                color: $gray-dark;
+                                text-transform: uppercase;
+                                font-family: PFDinTextPro-Medium-Italic;
+                            }
+
+                            ion-datetime {
+                                height: 40px;
+                                font-size: 13px;
+                                padding-left: 0;
+                                padding-right: 0;
+                                margin-left: 10px;
+                                text-align: center;
+                                width: 100% !important;
+                                text-transform: uppercase;
+                                color: $primary-dark-color;
+                                border-radius: 30px !important;
+                                font-family: PFDinTextPro-Medium-Italic;
+                            }
+                        }
+
+                        ion-button {
+                            font-family: PFDinTextPro-Medium-Italic !important;
+                            background-color: $primary-light-color !important;
+                            text-transform: uppercase;
+                            height: 50px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .order,
+    .order-list {
+        .page-content {
+            hr {
+                border-bottom: 1px solid $white-color;
+            }
+
+            p {
+                color: $white-color;
+
+                &.title-gray {
+                    color: $text-dark;
+                    margin-bottom: 25px !important;
+                }
+            }
+
+            .title-yellow {
+                font-family: PFDinTextPro-Light-Italic;
+
+                span {
+                    font-family: PFDinTextPro-Medium-Italic;
+                }
+            }
+
+            .accordion-section {
+                background-color: rgba(255, 255, 255, 0.8);
+                border-radius: 15px;
+                margin-bottom: 25px;
+                padding: 15px;
+
+                .btn.btn-outline-white {
+                    font-family: PFDinTextPro-Bold !important;
+                    width: 48% !important;
+                    text-transform: none;
+                    color: $text-dark !important;
+                    height: 55px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+
+                .tab {
+                    padding: 13px 0;
+                    border-bottom: 1px solid $white-color;
+
+                    &:last-child {
+                        border-bottom: 0;
+                    }
+
+                    &-label {
+                        .point {
+                            width: 100px;
+                            color: $text-dark;
+                        }
+                    }
+
+                    &-content {
+                        max-height: unset;
+
+                        p {
+                            padding: 12px;
+
+                            span {
+                                width: 50%;
+                                margin: 0;
+
+                                img {
+                                    width: 30px;
+                                    height: 30px;
+                                }
+                            }
+                        }
+
+                        .btn {
+                            text-transform: uppercase;
+                        }
+                    }
+                }
+
+                + ion-button {
+                    width: 100%;
+                }
+            }
+        }
+
+        .order-details {
+            background: transparent;
+            background-color: $white-color;
+            position: relative;
+            padding: 18vw 15px;
+            z-index: 0;
+            top: 15vw;
+
+            .success,
+            .pending,
+            .canceled,
+            .processing {
+                align-items: center;
+
+                img {
+                    width: 25px;
+                    height: 25px;
+                }
+
+                p.order {
+                    color: $text-dark;
+                    padding-left: 10px;
+
+                    span {
+                        font-family: PFDinTextPro-Bold;
+                    }
+                }
+            }
+
+            .description-details {
+                color: $text-dark;
+            }
+
+            .points-detail {
+                border: 1px solid $gray-dark;
+                border-radius: 10px;
+                padding: 15px;
+                margin-bottom: 15px;
+
+                h3 {
+                    text-transform: none;
+                    margin: 0;
+
+                    span {
+                        font-family: PFDinTextPro-Medium;
+                    }
+                }
+
+                hr {
+                    background-color: $text-gray;
+                }
+            }
+        }
+    }
+
+    .order-list {
+        .page-content {
+            .points {
+                margin: 40px 0;
+
+                .point {
+                    border: 1px solid $white-color;
+                    border-radius: 15px;
+                    text-align: center;
+                    color: $white-color;
+                    width: 35vw;
+                    padding: 4vw;
+                    height: 35vw;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+
+                    h3 {
+                        margin: 0;
+                        font-size: 19px;
+
+                        @media screen and (max-width: 480px) {
+                            font-size: 5vw;
+                        }
+                    }
+                }
+            }
+
+            .accordion-section {
+                .tab {
+                    &-label {
+                        .voucher {
+                            width: 60%;
+                        }
+
+                        .voucher-quantity {
+                            width: 20%;
+                            text-align: center;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                        }
+                    }
+
+                    &-content {
+                        p {
+                            span {
+                                width: 50%;
+                                margin: 0;
+
+                                img {
+                                    width: 30px;
+                                    height: 30px;
+                                }
+                            }
+                        }
+
+                        .btn {
+                            text-transform: uppercase;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

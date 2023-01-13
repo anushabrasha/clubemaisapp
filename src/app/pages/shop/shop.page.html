@@ -1,0 +1,27 @@
+<ion-header>
+  <app-header class="" [ngClass]="hideHeader ? 'hide-header' : ''"></app-header>
+</ion-header>
+<ion-content [scrollEvents]="true" (ionScroll)="onScroll($event)">
+  <app-user-info-header pageKey='shop'></app-user-info-header>
+
+  <div class="page-content">
+    <div class="shop-product-search d-none">
+      <ion-searchbar class="search-section" show-cancel-button="focus" (ionInput)="searchCategory($event)"
+        placeholder="DIGITE O PRODUTO QUE VOCÊ PROCURA" (ionCancel)="onCancel()"> </ion-searchbar>
+    </div>
+
+    <div class="product-category flex wrap">
+      <div class="item" *ngFor="let menu of filterMenuList" (click)="openPage(menu)">
+        <a>
+          <div class="icon">
+            <img [src]="menu.icon" [alt]="menu.title" />
+          </div>
+          <span>{{menu.title}}</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</ion-content>
+<ion-footer>
+  <app-footer></app-footer>
+</ion-footer>

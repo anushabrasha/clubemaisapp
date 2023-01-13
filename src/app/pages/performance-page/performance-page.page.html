@@ -1,0 +1,237 @@
+<ion-header *ngIf="!isDash">
+    <app-header class="" [ngClass]="hideHeader ? 'hide-header' : ''"></app-header>
+</ion-header>
+<ion-content *ngIf="isFrom" class="performance-section  performance-page" [scrollEvents]="true"
+    (ionScroll)="onScroll($event)">
+    <app-user-info-header [pageKey]="isFrom ? 'constelacao' : 'performance'">
+    </app-user-info-header>
+    <div class="page-content">
+        <div class="performance-content">
+            <h2 class="title-gray text-center margin-bottom" *ngIf="!isConselta">sua <span>performance</span></h2>
+            <!-- <h2 class="title-gray text-center margin-bottom" *ngIf="isConselta"><span>Constelação</span></h2> -->
+            <div class="sub-header-section" *ngIf="!isConselta">
+                <div class="user-name margin-bottom">
+                    <label class="italic">Nome</label>
+                    <!--                        <h3 class="title-red">{{userData}}</h3>-->
+                    <h6 class="title-red">{{userName}}</h6>
+                </div>
+                <div class="user-details flex">
+                    <div class="user-type">
+                        <label class="italic">Credenciado tipo</label>
+                        <h6 class="italic title-red credenciado-tipo">{{tipo}}</h6>
+                    </div>
+                    <!-- <div class="points">
+                        <label class="italic">Período</label>
+                        <h6 class="title-red italic periodo" id="periodo">{{period}}</h6>
+                    </div> -->
+                </div>
+            </div>
+            <div class="header-section">
+                <div class="btn-group" *ngIf="!isConselta">
+                    <ion-select value="1" placeHolder="Acompanhamento Semanal" (ionChange)="updateView()"
+                        [(ngModel)]="selectedView">
+                        <ion-select-option value="1">Acompanhamento Semanal</ion-select-option>
+                        <ion-select-option value="2">Evolutivo Mensal</ion-select-option>
+                        <ion-select-option value="3">Regras</ion-select-option>
+                    </ion-select>
+                </div>
+                <div class="btn-group" *ngIf="isConselta">
+                    <ion-button class="btn btn-outline-gray" [ngClass]="pageOneFlag ? 'active': ''"
+                        (click)="toggleViewTo(1)">
+                        pdv
+                    </ion-button>
+                    <ion-button class="btn btn-outline-gray" [ngClass]="pageTwoFlag ? 'active': ''"
+                        *ngIf="tipo != 'TELEVENDAS' && tipo != 'DIGITAL'" (click)="toggleViewTo(2)">
+                        técnico
+                    </ion-button>
+                    <ion-button class="btn btn-outline-gray" [ngClass]="pageThreeFlag ? 'active': ''"
+                        (click)="toggleViewTo(3)">
+                        vendedor
+                    </ion-button>
+                </div>
+            </div>
+        </div>
+        <div class="content-section">
+            <div *ngIf="pageOneFlag && weeklyData" class="weekly-report">
+                <app-weekly-report [userData]="weeklyData" class="weekly-points-content"> </app-weekly-report>
+            </div>
+            <div *ngIf="pageTwoFlag && monthlyData && !constelacao" class="monthly-report">
+                <app-monthly-report [userData]="monthlyData" class="monthly-points-content"></app-monthly-report>
+            </div>
+            <div *ngIf="pageThreeFlag && weeklyData && !constelacao" class="rule">
+                <app-performance-rules [userData]="weeklyData" class="rule-content"></app-performance-rules>
+            </div>
+            <div *ngIf="pageTwoFlag && constelacao" class="monthly-report">
+                <app-monthly-report [userData]="constelacao" class="monthly-points-content"></app-monthly-report>
+            </div>
+            <div *ngIf="pageThreeFlag && constelacao" class="rule">
+                <app-performance-rules [userData]="constelacao" class="rule-content"></app-performance-rules>
+            </div>
+            <div *ngIf="pageFourFlag && toShowMissio" class="missio-report">
+                <app-missio-chart [userData]="missioData" class="rule-content"></app-missio-chart>
+            </div>
+        </div>
+
+        <div *ngIf="!isConselta">
+            <p *ngIf="pageOneFlag && weeklyData" class="text-center margin-bottom">
+                A pontuação calculada no acompanhamento semanal é estimada e será atualizada após o fechamento do mês,
+                considerando o atingimento dos critérios estabelecidos, que podem ser verificados na aba de Regras.
+            </p>
+            <p *ngIf="pageTwoFlag && monthlyData && !constelacao && userRole === 'Técnico'"
+                class="text-center margin-bottom">
+                Fique atento às regras. Serviços fora do padrão ou irregulares podem zerar a pontuação relativa ao
+                respectivo indicador.
+            </p>
+
+            <!-- <p *ngIf="pageTwoFlag && monthlyData && !constelacao && userRole === 'Almoxarife'"
+                class="text-center margin-bottom">
+                Fique atento às regras. A partir de agosto/2020, apenas os serviços finalizados no SIRIUS serão
+                contabilizados para cálculo da pontuação. Para o mínimo de serviços a ser atingido, continua valendo a
+                quantidade total.
+            </p> -->
+
+            <p *ngIf="pageTwoFlag && monthlyData && !constelacao && userRole === 'Torre'"
+                class="text-center margin-bottom">
+                Fique atento às regras. Serviços fora do padrão ou irregulares podem zerar a pontuação relativa ao
+                respectivo indicador.
+            </p>
+
+            <p *ngIf="pageTwoFlag && monthlyData && !constelacao && (userRole === 'Torre' || userRole === 'Supervisor Técnico' )"
+                class="text-center margin-bottom">
+                Fique atento às regras. Serviços fora do padrão ou irregulares podem zerar a pontuação relativa ao
+                respectivo indicador.
+            </p>
+
+        </div>
+        <div *ngIf="isConselta">
+            <p class="text-center margin-bottom">
+                Acompanhe seus indicadores e garanta
+                máxima performance
+            </p>
+        </div>
+
+    </div>
+</ion-content>
+
+<ion-footer *ngIf="isFrom">
+    <app-footer></app-footer>
+</ion-footer>
+
+<div *ngIf="!isFrom">
+    <app-user-info-header *ngIf="!isDash" [pageKey]="isFrom ? 'constelacao' : 'performance'">
+    </app-user-info-header>
+    <div class="performance-content">
+        <!-- <h2 class="title-gray text-center margin-bottom" *ngIf="!isConselta">sua <span>performance</span></h2> -->
+        <!-- <h2 class="title-gray text-center margin-bottom" *ngIf="isConselta"><span>Constelação</span></h2> -->
+        <div class="performance-select" *ngIf="!isConselta">
+            <ion-select value="1" placeHolder="Acompanhamento Semanal" (ionChange)="updateView()"
+                [(ngModel)]="selectedView">
+                <ion-select-option value="1">Acompanhamento Semanal</ion-select-option>
+                <ion-select-option value="2">Evolutivo Mensal</ion-select-option>
+                <ion-select-option value="3">Regras</ion-select-option>
+            </ion-select>
+        </div>
+        <div class="sub-header-section" *ngIf="!isConselta">
+            <div class="user-name-details flex">
+                <div class="user-name margin-bottom">
+                    <label class="italic">Nome</label>
+                    <h6 class="title-red">{{userName}}</h6>
+                </div>
+                <div class="user-type">
+                    <label class="italic">Credenciado tipo</label>
+                    <h6 class="italic title-red credenciado-tipo">{{tipo}}</h6>
+                </div>
+            </div>
+            <div class="user-period-details flex">
+                <div class="points">
+                    <label class="italic">Período</label>
+                    <h6 class="title-red italic periodo" id="periodo">{{period}}</h6>
+                </div>
+                <div class="services-policy" *ngIf="isServicePoliticy && selectedView == 1">
+                    <label class="italic">Serviços fora da política</label>
+                    <p class="services-status" [ngClass]="weeklyListInfo.serviceYes ? 'active': ''">
+                        não
+                        <i> / </i>
+                        <span class="services-status" [ngClass]="weeklyListInfo.serviceNo ? 'active': ''">sim</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="header-section">
+            <div class="btn-group" *ngIf="!isConselta">
+            </div>
+            <div class="btn-group" *ngIf="isConselta">
+                <ion-button class="btn btn-outline-gray" [ngClass]="pageOneFlag ? 'active': ''"
+                    (click)="toggleViewTo(1)">
+                    pdv
+                </ion-button>
+                <ion-button class="btn btn-outline-gray" [ngClass]="pageTwoFlag ? 'active': ''"
+                    *ngIf="tipo != 'TELEVENDAS' && tipo != 'DIGITAL'" (click)="toggleViewTo(2)">
+                    técnico
+                </ion-button>
+                <ion-button class="btn btn-outline-gray" [ngClass]="pageThreeFlag ? 'active': ''"
+                    (click)="toggleViewTo(3)">
+                    vendedor
+                </ion-button>
+            </div>
+        </div>
+    </div>
+    <div class="content-section">
+        <div *ngIf="pageOneFlag && weeklyData" class="weekly-report">
+            <app-weekly-report [userData]="weeklyData" class="weekly-points-content"> </app-weekly-report>
+        </div>
+        <div *ngIf="pageTwoFlag && monthlyData && !constelacao" class="monthly-report">
+            <app-monthly-report [userData]="monthlyData" class="monthly-points-content"></app-monthly-report>
+        </div>
+        <div *ngIf="pageThreeFlag && weeklyData && !constelacao" class="rule">
+            <app-performance-rules [userData]="weeklyData" class="rule-content"></app-performance-rules>
+        </div>
+        <div *ngIf="pageTwoFlag && constelacao" class="monthly-report">
+            <app-monthly-report [userData]="constelacao" class="monthly-points-content"></app-monthly-report>
+        </div>
+        <div *ngIf="pageThreeFlag && constelacao" class="rule">
+            <app-performance-rules [userData]="constelacao" class="rule-content"></app-performance-rules>
+        </div>
+        <div *ngIf="pageFourFlag && toShowMissio" class="missio-report">
+            <app-missio-chart [userData]="missioData" class="rule-content"></app-missio-chart>
+        </div>
+    </div>
+
+    <div *ngIf="!isConselta" class="bg-white">
+        <p *ngIf="pageOneFlag && weeklyData" class="text-center margin-bottom">
+            A pontuação calculada no acompanhamento semanal é estimada e será atualizada após o fechamento do mês,
+            considerando o atingimento dos critérios estabelecidos, que podem ser verificados na aba de Regras.
+        </p>
+        <p *ngIf="pageTwoFlag && monthlyData && !constelacao && userRole === 'Técnico'"
+            class="text-center margin-bottom">
+            Fique atento às regras. Serviços fora do padrão ou irregulares podem zerar a pontuação relativa ao
+            respectivo indicador.
+        </p>
+
+        <!-- <p *ngIf="pageTwoFlag && monthlyData && !constelacao && userRole === 'Almoxarife'"
+            class="text-center margin-bottom">
+            Fique atento às regras. A partir de agosto/2020, apenas os serviços finalizados no SIRIUS serão
+            contabilizados para cálculo da pontuação. Para o mínimo de serviços a ser atingido, continua valendo a
+            quantidade total.
+        </p> -->
+
+        <!-- <p *ngIf="pageTwoFlag && monthlyData && !constelacao && userRole === 'Torre'"
+            class="text-center margin-bottom">
+            Fique atento às regras. Serviços fora do padrão ou irregulares podem zerar a pontuação relativa ao
+            respectivo indicador.
+        </p> -->
+
+        <p *ngIf="pageTwoFlag && monthlyData && !constelacao && (userRole === 'Torre' || userRole === 'Supervisor Técnico' )"
+            class="text-center margin-bottom">
+            Fique atento às regras. Serviços fora do padrão ou irregulares podem zerar a pontuação relativa ao
+            respectivo indicador.
+        </p>
+
+    </div>
+    <div *ngIf="isConselta">
+        <p class="text-center margin-bottom">
+            Acompanhe seus indicadores e garanta
+            máxima performance
+        </p>
+    </div>
+</div>

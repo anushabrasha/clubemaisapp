@@ -1,0 +1,413 @@
+ion-modal.register-success {
+    ion-backdrop.sc-ion-modal-md {
+        display: none;
+    }
+
+    background-color: #ffffff8a;
+
+    .modal-wrapper {
+        height: 100% !important;
+        background: transparent !important;
+        max-width: 100% !important;
+
+        app-alert-popup.ion-page {
+            width: 100%;
+            padding: 0 !important;
+            padding-top: 10px !important;
+
+            @media screen and (max-height: 700px) {
+                justify-content: flex-start;
+            }
+
+            .popup-content {
+                width: 90% !important;
+                display: flex;
+                margin: 0 auto;
+                position: relative;
+                align-items: center;
+                padding: 0 !important;
+                flex-direction: column;
+                background: transparent;
+                padding-top: 10px !important;
+
+                img {
+                    width: 100% !important;
+                    margin: 0 !important;
+                }
+
+                .success-content {
+                    margin: 0;
+                    bottom: -85px;
+                    width: 75%;
+                    padding: 15px;
+                    text-align: center;
+                    position: absolute;
+                    border-radius: 30px;
+                    background-color: $white-color;
+
+                    .title-red {
+                        text-transform: uppercase;
+                        font-family: PFDinTextPro-Medium-Italic;
+                    }
+
+                    p.success-description {
+                        color: $text-dark;
+                        font-family: PFDinTextPro-Regular;
+
+                        span {
+                            color: $text-dark;
+                            font-family: PFDinTextPro-Medium;
+                        }
+                    }
+
+                    .btn {
+                        top: 35px;
+                        position: relative;
+                        width: max-content;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.modal-wrapper {
+    background: rgba(255, 255, 255, 0.4) !important;
+
+    app-alert-popup.ion-page {
+        justify-content: center;
+        align-items: center;
+        max-width: 380px;
+        margin: 0 auto;
+        width: 80%;
+
+        .popup-content {
+            padding: 15px;
+            min-width: 280px;
+            text-align: center;
+            border-radius: 30px;
+            background: $white-color;
+
+            &.contact-success-message {
+                h2.title-red {
+                    font-family: PFDinTextPro-Light;
+                }
+
+                .success-content {
+                    .success-description {
+                        width: 70%;
+                        margin: 0 auto !important;
+                    }
+
+                    margin-bottom: 35px !important;
+                }
+
+                .btn {
+                    margin: 30px auto;
+                    margin-bottom: 20px;
+                    text-transform: capitalize;
+                    font-family: PFDinTextPro-Medium;
+                }
+            }
+
+            img {
+                width: 150px;
+                margin: 20px auto;
+                margin-bottom: 0;
+                display: block;
+            }
+
+            .title-gray {
+                color: $text-dark;
+                margin-bottom: 25px;
+            }
+
+            p.description {
+                color: $text-dark;
+                margin-bottom: 15px !important;
+            }
+
+            .btn {
+                margin: 0 auto;
+            }
+
+            &.rating-popup {
+                .image-section {
+                    img {
+                        width: 150px;
+                        margin: 20px auto;
+                        margin-bottom: 0;
+                        display: block;
+                    }
+                }
+
+                .content-section {
+                    .rating-popup-title-block {
+                        .title {
+                            line-height: 1;
+                            text-transform: uppercase;
+                            font-family: PFDinTextPro-Italic;
+
+                            span {
+                                display: block;
+                                text-transform: uppercase;
+                            }
+                        }
+                    }
+
+                    .description-section {
+                        p.description {
+                            color: $gray-dark;
+                            margin: 25px 0 !important;
+                            font-family: Arial-Regular;
+                        }
+                    }
+                }
+
+                .popup-footer {
+                    flex-direction: column;
+
+                    .review-now {
+                        width: 100%;
+                        box-shadow: 3px 3px 11px rgba(0, 0, 0, 50%);
+                    }
+
+                    .not-review-now {
+                        width: 100%;
+                        color: $gray-dark !important;
+                        font-family: PFDinTextPro-Italic;
+                    }
+                }
+            }
+
+            &.regulation-data-content-popup {
+                text-align: unset;
+
+                .regulation-data-content-section {
+                    .regulation-data-popup-content {
+                        display: block;
+                        direction: ltr;
+                        max-height: 400px;
+                        overflow-y: scroll;
+                        overflow-x: hidden;
+                        margin-bottom: 15px;
+
+                        .popup-header-section {
+                            margin-bottom: 15px;
+
+                            .title.title-red {
+                                margin: 0;
+                                text-transform: uppercase;
+                                font-family: PFDinTextPro-Medium-Italic;
+                            }
+                        }
+
+                        .popup-content-section {
+                            .description {
+                                font-family: PFDinTextPro-Medium;
+                                color: $text-dark;
+                            }
+
+                            .regulation-description {
+                                .data-description {
+                                    .info-description,
+                                    .address-description,
+                                    .important-description,
+                                    .regulation-description {
+                                        margin-bottom: 15px;
+
+                                        p {
+                                            font-family: PFDinTextPro-Regular;
+                                            color: $text-dark;
+                                            font-size: 16px;
+
+                                            span {
+                                                font-family: PFDinTextPro-Medium;
+                                                color: $text-dark;
+                                                font-size: 18px;
+                                            }
+
+                                            &.title-red {
+                                                span {
+                                                    font-family: PFDinTextPro-Medium;
+                                                    color: $primary-dark-color;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        .popup-footer-section {
+                            margin-top: 20px;
+
+                            .regulation-data-btn {
+                                margin: 0;
+                            }
+                        }
+                    }
+                }
+            }
+
+            /* TWO STEP FACTOR POPUP */
+            &.two-step-factor-popup {
+                .two-step-factor-header {
+                    display: flex;
+                    position: relative;
+                    align-items: center;
+                    margin-bottom: 15px;
+
+                    .title {
+                        margin: 0 auto;
+                        color: $text-dark;
+                        font-family: PFDinTextPro-Medium-Italic;
+                    }
+
+                    .close-btn {
+                        right: 0;
+                        top: -5px;
+                        padding: 0;
+                        font-size: 30px;
+                        font-weight: bold;
+                        position: absolute;
+                        text-decoration: none;
+                        margin: 0 10px !important;
+                        color: $primary-light-color;
+                    }
+                }
+
+                span.glow-red {
+                    width: 80px;
+                    height: 5px;
+                    display: block;
+                    margin: 0 auto;
+                    margin-bottom: 10px;
+                    border-radius: 30px;
+                    background: $primary-light-color;
+                    box-shadow: 3px 3px 11px $primary-light-color;
+                }
+
+                .title-gray {
+                    color: $text-dark;
+                    margin: 15px !important;
+                    font-family: PFDinTextPro-Medium-Italic;
+                }
+
+                .two-step-factor-footer {
+                    .input-section {
+                        width: 100%;
+                        display: flex;
+                        flex-wrap: wrap;
+                        position: relative;
+                        margin-bottom: 15px;
+                        align-items: stretch;
+
+                        .input-field {
+                            width: 70%;
+                            margin: 0 auto;
+                            font-size: 14px;
+                            padding: 10px 0;
+                            box-shadow: none;
+                            text-indent: 20px;
+                            border-radius: 10px;
+                            background-color: transparent;
+                            font-family: PFDinTextPro-Medium-Italic;
+                        }
+                    }
+
+                    .two-step-factor-button {
+                        flex-direction: column-reverse;
+
+                        .btn {
+                            width: 100%;
+                            display: block;
+                            margin: 0 auto;
+                            text-transform: capitalize;
+
+                            &.btn-otp {
+                                margin-bottom: 15px;
+                                background-color: $primary-light-color !important;
+                            }
+
+                            &.btn-otp-email {
+                                background-color: $text-dark !important;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+ion-modal.shop-popup {
+    ion-backdrop.sc-ion-modal-md {
+        display: none;
+    }
+
+    .modal-wrapper {
+        height: 100% !important;
+        background: rgba(255, 255, 255, 0.8) !important;
+        max-width: 100% !important;
+
+        app-alert-popup.ion-page {
+            padding-top: 10px !important;
+            justify-content: center;
+            align-items: center;
+            max-width: 380px;
+            margin: 0 auto;
+            width: 80%;
+
+            .popup-content {
+                min-width: 50%;
+                display: flex;
+                margin: 0 auto;
+                position: relative;
+                align-items: center;
+                flex-direction: column;
+                padding-top: 10px !important;
+
+                .close {
+                    position: absolute;
+                    z-index: 9;
+                    color: $primary-dark-color;
+                    right: 0;
+                    top: 5vw;
+                    font-size: 13px;
+                    display: flex;
+                    font-family: PFDinTextPro-Italic;
+
+                    .close-btn {
+                        width: 15px;
+                        height: 15px;
+                    }
+                }
+
+                .error-content,
+                .success-content {
+                    margin-top: 10vw;
+                    width: 230px;
+
+                    .error-description,
+                    .success-description {
+                        color: $text-dark;
+                        line-height: 1;
+
+                        // text-transform: uppercase;
+                        font-family: PFDinTextPro-Light-Italic;
+                    }
+                }
+
+                .pagamento {
+                    margin-bottom: 20px;
+
+                    img {
+                        width: 50px;
+                        height: 50px;
+                    }
+                }
+            }
+        }
+    }
+}

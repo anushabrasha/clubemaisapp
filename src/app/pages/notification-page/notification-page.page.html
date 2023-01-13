@@ -1,0 +1,47 @@
+<ion-header>
+    <app-header class="" [ngClass]="hideHeader ? 'hide-header' : ''"></app-header>
+</ion-header>
+<ion-content [scrollEvents]="true" (ionScroll)="onScroll($event)">
+    <div class="page-content">
+        <div class="notification-info" *ngIf="!isInfoView">
+            <h1 class="title-yellow bg-gradient"> <span> notificações</span></h1>
+            <div class="notification-section">
+                <div class="notification-card-section" [ngClass]="notification.viewed ? '': 'notification-new'"
+                    *ngFor="let notification of listingData" (click)="markAsRead(notification)">
+                    <div class="notification-content-section">
+                        <div class="notification-title">
+                            <h2 class="title" [innerHTML]="notification.heading"></h2>
+                        </div>
+                        <div class="notification-content">
+                            <p class="content" [innerHTML]="notification.subheading"></p>
+                        </div>
+                        <div class="notification-time flex">
+                            <h4 class="new-title" *ngIf="!notification.viewed">nova!</h4>
+                            <p class="time">{{notification.created_at | dateFormater}}
+                                {{timeFormater(notification.created_at)}}</p>
+                        </div>
+                    </div>
+                    <hr />
+                </div>
+            </div>
+        </div>
+
+        <div class="notification-info" *ngIf="isInfoView">
+            <h1 class="title-yellow bg-gradient"> <span> notificações</span></h1>
+            <div class="notification-section">
+                <div class="notification-card-section">
+                    <div class="notification-content-section">
+                        <div class="notification-title">
+                            <h2 class="title">
+                                nenhuma notificação encontrada
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ion-content>
+<ion-footer>
+    <app-footer></app-footer>
+</ion-footer>

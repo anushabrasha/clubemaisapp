@@ -1,0 +1,91 @@
+<ion-header>
+    <app-header [ngClass]="hideHeader ? 'hide-header' : ''"></app-header>
+</ion-header>
+<ion-content class="order" *ngIf="showOrderlist" [scrollEvents]="true" (ionScroll)="onScroll($event)">
+    <app-user-info-header pageKey='orderList'></app-user-info-header>
+
+    <div class="page-content bg-default ion-padding">
+        <div class="extrato-page-period">
+            <h1 class="title-gray">filtro por <span>período</span></h1>
+            <div class="filter flex">
+                <div class="in-date flex">
+                    <label class="filter-label">de:</label>
+                    <ion-datetime type="date" class="from input" placeholder="DD-MM-YYYY" displayFormat="YYYY-MM-DD"
+                        [(ngModel)]="fromDate"></ion-datetime>
+                </div>
+                <div class="up-date flex">
+                    <label class="filter-label">até:</label>
+                    <ion-datetime type="date" type="date" class="to input" placeholder="DD-MM-YYYY"
+                        displayFormat="YYYY-MM-DD" [(ngModel)]="toDate"></ion-datetime>
+                </div>
+                <ion-button class="btn btn-red margin-auto" (click)="dateFilter()">filtrar</ion-button>
+            </div>
+            <h1 class="title-gray">pedido <span>detalhado</span></h1>
+        </div>
+        <div class="accordion-section">
+            <!-- heading removed -->
+            <div class="tab" *ngFor="let order of orderList">
+                <div *ngIf="orderList.length">
+                    <!-- <input type="checkbox" [id]="order.order_id"> -->
+                    <label class="tab-label flex" [for]="order.order_id" (click)="triggerToggle(order)">
+                        <span></span>
+                        <p class="point">{{order.order_id}}</p>
+                        <div>
+                            <p class="date">{{order.order_date | dateFormater}}</p>
+                        </div>
+                    </label>
+                    <div class="tab-content" *ngIf="order.order_id == selectedAccordion">
+                        <div *ngFor="let item of order.order_items | keyvalue">
+                            <img [src]="item['value'].image" />
+                            <p><span>Produto:</span><span>{{item['value'].name}}</span></p>
+
+                            <p><span>Data: </span><span>{{order.order_date | dateFormater}}</span></p>
+                            <p>
+                                <span>Status: </span>{{translateStatus (order.order_status)}}
+                            </p>
+                            <p><span>Quantidade : </span><span>{{item['value'].quantity}}</span></p>
+                            <p><span>Valor:</span> <span>{{order.order_fee}}</span></p>
+                            <p>Vencimento</p>
+                            <p>Motivo do Cancelamento:</p>
+                        </div>
+
+                        <div>
+                            <div>
+                                <hr>
+                                <h3>
+                                    Endereço de entrega:
+                                </h3>
+                                <p>{{order.order_shipping_address.first_name}} {{order.order_shipping_address.last_name}}</p>
+                                <p>{{order.order_shipping_address.address_1}}</p>
+                                <p>{{order.order_shipping_address.city}}</p>
+                                <p>{{dataProvider.state[order.order_shipping_address.state]}}</p>
+                                <p>{{order.order_shipping_address.postcode}}</p>
+                                <p>N° {{order.order_shipping_address.number}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="!orderList.length">
+                <h1 class="title-gray text-center">
+                    <span>
+                        Nenhum registro encontrado
+                    </span>
+                </h1>
+            </div>
+        </div>
+
+        <ion-infinite-scroll threshold="100px" (ionInfinite)="loadMoreData($event)">
+            <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Carregando...">
+            </ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+
+        <p class="title-gray text-center">Clique no pedido para mais detalhes.</p>
+        <ion-button class="btn btn-gray margin-auto" (click)="toBack()">voltar</ion-button>
+    </div>
+    <!-- order details code removed -->
+    <!-- view removed -->
+</ion-content>
+<ion-footer>
+    <app-footer></app-footer>
+</ion-footer>

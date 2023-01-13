@@ -1,0 +1,34 @@
+<ion-header>
+    <app-header class="" [ngClass]="hideHeader ? 'hide-header' : ''"></app-header>
+</ion-header>
+<ion-content [scrollEvents]="true" (ionScroll)="onScroll($event)">
+
+    <app-user-info-header pageKey='aprenda'></app-user-info-header>
+
+    <div class="bg-gradient w-100 h-100 background"></div>
+    <div class="page-content">
+        <!-- <img src="../../../assets/images/background/news-video-background.jpg"> -->
+        <div class="aprenda-content">
+            <iframe id="contact-iframe" class="contact-form" [src]="iframeURL"></iframe>
+            <!-- <iframe id="contact-iframe" class="contact-form" style="width: auto; height: 75vh;" [src]="iframeURL" ></iframe> -->
+
+            <!-- use sandbox if needed -->
+            <!-- sandbox="allow-scripts allow-top-navigation allow-pointer-lock allow-same-origin allow-modals allow-popups allow-forms" -->
+
+            <!--<embed [src]="iframeURL" style="width: auto; height: 75vh;">-->
+
+            <div class="justify-between padding like-section">
+                <div class="like">
+                    <!-- <ion-icon name="heart" class="title-red"></ion-icon>143 -->
+                </div>
+                <div class="news-date">
+                    <label class="btn-outline-gray">{{selectedAprenda.dateToShow}}</label>
+                </div>
+            </div>
+            <ion-button class="btn btn-red margin-auto" (click)="toBack()">Voltar</ion-button>
+        </div>
+    </div>
+</ion-content>
+<ion-footer>
+    <app-footer></app-footer>
+</ion-footer>

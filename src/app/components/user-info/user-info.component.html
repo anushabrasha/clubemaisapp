@@ -1,0 +1,23 @@
+<div class="user-content flex" [ngClass]="showCount ? 'active': ''">
+    <app-user-avatar></app-user-avatar>
+    <div class="user-name-detail">
+        <!-- user role removed -->
+        <h3 class="user-name" *ngIf="userData.userName">Olá <span>{{getFirstName(userData.userName)}}</span></h3>
+        <div class="dropdown-menu align-center">
+            <p class="user-points">{{userData.userPoints | ptQrFormat:'true'}} <span>pts</span></p>
+            <div class="dropdown-menu-icon" [ngClass]="showCount ? 'active': ''">
+                <img src="assets/images/icons/down-gray-icon.png" alt="arrow" (click)="showCount = !showCount" />
+            </div>
+        </div>
+    </div>
+</div>
+<div class="user-detail" *ngIf="showCount">
+    <div class="menu">
+        <p class="expiring-points"> {{expirePoints ? expirePoints : '--'}}<span> pts a expirar em 30 dias</span></p>
+        <div class="sub-menu">
+            <label class="btn btn-gray">Desafios: <span>{{count.missionCount}}</span></label>
+            <label class="btn btn-gray">Treinamentos: <span>{{count.treinamentosCount}}</span></label>
+            <!-- selos count removed -->
+        </div>
+    </div>
+</div>

@@ -1,0 +1,312 @@
+<ion-header>
+  <app-header class="" [ngClass]="hideHeader ? 'hide-header' : ''"></app-header>
+</ion-header>
+<ion-content class="shop-page" [scrollEvents]="true" (ionScroll)="onScroll($event)">
+  <app-user-info-header pageKey='shop'></app-user-info-header>
+  <div class="product-category-icon">
+    <div class="category-icon">
+      <img [src]="selectedMenu.icon" [alt]="selectedMenu.title || selectedMenu.parentTitle" />
+    </div>
+  </div>
+  <div class="page-content">
+    <h2 class="category-title">{{selectedMenu.title || selectedMenu.parentTitle}}</h2>
+    <div class="single-product">
+      <div>
+        <ion-slides pager="false" [options]="slideOpts">
+          <ion-slide *ngFor="let productImage of sliderImage;">
+            <img class="product-image" [src]="productImage" [alt]="selectedProduct.post_title" />
+          </ion-slide>
+        </ion-slides>
+      </div>
+
+      <h2>{{selectedProduct.post_title}}</h2>
+      <h2 class="category-title">{{selectedMenu.title || selectedMenu.parentTitle}}</h2>
+      <h2 class="category-title" *ngIf="selectedProduct.model && selectedProduct.model != '.'">MODELO -
+        {{selectedProduct.model}}</h2>
+      <hr>
+      <p class="description" [innerHTML]="selectedProduct.description"> </p>
+
+      <div *ngIf="productType == 'normal'">
+        <h3 class="title-gray product-price">
+          <small>Por</small><span>{{productPrice | ptQrFormat:'true' }}</span><small>Pontos</small>
+        </h3>
+        <label class="text-center" *ngIf="!selectedProduct.notAvailable">Quantidade</label>
+
+        <div class="flex quantity" *ngIf="!selectedProduct.notAvailable">
+          <ion-button class="btn" (click)="updateQuantity(selectedProduct, '-')">-</ion-button>
+          <ion-input type="tel" name="quantity" *ngIf="selectedProduct.quantity" [(ngModel)]="selectedProduct.quantity"
+            (change)="triggerQuantityUpdate(selectedProduct)">
+          </ion-input>
+          <ion-button class="btn" (click)="updateQuantity(selectedProduct, '+')" [disabled]="disableAddToCart">+
+          </ion-button>
+        </div>
+        <hr>
+
+        <label class="text-center" *ngIf="!selectedProduct.notAvailable">Pontos + dinheiro</label>
+
+        <div class="range-slider" *ngIf="!selectedProduct.notAvailable">
+          <div class="controls">
+            <span class="arrow-left" (click)="decreaseSlider()"></span>
+            <span class="points">{{toShowRangeValue}} pts</span>
+            <span class="points"> R$ {{currencyToView}}</span>
+            <span class="arrow-right" (click)="increaseSlider()"></span>
+          </div>
+          <ion-range [min]="minRangeValue" [max]="chartPrice" color="secondary" step="0.01" [(ngModel)]="rangeValue"
+            (ionChange)="rangeSlider(rangeValue)"> </ion-range>
+        </div>
+
+        <p class="text-center">
+          Escolha acima o valor arrastando a seta para esquerda e direita (utilize no mínimo 10% em pontos.)
+        </p>
+        <div class="margin-bottom">
+          <ion-button class="btn btn-green block full" (click)="addToCart(selectedProduct)"
+            [disabled]="disableAddToCart || isCnova" *ngIf="!selectedProduct.notAvailable">
+            adicionar ao carrinho
+          </ion-button>
+          <ion-button class="btn btn-gray margin-auto back-btn" (click)="toBack()" *ngIf="selectedProduct.notAvailable">
+            Voltar
+          </ion-button>
+        </div>
+      </div>
+
+      <div class="recharge-product" *ngIf="productType == 'recharge'">
+
+        <div *ngIf="rechargeStepOne">
+          <form [formGroup]="rechargeTelefoneForm" *ngIf="rechargeTelefoneForm">
+            <div>
+              <label>SELECIONE SUA RECARGA</label>
+              <ion-select placeholder="ESCOLHA UMA OPÇÃO" interfaceOptions="customPopoverOptions"
+                interface="action-sheet" formControlName="variation" [(ngModel)]="variationValue">
+                <ion-select-option *ngFor="let variations of variationList" [value]="variations.displayPrice">
+                  {{variations.variantPrice}}
+                </ion-select-option>
+              </ion-select>
+            </div>
+            <div>
+              <label>NÚMERO DO CELULAR</label>
+              <ion-input type="tel" name="telefone" placeholder="DDD + Telefone" [brmasker]="{phone: true}"
+                formControlName="telefone" [(ngModel)]="rechargeNumber"></ion-input>
+              <p class="error"
+                *ngIf="!rechargeTelefoneForm.controls.telefone.valid && rechargeTelefoneForm.controls.telefone.touched">
+                CAMPO OBRIGATÓRIO.</p>
+
+              <div class="margin-bottom">
+                <ion-button class="btn btn-red block full" (click)="rechargeToNext()"
+                  [disabled]="!rechargeTelefoneForm.valid">
+                  PRÓXIMO PASSO
+                </ion-button>
+                <ion-button (click)="toBack()">Voltar</ion-button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div *ngIf="rechargeStepTwo">
+          <form [formGroup]="rechargeTelefoneFormTwo" *ngIf="rechargeTelefoneFormTwo">
+            <div>
+              <h3 class="">CONFIRME SEU NÚMERO</h3>
+              <ion-input type="tel" name="telefone" placeholder="DDD + Telefone" [brmasker]="{phone: true}"
+                formControlName="telefone" [(ngModel)]="rechargeNumber"></ion-input>
+              <p class="error"
+                *ngIf="!rechargeTelefoneFormTwo.controls.telefone.valid && rechargeTelefoneFormTwo.controls.telefone.touched">
+                CAMPO OBRIGATÓRIO.</p>
+            </div>
+
+            <div>
+              <h3 class="title-gray product-price">
+                <small>Por</small><span>{{productPrice | ptQrFormat:'true' }}</span><small>Pontos</small>
+              </h3>
+            </div>
+
+            <div class="margin-bottom">
+              <ion-button class="btn btn-green block full" (click)="submitRecharge()"
+                [disabled]="!rechargeTelefoneFormTwo.valid">
+                CONCLUIR RECARGA
+              </ion-button>
+            </div>
+          </form>
+        </div>
+
+      </div>
+
+      <div *ngIf="productType == 'multicash'">
+
+        <div>
+          <label *ngIf="is_ambPDV">SELECIONE O TAMANHO DO KIT</label>
+          <label *ngIf="!is_ambPDV">{{productVariationLabel}}</label>
+          <ion-select placeholder="ESCOLHA UMA OPÇÃO" interfaceOptions="customPopoverOptions" interface="action-sheet"
+            [(ngModel)]="variationValue" [(ngModel)]="variationValue" (ionChange)="variationUpdate()">
+            <ion-select-option *ngFor="let variations of variationList" [value]="variations.displayPrice">
+              {{variations.variantPrice}}
+            </ion-select-option>
+          </ion-select>
+        </div>
+
+        <div *ngIf="variationValue">
+          <h3 class="title-gray product-price">
+            <small>Por</small><span>{{productPrice | ptQrFormat:'true' }}</span><small>Pontos</small>
+          </h3>
+          <label class="text-center" *ngIf="!hidePointSlider">Quantidade</label>
+          <div class="flex quantity" *ngIf="!hidePointSlider">
+            <ion-button class="btn" (click)="updateQuantity(selectedProduct, '-')">-</ion-button>
+            <ion-input type="tel" name="quantity" *ngIf="selectedProduct.quantity"
+              [(ngModel)]="selectedProduct.quantity" (change)="triggerQuantityUpdate(selectedProduct)">
+            </ion-input>
+            <ion-button class="btn" (click)="updateQuantity(selectedProduct, '+')" [disabled]="disableAddToCart">+
+            </ion-button>
+          </div>
+          <hr>
+          <label class="text-center" *ngIf="!hidePointSlider">Pontos + dinheiro</label>
+
+          <div class="range-slider" *ngIf="!hidePointSlider">
+            <div class="controls">
+              <span class="arrow-left" (click)="decreaseSlider()"></span>
+              <span class="points">{{toShowRangeValue}} pts</span>
+              <span class="points"> R$ {{currencyToView}}</span>
+              <span class="arrow-right" (click)="increaseSlider()"></span>
+            </div>
+            <ion-range [min]="minRangeValue" [max]="chartPrice" color="secondary" step="0.01" [(ngModel)]="rangeValue"
+              (ionChange)="rangeSlider(rangeValue)"> </ion-range>
+          </div>
+
+          <p class="text-center" *ngIf="!hidePointSlider">
+            Escolha acima o valor arrastando a seta para esquerda e direita (utilize no mínimo 10% em pontos.)
+          </p>
+          <div class="margin-bottom">
+            <ion-button class="btn btn-green block full" (click)="addToCart(selectedProduct)"
+              [disabled]="disableAddToCart">
+              adicionar ao carrinho
+            </ion-button>
+            <ion-button class="btn btn-gray margin-auto back-btn" (click)="toBack()">Voltar</ion-button>
+
+          </div>
+        </div>
+
+      </div>
+
+      <div *ngIf="productType == 'vale-presente-recarga'">
+
+        <div>
+          <label>SELECIONE A QUANTIDADE DE CRÉDITOS</label>
+          <ion-select placeholder="ESCOLHA UMA OPÇÃO" interfaceOptions="customPopoverOptions" interface="action-sheet"
+            [(ngModel)]="variationValue" (ionChange)="variationUpdate()">
+            <ion-select-option *ngFor="let variations of variationList" [value]="variations.displayPrice">
+              {{variations.variantPrice}}
+            </ion-select-option>
+          </ion-select>
+        </div>
+
+        <div>
+          <h3 class="">NÚMERO DO CARTÃO*</h3>
+          <ion-input type="tel" name="telefone" placeholder="CÓDIGO DE BARRAS DO CARTÃO" (keyup)="rechargeMask($event)"
+            [brmasker]="{len:16, type:'num'}" [(ngModel)]="rechargeNumber">
+          </ion-input>
+        </div>
+
+        <div *ngIf="variationValue">
+          <h3 class="title-gray product-price">
+            <small>Por</small><span>{{productPrice | ptQrFormat:'true' }}</span><small>Pontos</small>
+          </h3>
+          <label class="text-center">Quantidade</label>
+          <div class="flex quantity">
+            <ion-button class="btn" (click)="updateQuantity(selectedProduct, '-')">-</ion-button>
+            <ion-input type="tel" name="quantity" *ngIf="selectedProduct.quantity"
+              [(ngModel)]="selectedProduct.quantity" (change)="triggerQuantityUpdate(selectedProduct)">
+            </ion-input>
+            <ion-button class="btn" (click)="updateQuantity(selectedProduct, '+')" [disabled]="disableAddToCart">+
+            </ion-button>
+          </div>
+          <hr>
+          <label class="text-center">Pontos + dinheiro</label>
+
+          <div class="range-slider">
+            <div class="controls">
+              <span class="arrow-left" (click)="decreaseSlider()"></span>
+              <span class="points">{{toShowRangeValue}} pts</span>
+              <span class="points"> R$ {{currencyToView}}</span>
+              <span class="arrow-right" (click)="increaseSlider()"></span>
+            </div>
+            <ion-range [min]="minRangeValue" [max]="chartPrice" color="secondary" step="0.01" [(ngModel)]="rangeValue"
+              (ionChange)="rangeSlider(rangeValue)"> </ion-range>
+          </div>
+
+          <p class="text-center">
+            Escolha acima o valor arrastando a seta para esquerda e direita (utilize no mínimo 10% em pontos.)
+          </p>
+          <div class="margin-bottom">
+            <ion-button class="btn btn-green block full" [disabled]="!validRechargeNumber || disableAddToCart"
+              (click)="addToCart(selectedProduct)">
+              adicionar ao carrinho
+            </ion-button>
+            <ion-button class="btn btn-gray margin-auto back-btn" (click)="toBack()">Voltar</ion-button>
+
+          </div>
+        </div>
+
+      </div>
+      <div *ngIf="productType == 'social-bank-prepaid'">
+
+        <div>
+          <label>SELECIONE A QUANTIDADE DE CRÉDITOS</label>
+          <ion-select placeholder="ESCOLHA UMA OPÇÃO" interfaceOptions="customPopoverOptions" interface="action-sheet"
+            [(ngModel)]="variationValue" (ionChange)="variationUpdate()">
+            <ion-select-option *ngFor="let variations of variationList" [value]="variations.displayPrice">
+              {{variations.variantPrice}}
+            </ion-select-option>
+          </ion-select>
+        </div>
+
+        <div>
+          <h3 class="">Nome completo da mãe*</h3>
+          <ion-input name="social_bank_mother_name" placeholder="Nome completo da mãe"
+            (change)="changeMothername($event)" [(ngModel)]="mothername">
+          </ion-input>
+        </div>
+
+        <div *ngIf="variationValue">
+          <h3 class="title-gray product-price">
+            <small>Por</small><span>{{productPrice | ptQrFormat:'true' }}</span><small>Pontos</small>
+          </h3>
+          <label class="text-center">Quantidade</label>
+          <div class="flex quantity">
+            <ion-button class="btn" (click)="updateQuantity(selectedProduct, '-')">-</ion-button>
+            <ion-input type="tel" name="quantity" *ngIf="selectedProduct.quantity"
+              [(ngModel)]="selectedProduct.quantity" (change)="triggerQuantityUpdate(selectedProduct)">
+            </ion-input>
+            <ion-button class="btn" (click)="updateQuantity(selectedProduct, '+')" [disabled]="disableAddToCart">+
+            </ion-button>
+          </div>
+          <hr>
+          <label class="text-center">Pontos + dinheiro</label>
+
+          <div class="range-slider">
+            <div class="controls">
+              <span class="arrow-left" (click)="decreaseSlider()"></span>
+              <span class="points">{{toShowRangeValue}} pts</span>
+              <span class="points"> R$ {{currencyToView}}</span>
+              <span class="arrow-right" (click)="increaseSlider()"></span>
+            </div>
+            <ion-range [min]="minRangeValue" [max]="chartPrice" color="secondary" step="0.01" [(ngModel)]="rangeValue"
+              (ionChange)="rangeSlider(rangeValue)"> </ion-range>
+          </div>
+
+          <p class="text-center">
+            Escolha acima o valor arrastando a seta para esquerda e direita (utilize no mínimo 10% em pontos.)
+          </p>
+          <div class="margin-bottom">
+            <ion-button class="btn btn-green block full" [disabled]="!validMothername ||  disableAddToCart"
+              (click)="addToCart(selectedProduct)">
+              adicionar ao carrinho
+            </ion-button>
+            <ion-button class="btn btn-gray margin-auto back-btn" (click)="toBack()">Voltar</ion-button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+</ion-content>
+<ion-footer>
+  <app-footer></app-footer>
+</ion-footer>

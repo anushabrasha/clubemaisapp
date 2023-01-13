@@ -1,0 +1,482 @@
+app-register-page {
+    ion-content {
+        &.ion-padding {
+            --padding-start: 0;
+            --padding-top: 0;
+            --padding-end: 0;
+
+            app-user-info-header {
+                .banner-user-detail {
+                    height: unset;
+
+                    .banner-content {
+                        height: 91vw;
+
+                        img {
+                            position: absolute;
+                            z-index: -1;
+                        }
+
+                        .banner-content-section {
+                            padding-top: 35px;
+                            position: unset;
+
+                            &.register-page {
+                                padding-top: 90px;
+                            }
+
+                            app-user-info {
+                                img {
+                                    position: unset;
+                                    z-index: unset;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            .segment-section {
+                display: flex;
+                padding: 20px 0;
+                padding-bottom: 0;
+                border-radius: 30px;
+                --background: #FFD800;
+                border-bottom-left-radius: 0;
+                border-bottom-right-radius: 0;
+                background-color: $secondary-light-color;
+
+                ion-segment {
+                    display: flex;
+                    flex-direction: column;
+
+                    ion-segment-button {
+                        border: unset;
+
+                        &.active {
+                            ion-label {
+                                color: $primary-light-color;
+                            }
+
+                            + .step {
+                                background-color: $primary-light-color;
+                            }
+                        }
+
+                        ion-label {
+                            color: $label-color;
+                            font-size: 18px;
+                            font-family: PFDinTextPro-Medium;
+                        }
+
+                        + .step {
+                            width: 50%;
+                            height: 5px;
+                            margin: 0 auto;
+                        }
+                    }
+
+                    .segment-button-checked {
+                        background: transparent;
+                        color: $primary-light-color;
+                    }
+                }
+            }
+
+            .page-content {
+                padding-bottom: 70px !important;
+                background-color: $white-color;
+                background-image: none;
+                margin-bottom: 55px;
+                border-radius: 0;
+                top: 0;
+
+                @media screen and (min-width: 480px) {
+                    top: 120px;
+                }
+
+                .stepOne,
+                .stepTwo,
+                .stepThree {
+                    padding: 0 15px;
+
+                    form {
+                        .user-avatar {
+                            width: 150px;
+                            height: 150px;
+                        }
+
+                        .form-group {
+                            &.input-password {
+                                position: relative;
+                            }
+
+                            label {
+                                color: $gray-dark;
+                                margin-bottom: 5px;
+                                font-family: Roboto-Regular;
+                            }
+
+                            select,
+                            ion-select,
+                            ion-datetime,
+                            input[type="tel"],
+                            input[type="text"],
+                            input[type="number"],
+                            input[type="email"],
+                            input[type="password"] {
+                                height: 40px;
+                                border: unset !important;
+                                border-radius: 0 !important;
+                                color: $text-gray !important;
+                                background-color: $input-field-color !important;
+
+                                &:-internal-autofill {
+                                    -webkit-text-fill-color: #5b5b5b;
+                                    -webkit-box-shadow: 0 0 0px 1000px $white-color inset;
+                                    transition: background-color 5000s ease-in-out 0s;
+                                }
+
+                                &:-internal-autofill-selected {
+                                    -webkit-text-fill-color: #5b5b5b;
+                                    -webkit-box-shadow: 0 0 0px 1000px $white-color inset;
+                                    transition: background-color 5000s ease-in-out 0s;
+                                }
+                            }
+
+                            ion-input[type="password"] {
+                                position: relative;
+                            }
+
+                            .password-description {
+                                font-size: 12px;
+                                color: $text-dark;
+                                font-family: Roboto-Regular;
+                            }
+
+                            ion-select {
+                                background: url(~\assets\images\icons\select-drop-down-icon.png) no-repeat transparent;
+                                background-position: right;
+                                line-height: 40px;
+                                height: 40px;
+                            }
+
+                            .password-toggle {
+                                background-repeat: no-repeat;
+                                background-position: center;
+                                background-size: cover;
+                                position: absolute;
+                                margin-top: -35px;
+                                height: 15px;
+                                width: 20px;
+                                right: 20px;
+                                z-index: 2;
+
+                                &.eye {
+                                    background-image: url("~/assets/images/icons/eye-icon.png");
+                                }
+
+                                &.eye-off {
+                                    background-image: url("~/assets/images/icons/eye-slash-icon.png");
+                                }
+                            }
+
+                            &.error {
+                                label {
+                                    font-family: Roboto-Medium;
+                                    color: $primary-light-color !important;
+                                }
+
+                                select,
+                                ion-select,
+                                ion-datetime,
+                                input[type="tel"],
+                                input[type="text"],
+                                input[type="number"],
+                                input[type="email"],
+                                input[type="password"] {
+                                    border: 1px solid $primary-light-color !important;
+                                }
+
+                                .error {
+                                    font-family: Roboto-Medium;
+                                    color: $primary-light-color;
+                                }
+                            }
+
+                            &.flex {
+                                margin-bottom: 0;
+                                align-items: center;
+                                .btn {
+                                    height: 40px;
+                                    margin: 0 auto;
+                                    font-size: 14px !important;
+
+                                    &.btn-green {
+                                        background-color: $btn-green !important;
+                                    }
+
+                                    &.btn-gray {
+                                        background-color: $label-color !important;
+                                    }
+                                }
+
+                                .form-group {
+                                    &.w- {
+                                        margin-bottom: 0;
+
+                                        &80 {
+                                            width: 80%;
+                                        }
+
+                                        &70 {
+                                            width: 70%;
+                                        }
+
+                                        &60 {
+                                            width: 60%;
+                                            margin-left: 10px;
+                                        }
+
+                                        &40 {
+                                            width: 40%;
+                                        }
+
+                                        &30 {
+                                            width: 30%;
+                                            margin-left: 10px;
+                                            ion-select {
+                                                margin-bottom: 0;
+                                            }
+                                        }
+
+                                        &20 {
+                                            width: 20%;
+                                            margin-left: 10px;
+                                        }
+                                    }
+
+                                    &.flex {
+                                        .btn-green {
+                                            margin-left: 10px;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        .autofill {
+                            height: fit-content;
+                            font-size: 14px !important;
+                            margin-bottom: 25px !important;
+                            padding: 13px 20px !important;
+                            line-height: normal !important;
+                        }
+
+                        .term-conditions-popup-description {
+                            text-align: center;
+                            margin-bottom: 25px;
+
+                            .term-conditions-popup-content {
+                                font-size: 14px;
+                                color: $text-dark;
+                                text-decoration: underline;
+                                font-family: PFDinTextPro-Regular;
+
+                                &:hover {
+                                    color: $text-dark;
+                                    text-decoration: underline;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .stepThree {
+                    form {
+                        width: 80%;
+                        margin: 30px auto;
+                        margin-bottom: 0;
+                    }
+                }
+
+                .stepFour {
+                    .regulamento-title-section {
+                        padding: 15px;
+
+                        .title-red {
+                            margin: 0;
+                            margin-bottom: 10px;
+                            text-transform: uppercase;
+                            font-family: PFDinTextPro-ThinItalic;
+
+                            span {
+                                display: block;
+                                color: $primary-light-color;
+                            }
+                        }
+                    }
+
+                    .regulamento {
+                        padding: 15px;
+
+                        .regulamento-content {
+                            direction: ltr;
+                            overflow-y: scroll;
+                            overflow-x: hidden;
+                            height: 100%;
+                            width: 100%;
+                            border-radius: 5px;
+                            border: 1px solid $gray-dark;
+                            max-height: 400px;
+                            padding: 25px;
+
+                            h3 {
+                                color: unset;
+                                font-style: unset;
+                            }
+                        }
+                    }
+
+                    .regulamento-checkbox {
+                        align-items: center;
+                        margin: 20px 0;
+                        padding: 0 15px;
+                        margin-bottom: 40px;
+                        justify-content: unset;
+
+                        ion-label {
+                            color: $text-dark;
+                            margin: 0 10px;
+                        }
+
+                        ion-radio {
+                            --color: #009D26;
+                            border: 1px solid #009D26;
+                            border-color: #009D26;
+                            border-radius: 100%;
+                            width: 25px;
+                            height: 25px;
+                        }
+
+                        .radio-box {
+                            ion-radio {
+                                &.radio-md {
+                                    .radio-icon {
+                                        border-color: #009D26;
+                                    }
+                                }
+                            }
+                        }
+
+                        + .form-group {
+                            &.flex {
+                                .back-btn {
+                                    margin-left: auto;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            .success-section {
+                .profile-update {
+                    margin: 0;
+                    font-size: 40px;
+                    color: $text-dark;
+                    margin-bottom: 30px;
+                    font-family: PFDinTextPro-ThinItalic;
+
+                    span {
+                        display: block;
+                        color: $primary-light-color;
+                    }
+                }
+
+                .description {
+                    font-size: 24px;
+                    color: $label-color;
+                    font-family: Roboto-Regular;
+                }
+
+                .btn {
+                    &.btn-gray {
+                        height: 40px;
+                        margin: 0 auto;
+                        font-size: 14px !important;
+                        background-color: $label-color !important;
+                    }
+                }
+
+                &.register-success-section {
+                    padding: 20px 0;
+                    padding-bottom: 0;
+                    border-radius: 30px;
+                    border-bottom-left-radius: 0;
+                    border-bottom-right-radius: 0;
+                    background-color: $white-color;
+
+                    .register-success-section {
+                        width: 80%;
+                        margin: 0 auto;
+                        margin-top: 20px;
+                        padding-bottom: calc(100% / 4) !important;
+                    }
+                }
+
+                &.profile-update-section {
+                    width: 80%;
+                    margin: 0 auto;
+                    margin-top: 20px;
+                    padding-bottom: calc(100% / 4) !important;
+                }
+            }
+        }
+    }
+
+    .regulamento {
+        padding: 15px;
+        border: 1px solid $white-color;
+        border-radius: 15px;
+        margin-bottom: 15px;
+        padding-right: 10px;
+
+        .regulamento-content {
+            height: 50vh;
+            overflow: auto;
+            padding-right: 10px;
+
+            h3 {
+                color: $white-color;
+                font-style: italic;
+            }
+        }
+    }
+
+    .regulamento-checkbox {
+        align-items: center;
+        justify-content: center;
+        margin: 20px 0;
+        margin-bottom: 40px;
+
+        ion-label {
+            color: $white-color;
+            margin: 0 10px;
+        }
+    }
+
+    .regulamento-terms {
+        display: flex;
+        width: max-content;
+        margin: 15px auto !important;
+
+        .terms-content {
+            --color-checked: #009D26;
+        }
+
+        .regulamento-terms-content {
+            color: $white-color;
+        }
+    }
+}

@@ -1,0 +1,264 @@
+app-contact-page {
+    app-user-info-header {
+        .banner-user-detail {
+            .banner-content {
+                .banner-content-section {
+                    &.unlog-in {
+                        top: 100px !important;
+                    }
+                }
+            }
+        }
+    }
+
+    .page-content {
+        top: 30px;
+        position: relative;
+        padding-bottom: 80px !important;
+
+        .fale-conosco-content-section {
+            padding: 15px 0;
+
+            .new-message {
+                display: block;
+
+                .regulamento {
+                    width: 90%;
+                    padding: 0 20px;
+                    max-width: 480px;
+                    margin: 5px auto;
+                    align-items: center;
+                    background: transparent !important;
+
+                    + .glow-gray {
+                        width: 50%;
+                        height: 2px;
+                        display: block;
+                        margin: 0 auto;
+                        background-color: rgba(112, 112, 112, 0.32);
+                    }
+
+                    &.whatsapp,
+                    &.contact,
+                    &.document {
+                        &.bg-green {
+                            .title-yellow {
+                                color: $white-color;
+                                text-transform: uppercase;
+                                font-family: PFDinTextPro-Italic;
+
+                                a {
+                                    color: $text-dark;
+                                    font-family: PFDinTextPro-Italic;
+                                }
+
+                                span {
+                                    color: $text-dark;
+                                    font-family: PFDinTextPro-Medium-Italic;
+                                }
+                            }
+                        }
+
+                        img {
+                            width: 15%;
+                            height: auto;
+                            border-radius: 0;
+                            margin-right: 15px;
+                        }
+
+                        .title-yellow {
+                            font-size: 18px;
+                            color: $text-dark;
+                            text-transform: uppercase;
+                            font-family: PFDinTextPro-Italic;
+
+                            i {
+                                font-family: PFDinTextPro-Medium-Italic;
+                            }
+
+                            span {
+                                color: $text-dark;
+
+                                &.title-red {
+                                    display: block;
+                                    font-size: 30px;
+                                    color: $secondary-color;
+                                    font-family: PFDinTextPro-Medium-Italic;
+                                }
+                            }
+                        }
+                    }
+
+                    &.document {
+                        &.bg-gradient {
+                            .title-yellow {
+                                span {
+                                    color: $primary-light-color;
+                                }
+                            }
+                        }
+                    }
+
+                    &.whatsapp {
+                        margin-bottom: 35px;
+
+                        &.bg-green {
+                            .title-yellow {
+                                color: $text-dark;
+
+                                span {
+                                    color: $primary-light-color;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .content-section {
+                    width: 90%;
+                    margin: 0 auto;
+
+                    p {
+                        font-size: 24px;
+                        color: $text-dark;
+                        font-family: Roboto-Regular;
+                        margin-bottom: 30px !important;
+
+                        span {
+                            font-family: Roboto-Medium;
+                            color: $primary-light-color;
+                        }
+                    }
+                }
+
+                .form-content-section {
+                    width: 90%;
+                    margin: 0 auto;
+
+                    .form-group {
+                        label {
+                            color: $text-dark;
+                            margin-bottom: 5px;
+                            font-family: Roboto-Regular;
+                        }
+
+                        input[type="tel"],
+                        input[type="email"],
+                        input[type="text"] {
+                            border: unset !important;
+                            border-radius: 0 !important;
+                            color: $text-dark !important;
+                            background-color: $input-field-color !important;
+
+                            &:-internal-autofill {
+                                -webkit-text-fill-color: #5b5b5b;
+                                -webkit-box-shadow: 0 0 0px 1000px $white-color inset;
+                                transition: background-color 5000s ease-in-out 0s;
+                            }
+
+                            &:-internal-autofill-selected {
+                                -webkit-text-fill-color: #5b5b5b;
+                                -webkit-box-shadow: 0 0 0px 1000px $white-color inset;
+                                transition: background-color 5000s ease-in-out 0s;
+                            }
+                        }
+
+                        ion-textarea {
+                            background-color: $input-field-color !important;
+                            border: unset !important;
+                            min-height: 150px;
+                            margin: 5px 0;
+
+                            textarea {
+                                height: 150px;
+                                text-indent: 15px;
+                            }
+                        }
+
+                        &.error {
+                            label {
+                                font-family: Roboto-Medium;
+                                color: $primary-light-color !important;
+                            }
+
+                            ion-textarea,
+                            input[type="tel"],
+                            input[type="email"],
+                            input[type="text"] {
+                                -webkit-box-shadow: 0 0 0px 1000px #e3060930 inset;
+                            }
+
+                            .error {
+                                font-family: Roboto-Medium;
+                                color: $primary-light-color;
+                            }
+                        }
+
+                        .submit-btn {
+                            width: 100%;
+                            margin-bottom: 20px;
+                            text-transform: unset;
+                            font-family: Roboto-Medium;
+                            font-size: 16px !important;
+                            line-height: normal !important;
+                            background-color: #27AF2F !important;
+                        }
+                    }
+                }
+            }
+        }
+
+        .success-section {
+            width: 80%;
+            margin: 0 auto;
+            margin-top: 20px;
+            padding-bottom: calc(100% / 4) !important;
+
+            .contact-update {
+                margin: 0;
+                font-size: 40px;
+                color: $text-dark;
+                margin-bottom: 30px;
+                text-transform: uppercase;
+                font-family: PFDinTextPro-ThinItalic;
+
+                span {
+                    display: block;
+                    color: $primary-light-color;
+                }
+            }
+
+            .description {
+                font-size: 24px;
+                color: $label-color;
+                font-family: Roboto-Regular;
+            }
+
+            .btn {
+                &.btn-gray {
+                    height: 40px;
+                    margin: 0 auto;
+                    font-size: 14px !important;
+                    background-color: $label-color !important;
+                }
+            }
+        }
+    }
+
+    .open-whatsapp-section {
+        .whatsapp-icon {
+            z-index: 1;
+            width: 50px;
+            right: 30px;
+            height: 50px;
+            bottom: 90px;
+            position: fixed;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+            }
+        }
+    }
+}

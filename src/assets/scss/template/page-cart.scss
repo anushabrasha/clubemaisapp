@@ -1,0 +1,226 @@
+app-cart {
+    .cart-page {
+        app-user-info-header {
+            .banner-user-detail {
+                .banner-content {
+                    .banner-content-section {
+                        .content-section {
+                            .title {
+                                font-size: 34px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .page-content {
+            top: 15vw;
+            padding-bottom: calc(100% / 4) !important;
+
+            .btn-outline-gray {
+                width: fit-content;
+                margin: 30px auto;
+                color: $gray-dark !important;
+                text-align: center;
+                font-size: 16px !important;
+                line-height: 30px !important;
+                border: 3px solid $gray-dark;
+            }
+
+            .cart-item {
+                max-width: 88%;
+                width: 100%;
+                margin: 0 auto;
+                margin-bottom: 25px;
+
+                .product-image {
+                    border: 1px solid #b7b7b7;
+                    border-radius: 20px;
+                    overflow: hidden;
+                    width: 30vw;
+                    height: 29.32vw;
+                    margin: auto 0;
+                    margin-right: 5%;
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                    }
+                }
+
+                .product-details {
+                    width: 63%;
+                    border-top: 1px solid $text-gray;
+                    border-bottom: 1px solid $text-gray;
+                    padding-top: 10px;
+
+                    .product-title {
+                        font-family: PFDinTextPro-Medium-Italic;
+                        color: $gray-dark;
+                        margin: 0;
+                        font-size: 18px;
+                        margin-bottom: 20px;
+                    }
+
+                    .btn {
+                        margin: 10px auto;
+                    }
+
+                    .points {
+                        font-family: PFDinTextPro-Medium-Italic;
+                        margin: 0;
+
+                        &.title-red {
+                            color: $primary-light-color;
+                        }
+                    }
+
+                    .freight-points {
+                        color: $gray-dark !important;
+
+                        span.red {
+                            color: $primary-light-color !important;
+                        }
+                    }
+
+                    .quantity {
+                        align-items: flex-start;
+                        margin-left: auto;
+
+                        ion-input {
+                            width: 35px !important;
+
+                            input {
+                                margin: 0;
+                                font-size: 16px !important;
+                                width: max-content !important;
+                                color: $secondary-color !important;
+                                font-family: PFDinTextPro-Regular !important;
+                            }
+                        }
+
+                        .btn {
+                            margin: 0;
+                            padding: 0 !important;
+                            width: 22px;
+                            height: auto;
+                            color: #A60508 !important;
+                            font-family: PFDinTextPro-Medium;
+                            font-size: 20px !important;
+                            background-color: $gray-color;
+                            border-radius: 50% !important;
+                        }
+                    }
+
+                    .remove {
+                        background-color: #F5F6F8;
+                        font-family: PFDinTextPro-Medium-Italic;
+                        max-width: max-content;
+                        font-size: 14px !important;
+                        line-height: normal !important;
+                        padding: 6px !important;
+                        height: 40px;
+                        border-width: 1px;
+                    }
+                }
+            }
+
+            .total-points {
+                padding: 20px;
+
+                hr {
+                    border-bottom: 1px solid $label-color;
+                }
+
+                h3 {
+                    color: #333333;
+                    text-transform: unset;
+                    font-family: PFDinTextPro-Medium;
+
+                    span {
+                        color: $secondary-color;
+                    }
+
+                    + p {
+                        color: #333333;
+                    }
+                }
+
+                h1 {
+                    color: $gray-dark;
+                    font-family: PFDinTextPro-Regular;
+                    text-transform: initial;
+
+                    span {
+                        color: $primary-light-color;
+                        font-family: PFDinTextPro-Medium-Italic;
+                    }
+                }
+
+                .cart-button {
+                    width: 240px;
+                    margin: 0 auto;
+                    font-size: 16px !important;
+
+                    &.btn-red {
+                        margin-bottom: 15px;
+                        background-color: $primary-light-color !important;
+                    }
+
+                    &.btn-green {
+                        background-color: $btn-green !important;
+                    }
+                }
+            }
+
+            .empty-cart-section {
+                width: 80%;
+                margin: 0 auto;
+                margin-top: 30px;
+
+                .title-gray {
+                    margin: 0;
+                    font-size: 30px;
+                    color: $text-dark;
+                    margin-bottom: 30px;
+                    text-transform: unset;
+                    font-family: PFDinTextPro-Light-Italic;
+
+                    span {
+                        font-family: PFDinTextPro-Medium-Italic;
+                    }
+
+                    &.title {
+                        font-size: 20px;
+                        text-transform: uppercase;
+
+                        span {
+                            color: $primary-light-color;
+                        }
+                    }
+
+                    &.sub-title {
+                        text-align: center;
+                        margin-bottom: 30px;
+                        span {
+                            color: $text-dark;
+                        }
+                    }
+                }
+
+                .btn {
+                    &.btn-outline-gray {
+                        height: 40px;
+                        margin: 0 auto;
+                        border-width: 3px;
+                        margin-bottom: 30px;
+                        font-size: 14px !important;
+                        line-height: 1.5 !important;
+                    }
+                }
+            }
+        }
+    }
+}

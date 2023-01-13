@@ -1,0 +1,43 @@
+<ion-header>
+  <app-header class="" [ngClass]="hideHeader ? 'hide-header' : ''"></app-header>
+</ion-header>
+<ion-content [scrollEvents]="true" (ionScroll)="onScroll($event)">
+  <app-user-info-header pageKey='news'></app-user-info-header>
+  <div class="page-content">
+    <div *ngIf="isNewsPresent">
+      <div class="categories-select-section">
+        <ion-button class="btn btn-red categories-btn" [ngClass]="showCategory ? 'active':''"
+          (click)="showCategory = !showCategory">CATEGORIAS</ion-button>
+        <div class="categories-section" *ngIf="showCategory">
+          <div class="news-category" *ngFor="let category of newsCategory" (click)="changeCategory(category)">
+            <div class="category-icon">
+              <img [src]="category.icon" />
+            </div>
+            <p class="category-title" [ngClass]="category.status" [innerHTML]="category.menu_title"></p>
+          </div>
+        </div>
+      </div>
+      <ion-searchbar class="search-section" placeholder="DIGITE O QUE VOCÊ PROCURA" [(ngModel)]="searchString"
+        (change)="searchNews()">
+      </ion-searchbar>
+      <app-news-page-card></app-news-page-card>
+
+      <ion-infinite-scroll threshold="100px" (ionInfinite)="loadMoreData($event)">
+        <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Carregando...">
+        </ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+    </div>
+
+    <div *ngIf="newsNotFound">
+      <p>No news found</p>
+    </div>
+
+    <div *ngIf="!isNewsPresent" class="comingsoon margin-auto">
+      <h2>EM BREVE</h2>
+    </div>
+    <ion-button class="btn btn-gray back-btn" (click)="toBack()">voltar</ion-button>
+  </div>
+</ion-content>
+<ion-footer>
+  <app-footer></app-footer>
+</ion-footer>

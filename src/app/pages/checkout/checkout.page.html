@@ -1,0 +1,136 @@
+<ion-header>
+  <app-header class="" [ngClass]="hideHeader ? 'hide-header' : ''"></app-header>
+</ion-header>
+
+<ion-content class="checkout" [scrollEvents]="true" (ionScroll)="onScroll($event)">
+  <app-user-info-header pageKey='checkout'></app-user-info-header>
+
+
+  <div class="page-content">
+    <div *ngIf="!orderSuccessView">
+      <h2 class="category-title">ENDEREÇO DE ENTREGA</h2>
+      <div class="form-group">
+        <label>*CAMPO OBRIGATÓRIO</label>
+      </div>
+      <form [formGroup]="checkoutForm" *ngIf="checkoutForm">
+        <div class="form-group">
+          <label>PRIMEIRO NOME**</label>
+          <ion-input type="text" name="name" placeholder="" formControlName="firstName"></ion-input>
+          <div class="" [ngClass]="errorClass" *ngIf="!checkoutForm.controls.firstName.valid">
+            Primeiro nome inválido
+          </div>
+        </div>
+        <div class="form-group">
+          <label>ÚLTIMO NOME*</label>
+          <ion-input type="text" name="name" placeholder="" formControlName="lastname"></ion-input>
+          <div class="" [ngClass]="errorClass" *ngIf="!checkoutForm.controls.lastname.valid">
+            Último nome inválido
+          </div>
+        </div>
+        <div class="form-group">
+          <label>E-Mail</label>
+          <ion-input type="email" name="email" placeholder="" formControlName="email"></ion-input>
+          <div class="" [ngClass]="errorClass" *ngIf="!checkoutForm.controls.email.valid">
+            E-Mail inválido
+          </div>
+        </div>
+        <div class="form-group">
+          <label>DDD + TELEFONE*</label>
+          <ion-input type="tel" name="telefone" placeholder="" formControlName="telefone" [brmasker]="{phone: true}">
+          </ion-input>
+          <div class="" [ngClass]="errorClass" *ngIf="!checkoutForm.controls.telefone.valid">
+            Telefone inválido
+          </div>
+        </div>
+        <div class="form-group">
+          <label>CEP*</label>
+          <ion-input type="tel" name="telefone" placeholder="" formControlName="cep" (change)="getLocationDetail()"
+            [(ngModel)]="cepDetails.cep" [brmasker]="{mask: '00000-000', type:'num'}"></ion-input>
+          <div class="" [ngClass]="errorClass" *ngIf="!checkoutForm.controls.cep.valid">
+            CEP inválido
+          </div>
+        </div>
+        <div class="form-group">
+          <label>ENDEREÇO*</label>
+          <ion-input type="text" name="ENDEREÇO*" placeholder="" formControlName="endereco"
+            [(ngModel)]="cepDetails.rua">
+          </ion-input>
+          <div class="" [ngClass]="errorClass" *ngIf="!checkoutForm.controls.endereco.valid">
+            Eúndereço inválido
+          </div>
+        </div>
+        <div class="form-group">
+          <label>NÚMERO*</label>
+          <ion-input type="tel" name="number" placeholder="" formControlName="number"></ion-input>
+          <div class="" [ngClass]="errorClass" *ngIf="!checkoutForm.controls.number.valid">
+            Número inválido
+          </div>
+        </div>
+        <div class="form-group">
+          <label>COMPLEMENTO</label>
+          <ion-input type="text" name="COMPLEMENTO*" placeholder="" formControlName="complemento"></ion-input>
+          <div class="" [ngClass]="errorClass" *ngIf="!checkoutForm.controls.complemento.valid">
+            Complemento inválido
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Bairro*</label>
+          <ion-input type="text" name="bairro" placeholder="" formControlName="bairro" [(ngModel)]="cepDetails.bairro">
+          </ion-input>
+          <div class="" [ngClass]="errorClass" *ngIf="!checkoutForm.controls.bairro.valid">
+            Bairro inválido
+          </div>
+        </div>
+        <div class="form-group">
+          <label>cidade*</label>
+          <ion-input type="text" name="COMPLEMENTO*" placeholder="" formControlName="cidade"
+            [(ngModel)]="cepDetails.cidade"></ion-input>
+          <div class="" [ngClass]="errorClass" *ngIf="!checkoutForm.controls.cidade.valid">
+            Cidade inválido
+          </div>
+        </div>
+        <div class="form-group">
+          <label>ponto de referência</label>
+          <ion-input type="text" name="COMPLEMENTO*" placeholder="" formControlName="pontoDeReference"></ion-input>
+          <div class="" [ngClass]="errorClass" *ngIf="!checkoutForm.controls.pontoDeReference.valid">
+            Ponto de referência inválido
+          </div>
+        </div>
+        <div class="form-group">
+          <label>ESTADO</label>
+          <ion-select name="COMPLEMENTO*" placeholder="" formControlName="estado" cancelText="CANCELAR"
+            [(ngModel)]="cepDetails.estado">
+            <ion-select-option *ngFor="let state of stateList" [value]="state.key">
+              {{dataProvider.stateReversed [state.text]}}
+            </ion-select-option>
+          </ion-select>
+          <div class="" [ngClass]="errorClass" *ngIf="!checkoutForm.controls.estado.valid">
+            Estado inválido
+          </div>
+        </div>
+        <ion-button class="btn btn-green" [disabled]="!checkoutForm.valid" (click)="generateOtp()">Confirmar pedido
+        </ion-button>
+      </form>
+    </div>
+
+    <div class="order-success-section" *ngIf="orderSuccessView">
+      <h1 class="title-gray title"><span>checkout</span></h1>
+      <h1 class="title-gray sub-title">
+        resgate realizado
+        <span>com sucesso!</span>
+      </h1>
+      <p class="description">
+        Você receberá um e-mail com todas as informações da sua compra.
+        Você pode acompanhar todos os seus resgates em Meus Pedidos.
+      </p>
+      <div class="order-status-icon">
+        <img src="assets/images/icons/pagamento-success.png" alt="Shop-Sucesso">
+        <!-- <img src="assets/images/icons/pagamento-failure.png" alt="Shop-falha"> -->
+      </div>
+      <ion-button class="btn btn-red margin-auto" routerLink="/order-list">MEUS PEDIDOS</ion-button>
+    </div>
+  </div>
+</ion-content>
+<ion-footer>
+  <app-footer></app-footer>
+</ion-footer>

@@ -1,0 +1,12 @@
+<footer>
+    <div class="footer-tab flex">
+        <a *ngFor="let page of footerAccessPage" class="footer-icon" (click)='openPage(page)'>
+            <div class="icon">
+                <img [src]="page.img" [alt]="page.title" />
+            </div>
+            <p class="title">{{page.title}}</p>
+            <span class="count" *ngIf="page.title == 'Notificações' && notificationCount != 0"></span>
+            <!-- <span class="count">{{CartCount}}</span> -->
+        </a>
+    </div>
+</footer>

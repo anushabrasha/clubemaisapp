@@ -1,0 +1,221 @@
+/* ---------------- Archive Training ----------------------------*/
+
+app-training-page {
+    ion-content {
+        app-user-info-header {
+            .banner-user-detail {
+                .banner-content {
+                    .banner-content-section {
+                        .content-section {
+                            .description {
+                                color: $white-color;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .page-content {
+            top: 15vw;
+            overflow: scroll;
+            padding-bottom: calc(100% / 4) !important;
+
+            .categories-select-section {
+                position: relative;
+                margin: 25px 0;
+
+                .categories-btn {
+                    background-color: $primary-light-color !important;
+                    font-size: 15px !important;
+                    margin: 0 auto;
+                    display: block;
+                    width: 200px;
+
+                    &.active {
+                        border-bottom-left-radius: 0 !important;
+                        border-bottom-right-radius: 0 !important;
+                    }
+                }
+
+                .categories-section {
+                    border-bottom-right-radius: 20px !important;
+                    border-bottom-left-radius: 20px !important;
+                    background-color: $primary-light-color;
+                    padding-bottom: 20px;
+                    position: absolute;
+                    margin: 0 auto;
+                    width: 200px;
+                    z-index: 2;
+                    right: 0;
+                    left: 0;
+
+                    .training-category {
+                        display: flex;
+                        padding: 10px 0;
+                        align-items: center;
+                        background-color: $input-field-color;
+
+                        &:nth-child(even) {
+                            background-color: $primary-light-color;
+
+                            .category-icon {
+                                filter: contrast(0) brightness(10);
+                            }
+
+                            .category-title {
+                                color: $white-color;
+                            }
+                        }
+
+                        .category-icon {
+                            width: 30px;
+                            height: 30px;
+                            margin: 0 auto;
+
+                            img {
+                                width: 100%;
+                                height: 100%;
+                                object-fit: contain;
+                            }
+                        }
+
+                        .category-title {
+                            width: 110px;
+                            overflow: hidden;
+                            white-space: nowrap;
+                            text-overflow: ellipsis;
+                            color: $primary-light-color;
+                            margin: 0 auto 0 0 !important;
+                            font-family: PFDinTextPro-Medium-Italic;
+                        }
+                    }
+                }
+            }
+
+            .search-section {
+                width: 95%;
+                margin: 0 auto;
+                margin-bottom: 25px;
+
+                .searchbar-input-container {
+                    height: 50px;
+                    border-radius: 30px;
+                    border: 3px solid $gray-dark;
+
+                    .searchbar-input {
+                        font-size: 15px;
+                        color: $gray-dark;
+                        text-align: center;
+                        background: transparent;
+                        font-family: PFDinTextPro-Medium-Italic;
+                    }
+
+                    ion-icon {
+                        left: 20px;
+                        color: $gray-dark;
+                    }
+                }
+            }
+
+            app-aprenda-archive-card {
+                .archive-training-banner-section {
+                    .archive-training-banner {
+                        margin: 25px;
+                        position: relative;
+
+                        .archive-training-banner-image {
+                            width: 100%;
+                            height: 180px;
+                            position: relative;
+                            
+                            img {
+                                width: 100%;
+                                height: 100%;
+                                object-fit: cover;
+                                max-height: 180px;
+                            }
+                        }
+
+                        .archive-training-banner-container {
+                            position: absolute;
+                            padding: 20px;
+                            width: 50%;
+                            bottom: 0;
+                            right: 0;
+                            left: 0;
+                            top: 0;
+                            &::before {
+                                content: '';
+                                width: 100%;
+                                height: 100%;
+                                display: block;
+                                position: absolute;
+                                right: 0;
+                                left: 0;
+                                top: 0;
+                                background-image: url(~\assets\images\background/backdrop.png);
+                                background-repeat: no-repeat;
+                            }
+
+                            label {
+                                margin: 0;
+                                font-size: 13px;
+                                padding: 4px 20px;
+                                width: max-content;
+                                margin-bottom: 20px;
+                                border-radius: 13px;
+                                text-transform: uppercase;
+                                background-color: $white-color;
+                                font-family: PFDinTextPro-Medium;
+                            }
+
+                            .training-title {
+                                line-height: 1;
+                                font-size: 19px;
+                                overflow: hidden;
+                                max-height: 78px;
+                                color: $white-color;
+                                height: fit-content;
+                                display: -webkit-box;
+                                -webkit-line-clamp: 3;
+                                min-height: fit-content;
+                                text-overflow: ellipsis;
+                                text-transform: uppercase;
+                                -webkit-box-orient: vertical;
+                                font-family: PFDinTextPro-Italic;
+                            }
+                        }
+
+                        .post-status {
+                            top: 20px;
+                            right: 15px;
+                            position: absolute;
+
+                            label {
+                                margin: 0;
+                                font-size: 13px;
+                                padding: 4px 20px;
+                                width: max-content;
+                                margin-bottom: 20px;
+                                border-radius: 13px;
+                                text-transform: uppercase;
+                                color: $primary-light-color;
+                                font-family: PFDinTextPro-Medium;
+                                background-color: $secondary-light-color;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .back-btn {
+                font-family: PFDinTextPro-Medium-Italic;
+                font-size: 15px !important;
+                margin: 0 auto;
+                display: block;
+                width: 95px;
+            }
+        }
+    }
+}

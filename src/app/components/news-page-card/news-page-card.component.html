@@ -1,0 +1,16 @@
+<div class="archive-news-banner-section">
+  <div class="archive-news-banner" *ngFor="let news of newsList" [ngClass]="news.status"
+    (click)="openSingleNewsView(news)">
+    <div class="archive-news-banner-image">
+      <div class="bg-overlay"></div>
+      <img [src]="news.image_for_mobile ? news.image_for_mobile : news.thumbnail " [alt]="news.title" />
+    </div>
+    <div class="archive-news-banner-container">
+      <label class="period" *ngIf="news.date">{{news.date_formated}}</label>
+      <h3 class="news-title">{{news.title}}</h3>
+    </div>
+    <div class="post-status">
+      <label class="status-label" *ngIf="news.post_read_status != 1">novo !</label>
+    </div>
+  </div>
+</div>
